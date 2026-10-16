@@ -522,6 +522,8 @@ function HighlightCard({ ev }: { ev: PsngEvent }) {
             </button>
           )}
         </div>
+      ) : a.photos && a.photos.length > 1 ? (
+        <HeroPhotoCarousel photos={a.photos} alts={a.photoAlts} title={pick(ev.title, locale)} />
       ) : heroPhoto ? (
         <div className="relative aspect-video w-full bg-muted">
           <img
@@ -665,6 +667,50 @@ function HighlightCard({ ev }: { ev: PsngEvent }) {
           abschließt statt im Innenabstand zu schweben. */}
       {ev.partnerCredit ? <PartnerCreditStrip credit={ev.partnerCredit} /> : null}
     </div>
+  );
+}
+
+/**
+ * Mehrere Fotos oben auf einer Rückblick-Karte ohne Video, etwa die beiden
+ * Gruppenbilder einer Konferenz. Randlos in derselben 16:9-Kachel wie das
+ * Einzelfoto; die Quellen sind schon auf 16:9 zugeschnitten.
+ */
+function HeroPhotoCarousel({
+  photos,
+  alts,
+  title,
+}: {
+  photos: string[];
+  alts?: Localized[];
+  title: string;
+}) {
+  const c = useCopy();
+  const locale = useLocale();
+  return (
+    <Carousel opts={{ loop: true }} className="w-full">
+      <CarouselContent className="ml-0">
+        {photos.map((src, i) => (
+          <CarouselItem key={src} className="pl-0">
+            <div className="relative aspect-video w-full bg-muted">
+              <img
+                src={src}
+                alt={
+                  pick(alts?.[i], locale) ??
+                  `${title} – ${c.events.photoFallback} ${i + 1}`
+                }
+                width={1200}
+                height={675}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="left-2" />
+      <CarouselNext className="right-2" />
+    </Carousel>
   );
 }
 

@@ -8,7 +8,8 @@ import type { Locale } from "@/i18n/locale";
 import { intlLocale, pick, type Localized } from "@/i18n/localized";
 import trypPhoto1 from "@/assets/tryp-1.webp";
 import icprPhoto from "@/assets/icpr-1.webp";
-import alpsConferenceCover from "@/assets/alps-conference-2026.webp";
+import alpsPhoto01 from "@/assets/alps-conference/alps-01.webp";
+import alpsPhoto02 from "@/assets/alps-conference/alps-02.webp";
 import bpsaLogo from "@/assets/BPSA-Logo.webp";
 import miguelMoraVeraPhoto from "@/assets/Miguel-Mora-Vera.webp";
 import timoSchmidtPhoto from "@/assets/Timo-Schmidt.webp";
@@ -392,22 +393,23 @@ export const events: PsngEvent[] = [
     time: { de: "ganztägig", en: "all day" },
     location: "Kultur & Kongresshaus Aarau",
     description: {
-      de: "Die jährliche Forschungskonferenz der Schweizer ALPS Foundation: Vorträge, Posterpräsentationen, Panels und immersive Formate rund um psychedelische Forschung. Das PSNG trifft sich dort als Community. Wenn du dabei bist, tritt unten der WhatsApp-Gruppe bei: Dort stimmen wir uns ab, besuchen gemeinsam Vorträge und machen zusammen Mittagspause.",
-      en: "The annual research conference of the Swiss ALPS Foundation: talks, research posters, panels and immersive formats on psychedelic research. The PSNG meets up there as a community. If you're going, join the WhatsApp group below: that's where we coordinate, go to talks together and have lunch as a group.",
+      de: "Die ALPS Conference der Schweizer ALPS Foundation ist einer der zentralen Treffpunkte für psychedelische Forschung in Europa. Zwei Tage lang kommen dort Forschende, Studierende und die Community zusammen, bei Vorträgen, Postern und Panels. Wir waren mit dem PSNG dabei, haben uns gemeinsam Vorträge angehört, uns mit anderen Studierendenorganisationen vernetzt und uns untereinander besser kennengelernt. Wenn du dich für psychedelische Forschung interessierst, lohnt sich die Reise zur Konferenz. Es gibt auch Volunteering-Möglichkeiten, bei denen das Ticket inklusive ist.",
+      en: "The ALPS Conference, run by the Swiss ALPS Foundation, is one of the central meeting points for psychedelic research in Europe. For two days, researchers, students and the wider community come together for talks, posters and panels. We went as the PSNG, sat in on talks together, connected with other student organisations and got to know each other better. If you're interested in psychedelic research, the conference is worth the trip. There are also volunteering spots that include a ticket.",
     },
-    // Nach der Konferenz: Titelbild, Website-Link und Gruppe durch Fotos der
-    // PSNG-Leute vor Ort ersetzen (assets.photos, externalUrl) – wie bei ICPR.
-    coverImage: alpsConferenceCover,
-    coverAlt: {
-      de: "ALPS Conference 2026, 9.–10. Oktober 2026, Kultur & Kongresshaus Aarau",
-      en: "ALPS Conference 2026, 9–10 October 2026, Kultur & Kongresshaus Aarau",
-    },
-    websiteUrl: "https://alpsconference.com",
-    websiteLabel: "alpsconference.com",
-    registrationUrl: "https://chat.whatsapp.com/LEjzCmBTGk63v1l9lJiq6N?mode=gi_t",
-    registrationLabel: {
-      de: "WhatsApp-Gruppe beitreten",
-      en: "Join the WhatsApp group",
+    assets: {
+      photos: [alpsPhoto01, alpsPhoto02],
+      photoAlts: [
+        {
+          de: "Die PSNG-Gruppe winkt auf der Treppe vor dem ALPS- und dem PSNG-Banner",
+          en: "The PSNG group waving on the stairs in front of the ALPS and PSNG banners",
+        },
+        {
+          de: "Gruppenbild aller Teilnehmenden der ALPS Conference 2026 im Saal in Aarau",
+          en: "Group photo of everyone at the ALPS Conference 2026 in the hall in Aarau",
+        },
+      ],
+      externalUrl: "https://alpsconference.com",
+      externalLabel: "alpsconference.com",
     },
   },
 
