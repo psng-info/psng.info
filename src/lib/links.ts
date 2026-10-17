@@ -25,3 +25,11 @@ export const YOUTUBE_LINK =
   "https://www.youtube.com/channel/UCMHHH4dOREJTJF_ySpgV7mA";
 export const LINKEDIN_LINK = "https://www.linkedin.com/company/111432265";
 export const CONTACT_EMAIL = "kontakt@psng.info";
+
+/**
+ * Bewerbungsformular fürs Orga-Team (Google Form, Antworten landen im
+ * HR-Sheet). Für gedruckte und geteilte Links gibt es die Kurzform
+ * psng.info/mitmachen, siehe public/_redirects.
+ */
+export const MITMACHEN_FORM_LINK =
+  "https://docs.google.com/forms/d/13qV0ic9EOuDpREMeaRgU4yf0SqvE-8y_XeVRe97BGm0/viewform";
