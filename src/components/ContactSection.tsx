@@ -16,7 +16,7 @@ import { CONTACT_EMAIL } from "@/lib/links";
 import { useCopy } from "@/i18n/copy";
 
 /**
- * Die Werte gehen an Netlify und landen in der Mail – sie bleiben deutsch und
+ * Die Werte gehen an /api/kontakt und landen in der Mail – sie bleiben deutsch und
  * damit über beide Sprachen hinweg vergleichbar. Übersetzt wird nur, was im
  * Auswahlfeld steht; die Zuordnung läuft über den Schlüssel aus copy.ts.
  */
@@ -39,11 +39,6 @@ const subjectParamMap: Record<string, string> = {
   feedback: "Feedback",
   beschwerde: "Beschwerde",
 };
-
-const encode = (data: Record<string, string>) =>
-  Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&");
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -75,25 +70,14 @@ const ContactSection = () => {
     });
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/api/kontakt", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(data),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error("Submission failed");
-
-      /*
-       * `_redirects` leitet jede unbekannte Route mit Status 200 auf
-       * index.html um. Ein `response.ok` allein beweist deshalb nicht, dass
-       * Netlify Forms die Nachricht wirklich entgegengenommen hat – wenn die
-       * Formularerkennung fehlschlägt, bekämen wir die SPA-Shell zurück und
-       * würden dem Absender fälschlich Erfolg melden. Also gegenprüfen.
-       */
-      const body = await response.text();
-      if (body.includes('<div id="root">')) {
-        throw new Error("Received SPA shell instead of a form confirmation");
-      }
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.ok) throw new Error("Submission failed");
 
       setStatus("success");
       form.reset();
@@ -159,14 +143,9 @@ const ContactSection = () => {
           ) : (
             <form
               name="kontakt"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               className="bg-card rounded-2xl border border-border p-6 md:p-8 space-y-5 hover:shadow-lg transition-shadow"
             >
-              {/* Required for Netlify form detection */}
-              <input type="hidden" name="form-name" value="kontakt" />
               <p className="hidden">
                 <label>
                   {c.contact.honeypot} <input name="bot-field" />

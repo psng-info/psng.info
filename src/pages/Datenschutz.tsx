@@ -32,20 +32,20 @@ const Datenschutz = () => {
 
       <h2>2. Hosting</h2>
       <p>
-        Diese Website wird bei Netlify, Inc., 44 Montgomery Street, Suite
-        300, San Francisco, CA 94104, USA gehostet. Beim Aufruf der Website
-        verarbeitet Netlify automatisch sogenannte Server-Logfiles, die dein
+        Diese Website wird bei Vercel Inc., 440 N Barranca Ave #4133,
+        Covina, CA 91723, USA gehostet. Beim Aufruf der Website
+        verarbeitet Vercel automatisch sogenannte Server-Logfiles, die dein
         Browser übermittelt. Dazu gehören u. a. IP-Adresse, Datum und
         Uhrzeit der Anfrage, Browsertyp und das verwendete Betriebssystem.
         Diese Daten dienen der technischen Bereitstellung und Absicherung
         der Website (Art. 6 Abs. 1 lit. f DSGVO) und werden nicht mit anderen
         Datenquellen zusammengeführt. Weitere Informationen findest du in der{" "}
         <a
-          href="https://www.netlify.com/privacy/"
+          href="https://vercel.com/legal/privacy-policy"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Datenschutzerklärung von Netlify
+          Datenschutzerklärung von Vercel
         </a>
         .
       </p>
@@ -58,10 +58,10 @@ const Datenschutz = () => {
         verarbeitet. Die Verarbeitung erfolgt auf Grundlage deiner
         Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) bzw. zur Bearbeitung
         vorvertraglicher oder vertraglicher Maßnahmen (Art. 6 Abs. 1 lit. b
-        DSGVO). Die Übermittlung erfolgt technisch über Netlify Forms; die
-        eingehenden Nachrichten werden per E-Mail an{" "}
-        <a href="mailto:kontakt@psng.info">kontakt@psng.info</a> weitergeleitet.
-        Eine Weitergabe an Dritte findet nicht statt. Deine Daten werden
+        DSGVO). Die Nachricht wird über den E-Mail-Dienst SMTP2GO (Two Ocean
+        Media Ltd., Neuseeland) per E-Mail an{" "}
+        <a href="mailto:kontakt@psng.info">kontakt@psng.info</a> zugestellt.
+        Eine darüber hinausgehende Weitergabe an Dritte findet nicht statt. Deine Daten werden
         gelöscht, sobald sie für die Bearbeitung deiner Anfrage nicht mehr
         erforderlich sind.
       </p>

@@ -47,17 +47,5 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!--
-      Static fallback form so Netlify's build-time bot detection picks up
-      the "kontakt" form. The real form is rendered by ContactSection.tsx.
-    -->
-    <form name="kontakt" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input type="hidden" name="form-name" value="kontakt" />
-      <input name="bot-field" />
-      <input type="text" name="name" />
-      <input type="email" name="email" />
-      <input type="text" name="subject" />
-      <textarea name="message"></textarea>
-    </form>
   </body>
 </html>
