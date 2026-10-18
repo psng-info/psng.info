@@ -54,6 +54,9 @@ export async function POST(request: Request) {
     }),
   });
 
-  if (!res.ok) return json(502, { ok: false, error: "send failed" });
+  if (!res.ok) {
+    console.error("smtp2go", res.status, await res.text());
+    return json(502, { ok: false, error: "send failed" });
+  }
   return json(200, { ok: true });
 }
