@@ -289,12 +289,13 @@ const de = {
   },
 
   team: {
-    eyebrow: "Team (a – z)",
+    eyebrow: "Team",
     title: "Wer steckt dahinter?",
     intro:
-      "Das PSNG wird organisiert durch Psychologie- und Medizinstudierende aus Berlin und Wuppertal.",
+      "Das PSNG wird organisiert durch Psychologie- und Medizinstudierende aus Berlin, Essen und Wuppertal.",
     linkedin: "LinkedIn →",
     contactCta: "Kontakt aufnehmen",
+    photoCaption: "Team 2026 im August",
   },
 
   partners: {
@@ -767,12 +768,13 @@ const en: Copy = {
   },
 
   team: {
-    eyebrow: "Team (a – z)",
+    eyebrow: "Team",
     title: "Who's behind this?",
     intro:
-      "The PSNG is organised by psychology and medical students in Berlin and Wuppertal.",
+      "The PSNG is organised by psychology and medical students in Berlin, Essen and Wuppertal.",
     linkedin: "LinkedIn →",
     contactCta: "Get in touch",
+    photoCaption: "The team in August 2026",
   },
 
   partners: {
@@ -908,7 +910,7 @@ const en: Copy = {
         {
           key: "students",
           title: "Student-led",
-          desc: "Organised by psychology and medical students in Berlin and Wuppertal.",
+          desc: "Organised by psychology and medical students in Berlin, Essen and Wuppertal.",
         },
         {
           key: "science",

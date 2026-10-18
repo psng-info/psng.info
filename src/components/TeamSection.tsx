@@ -5,6 +5,7 @@ import lennertImg from "@/assets/Lennert.webp";
 import metaImg from "@/assets/Meta.webp";
 import polinaImg from "@/assets/Polina.webp";
 import stelaImg from "@/assets/Stela.webp";
+import teamPhoto from "@/assets/Team-2026-08.webp";
 import { useCopy } from "@/i18n/copy";
 import { useLocale } from "@/i18n/locale";
 import { pathFor } from "@/i18n/routes";
@@ -12,7 +13,11 @@ import { pick, type Localized } from "@/i18n/localized";
 
 interface TeamMember {
   name: string;
-  role: Localized;
+  /** Aufgaben im PSNG, aus dem HR-Sheet (Tab Members). */
+  psngRoles: Localized[];
+  /** Studium oder Beruf. */
+  role: Localized | null;
+  /** Hochschule oder Ort. */
   uni: Localized | null;
   bio: Localized;
   image: string | null;
@@ -23,6 +28,7 @@ interface TeamMember {
 const team: TeamMember[] = [
   {
     name: "Ivana Sterr",
+    psngRoles: [{ de: "Vereinsgründung", en: "Founding the association" }, { de: "Lectures", en: "Lectures" }],
     role: { de: "Medizinstudentin", en: "Medical student" },
     uni: "Charité Berlin",
     bio: {
@@ -35,6 +41,7 @@ const team: TeamMember[] = [
   },
   {
     name: "Lennert van de Kreeke",
+    psngRoles: [{ de: "Koordination", en: "Coordination" }, { de: "IT", en: "IT" }],
     role: { de: "Medizinstudent", en: "Medical student" },
     uni: "Charité Berlin",
     bio: {
@@ -47,11 +54,12 @@ const team: TeamMember[] = [
   },
   {
     name: "Meta Laubinger",
+    psngRoles: [{ de: "Vereinsgründung", en: "Founding the association" }, { de: "Events", en: "Events" }],
     role: { de: "Psychologie-Masterandin", en: "Psychology master's student" },
     uni: "Bergische Universität Wuppertal",
     bio: {
-      de: "Klinische Psychologie-Masterandin und wissenschaftliche Hilfskraft. Überzeugt, dass Psychedelika ein kraftvolles Werkzeug zur Erforschung des Bewusstseins sind, deren therapeutisches Potenzial durch systematische Forschung nutzbar gemacht werden kann.",
-      en: "Master's student in clinical psychology and a research assistant. Convinced that psychedelics are a powerful tool for studying consciousness, and that systematic research can make their therapeutic potential usable.",
+      de: "Wissenschaftliche Hilfskraft in der klinischen Psychologie. Überzeugt, dass Psychedelika ein kraftvolles Werkzeug zur Erforschung des Bewusstseins sind und systematische Forschung ihr therapeutisches Potenzial nutzbar machen kann.",
+      en: "Research assistant in clinical psychology. Convinced that psychedelics are a powerful tool for studying consciousness, and that systematic research can make their therapeutic potential usable.",
     },
     image: metaImg,
     linkedin: "https://www.linkedin.com/in/meta-laubinger-905634395/",
@@ -59,6 +67,7 @@ const team: TeamMember[] = [
   },
   {
     name: "Stela Malvasija",
+    psngRoles: [{ de: "Marketing", en: "Marketing" }, { de: "Outreach", en: "Outreach" }, { de: "Social Media", en: "Social media" }],
     role: { de: "Klinische Psychologin", en: "Clinical psychologist" },
     uni: "Euro-FH Europäische Fernhochschule Hamburg",
     bio: {
@@ -71,11 +80,12 @@ const team: TeamMember[] = [
   },
   {
     name: "Polina Bedrina",
-    role: { de: "Community Management & Events", en: "Community management & events" },
-    uni: null,
+    psngRoles: [{ de: "Events-Lead", en: "Events lead" }, { de: "Community", en: "Community" }],
+    role: null,
+    uni: "Essen",
     bio: {
-      de: "Kümmert sich um die Community des PSNG und leitet die Events.",
-      en: "Looks after the PSNG community and leads our events.",
+      de: "Leitet die Events des PSNG und kümmert sich um die Community: hält den Austausch in den Gruppen lebendig, begrüßt neue Mitglieder und bringt Studierende aus ganz Deutschland bei Treffen online und vor Ort zusammen.",
+      en: "Leads the PSNG's events and looks after the community: keeps the conversation in our groups alive, welcomes new members and brings students from across Germany together at meetups online and in person.",
     },
     image: polinaImg,
     linkedin: "https://www.linkedin.com/in/polina-bedrina/",
@@ -83,7 +93,8 @@ const team: TeamMember[] = [
   },
   {
     name: "Teil des Teams werden",
-    role: { de: "Wir suchen Verstärkung", en: "We're looking for people" },
+    psngRoles: [{ de: "Wir suchen Verstärkung", en: "We're looking for people" }],
+    role: null,
     uni: { de: "Bundesweit", en: "Nationwide" },
     bio: {
       de: "Du begeisterst dich für psychedelische Wissenschaft und möchtest das PSNG aktiv mitgestalten? Wir freuen uns über engagierte Studierende aus ganz Deutschland, die unser Netzwerk stärken wollen.",
@@ -134,6 +145,26 @@ const TeamSection = () => {
             {c.team.intro}
           </p>
         </motion.div>
+        <motion.figure
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-md mx-auto mb-16"
+        >
+          <img
+            src={teamPhoto}
+            alt={c.team.photoCaption}
+            width={900}
+            height={1200}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto rounded-2xl border border-border shadow-sm"
+          />
+          <figcaption className="text-muted-foreground text-sm text-center mt-3">
+            {c.team.photoCaption}
+          </figcaption>
+        </motion.figure>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {team.map((member, i) => (
             <motion.div
@@ -163,12 +194,24 @@ const TeamSection = () => {
                 <h3 className="font-heading text-base font-semibold text-foreground">
                   {member.name}
                 </h3>
-                <p className="text-primary text-sm font-medium mt-0.5">
-                  {pick(member.role, locale)}
-                </p>
-                {member.uni && (
-                  <p className="text-muted-foreground text-xs mt-0.5">
-                    {pick(member.uni, locale)}
+                {member.psngRoles.length > 0 && (
+                  <ul className="flex flex-wrap justify-center gap-1.5 mt-2">
+                    {member.psngRoles.map((r) => (
+                      <li
+                        key={pick(r, locale)}
+                        className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                      >
+                        {pick(r, locale)}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {(member.role || member.uni) && (
+                  <p className="text-muted-foreground text-xs mt-2">
+                    {[member.role, member.uni]
+                      .filter((x): x is Localized => x !== null)
+                      .map((x) => pick(x, locale))
+                      .join(" · ")}
                   </p>
                 )}
                 <p className="text-muted-foreground text-sm leading-relaxed mt-3">
