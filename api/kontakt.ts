@@ -55,16 +55,8 @@ export async function POST(request: Request) {
   });
 
   if (!res.ok) {
-    const detail = await res.text();
-    console.error("smtp2go", res.status, detail);
-    let code: unknown;
-    try {
-      const parsed = JSON.parse(detail)?.data;
-      code = `${parsed?.error_code}: ${parsed?.error}`;
-    } catch {
-      code = res.status;
-    }
-    return json(502, { ok: false, error: "send failed", code });
+    console.error("smtp2go", res.status, await res.text());
+    return json(502, { ok: false, error: "send failed" });
   }
   return json(200, { ok: true });
 }
