@@ -41,7 +41,7 @@ const team: TeamMember[] = [
   },
   {
     name: "Lennert van de Kreeke",
-    psngRoles: [{ de: "Koordination", en: "Coordination" }, { de: "IT", en: "IT" }],
+    psngRoles: [{ de: "Koordination", en: "Coordination" }],
     role: { de: "Medizinstudent", en: "Medical student" },
     uni: "Charité Berlin",
     bio: {
@@ -54,7 +54,7 @@ const team: TeamMember[] = [
   },
   {
     name: "Meta Laubinger",
-    psngRoles: [{ de: "Vereinsgründung", en: "Founding the association" }, { de: "Events", en: "Events" }],
+    psngRoles: [{ de: "Vereinsgründung", en: "Founding the association" }],
     role: { de: "Psychologie-Masterandin", en: "Psychology master's student" },
     uni: "Bergische Universität Wuppertal",
     bio: {

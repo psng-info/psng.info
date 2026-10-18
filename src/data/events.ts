@@ -654,6 +654,31 @@ export const events: PsngEvent[] = [
     },
   },
 
+  // Speaker steht, Thema und Uhrzeit noch nicht. Ohne Kalendereintrag, bis die
+  // Uhrzeit feststeht – sonst landet ein Termin ohne Zeit im Kalender.
+  {
+    id: "lecture-majic-2026-11-03",
+    title: { de: "Lecture mit Dr. med. Tomislav Majić", en: "Lecture with Dr. med. Tomislav Majić" },
+    subtitle: { de: "Thema folgt", en: "Topic to be announced" },
+    category: "lecture",
+    column: "vortraege",
+    date: "2026-11-03",
+    showWeekday: true,
+    time: { de: "Uhrzeit folgt", en: "Time to be announced" },
+    location: {
+      de: "Zoom und vor Ort: HU Berlin, Philippstraße 12, Haus 4, Hörsaal 4",
+      en: "Zoom and in person: HU Berlin, Philippstraße 12, building 4, lecture hall 4",
+    },
+    speaker: "Dr. med. Tomislav Majić",
+    speakerType: "gast",
+    noCalendar: true,
+    registrationUrl: WHATSAPP_LINK,
+    registrationLabel: {
+      de: "Zoom-Link via WhatsApp",
+      en: "Zoom link via WhatsApp",
+    },
+  },
+
   // Ein Vortrag aus dem Abend vom 8.8., mit eigener Karte, weil die Aufzeichnung
   // für sich steht. Gleiches Datum wie der Abend – bei Gleichstand entscheidet
   // die Reihenfolge hier, und der Vortrag steht über dem Abend, aus dem er kommt.

@@ -132,13 +132,13 @@ describe("getUpcomingSeriesDates", () => {
   const ref = new Date(2026, 8, 1); // 1. September 2026
 
   it("computes the second Tuesday of each month", () => {
-    // September und Oktober fehlen: Auf dem 08.09. steht lecture-6, auf dem
-    // 20.10. aus SERIES_OVERRIDES die Lecture von Timo Schmidt. November
-    // weicht ebenfalls ab – der 03.11. ist der erste Dienstag.
+    // September bis November fehlen: Auf dem 08.09. steht lecture-6, auf dem
+    // 20.10. die Lecture von Timo Schmidt, auf dem 03.11. (Override, erster
+    // Dienstag) die Lecture von Tomislav Majić.
     expect(getUpcomingSeriesDates(3, ref).map((s) => s.date)).toEqual([
-      "2026-11-03",
       "2026-12-08",
       "2027-01-12",
+      "2027-02-09",
     ]);
   });
 
@@ -191,8 +191,8 @@ describe("getUpcomingSeriesDates", () => {
 
   it("still lists a date that falls on the reference day", () => {
     // Eine Lecture heute Abend ist kein vergangener Termin.
-    expect(getUpcomingSeriesDates(1, new Date(2026, 10, 3))[0]?.date).toBe(
-      "2026-11-03",
+    expect(getUpcomingSeriesDates(1, new Date(2026, 11, 8))[0]?.date).toBe(
+      "2026-12-08",
     );
   });
 });
@@ -285,7 +285,8 @@ describe("noCalendar", () => {
 
   it("leaves it off everything else", () => {
     const flagged = events.filter((e) => e.noCalendar).map((e) => e.id);
-    expect(flagged).toHaveLength(3);
+    // Dazu die Majić-Lecture, solange die Uhrzeit fehlt.
+    expect(flagged).toHaveLength(4);
   });
 });
 
