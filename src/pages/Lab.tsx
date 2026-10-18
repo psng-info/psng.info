@@ -9,6 +9,7 @@ import NextEvents from "@/components/lab/NextEvents";
 import LocalGroups from "@/components/lab/LocalGroups";
 import { Credibility, Proof } from "@/components/lab/Credibility";
 import FinalCta from "@/components/lab/FinalCta";
+import JoinTeam from "@/components/lab/JoinTeam";
 import { getUpcomingAgenda } from "@/data/events";
 import { useCopy } from "@/i18n/copy";
 import { localeTags, useLocale } from "@/i18n/locale";
@@ -55,6 +56,7 @@ const Lab = () => {
         <Credibility />
         <Proof />
         <PartnerStripe />
+        <JoinTeam />
         <div className="pt-16 md:pt-24 bg-white">
           <FinalCta />
         </div>

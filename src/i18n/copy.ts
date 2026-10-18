@@ -292,9 +292,10 @@ const de = {
     eyebrow: "Team (a – z)",
     title: "Wer steckt dahinter?",
     intro:
-      "Das PSNG wird organisiert durch Psychologie- und Medizinstudierende aus Berlin und Wuppertal.",
+      "Das PSNG wird von einem ehrenamtlichen Team aus Psychologie und Medizin organisiert, aus Berlin, Wuppertal und Essen.",
     linkedin: "LinkedIn →",
-    contactCta: "Kontakt aufnehmen",
+    contactCta: "Jetzt mitmachen",
+    focusLabel: "Im PSNG:",
   },
 
   partners: {
@@ -437,7 +438,7 @@ const de = {
         {
           key: "students",
           title: "Studentisch organisiert",
-          desc: "Getragen von Psychologie- und Medizinstudierenden aus Berlin und Wuppertal.",
+          desc: "Ehrenamtlich getragen von einem Team aus Psychologie und Medizin, aus Berlin, Wuppertal und Essen.",
         },
         {
           key: "science",
@@ -457,6 +458,13 @@ const de = {
       ],
       codeOfConduct: "Code of Conduct lesen →",
       about: "Mehr über das PSNG →",
+    },
+    joinTeam: {
+      eyebrow: "Orga-Team",
+      title: "Mach das PSNG mit.",
+      text: "Wir suchen Leute, die mehr wollen als dabei sein. Du startest mit einer kleinen, konkreten Aufgabe für vier Wochen, mit einer festen Ansprechperson aus dem Team. Remote geht, Vorwissen ist kein Muss.",
+      areas: ["Lecture-Serie", "Social Media & Grafik", "Events", "Community", "Forschungs-Matching", "Vereinsgründung"],
+      cta: "Formular ausfüllen (3 Min.)",
     },
     proof: {
       eyebrow: "Rückblick",
@@ -770,9 +778,10 @@ const en: Copy = {
     eyebrow: "Team (a – z)",
     title: "Who's behind this?",
     intro:
-      "The PSNG is organised by psychology and medical students in Berlin and Wuppertal.",
+      "The PSNG is run by a volunteer team from psychology and medicine, based in Berlin, Wuppertal and Essen.",
     linkedin: "LinkedIn →",
-    contactCta: "Get in touch",
+    contactCta: "Join the team",
+    focusLabel: "At the PSNG:",
   },
 
   partners: {
@@ -908,7 +917,7 @@ const en: Copy = {
         {
           key: "students",
           title: "Student-led",
-          desc: "Organised by psychology and medical students in Berlin and Wuppertal.",
+          desc: "Run by a volunteer team from psychology and medicine, based in Berlin, Wuppertal and Essen.",
         },
         {
           key: "science",
@@ -928,6 +937,13 @@ const en: Copy = {
       ],
       codeOfConduct: "Read the code of conduct →",
       about: "More about the PSNG →",
+    },
+    joinTeam: {
+      eyebrow: "Organising team",
+      title: "Help run the PSNG.",
+      text: "We're looking for people who want to do more than attend. You start with a small, concrete task for four weeks, with a fixed contact person from the team. Remote is fine, no prior knowledge needed.",
+      areas: ["Lecture series", "Social media & design", "Events", "Community", "Research matching", "Founding the association"],
+      cta: "Fill in the form (3 min)",
     },
     proof: {
       eyebrow: "Looking back",
