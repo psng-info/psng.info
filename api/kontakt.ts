@@ -59,7 +59,8 @@ export async function POST(request: Request) {
     console.error("smtp2go", res.status, detail);
     let code: unknown;
     try {
-      code = JSON.parse(detail)?.data?.error_code;
+      const parsed = JSON.parse(detail)?.data;
+      code = `${parsed?.error_code}: ${parsed?.error}`;
     } catch {
       code = res.status;
     }
