@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import cameronImg from "@/assets/Cameron.webp";
 import ivanaImg from "@/assets/Ivana.webp";
 import lennertImg from "@/assets/Lennert.webp";
 import metaImg from "@/assets/Meta.webp";
+import polinaImg from "@/assets/Polina.webp";
 import stelaImg from "@/assets/Stela.webp";
 import { useCopy } from "@/i18n/copy";
 import { useLocale } from "@/i18n/locale";
@@ -13,7 +13,7 @@ import { pick, type Localized } from "@/i18n/localized";
 interface TeamMember {
   name: string;
   role: Localized;
-  uni: Localized;
+  uni: Localized | null;
   bio: Localized;
   image: string | null;
   linkedin: string | null;
@@ -21,18 +21,6 @@ interface TeamMember {
 }
 
 const team: TeamMember[] = [
-  {
-    name: "Cameron Hornung",
-    role: { de: "Klinischer Psychologe", en: "Clinical psychologist" },
-    uni: "Charité Berlin",
-    bio: {
-      de: "Klinischer Psychologe in der Psychotherapie-Ausbildung in Berlin. Research Assistant der Psychedelic Substances Research Group der Charité. Setzt sich für einen Ort ein, an dem Menschen neugierig ihrer Leidenschaft an der Erforschung veränderter Bewusstseinszustände nachgehen können.",
-      en: "Clinical psychologist training as a psychotherapist in Berlin. Research assistant with the Charité's Psychedelic Substances Research Group. Works towards a place where people can follow their curiosity about altered states of consciousness.",
-    },
-    image: cameronImg,
-    linkedin: "https://www.linkedin.com/in/cameron-hornung-643514158/",
-    isRecruiting: false,
-  },
   {
     name: "Ivana Sterr",
     role: { de: "Medizinstudentin", en: "Medical student" },
@@ -79,6 +67,18 @@ const team: TeamMember[] = [
     },
     image: stelaImg,
     linkedin: "https://www.linkedin.com/in/stela-malvasija-5510011aa/",
+    isRecruiting: false,
+  },
+  {
+    name: "Polina Bedrina",
+    role: { de: "Community Management & Events", en: "Community management & events" },
+    uni: null,
+    bio: {
+      de: "Kümmert sich um die Community des PSNG und leitet die Events.",
+      en: "Looks after the PSNG community and leads our events.",
+    },
+    image: polinaImg,
+    linkedin: "https://www.linkedin.com/in/polina-bedrina/",
     isRecruiting: false,
   },
   {
