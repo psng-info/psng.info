@@ -143,7 +143,7 @@ export interface SeriesOverride {
 /**
  * Ausnahmen vom Takt. Der Oktobertermin liegt eine Woche nach dem zweiten
  * Dienstag: Zum Semesterstart ist die Uni erst danach wieder voll da. Der
- * Novembertermin liegt eine Woche davor.
+ * Novembertermin liegt eine Woche davor, auf einem Mittwoch.
  *
  * Bewusst ein Override statt eines Events ohne Thema und Speaker – ein
  * abweichender Termin ist immer noch nur ein Termin, und als Event hätte er
@@ -151,7 +151,7 @@ export interface SeriesOverride {
  */
 export const SERIES_OVERRIDES: SeriesOverride[] = [
   { date: "2026-10-20", labelKey: "semesterStart" },
-  { date: "2026-11-03" },
+  { date: "2026-11-04" },
 ];
 
 /** Ein berechneter Termin der Reihe – kein Event, solange kein Thema feststeht. */
@@ -657,12 +657,12 @@ export const events: PsngEvent[] = [
   // Speaker steht, Thema und Uhrzeit noch nicht. Ohne Kalendereintrag, bis die
   // Uhrzeit feststeht – sonst landet ein Termin ohne Zeit im Kalender.
   {
-    id: "lecture-majic-2026-11-03",
+    id: "lecture-majic-2026-11-04",
     title: { de: "Lecture mit Dr. med. Tomislav Majić", en: "Lecture with Dr. med. Tomislav Majić" },
     subtitle: { de: "Thema folgt", en: "Topic to be announced" },
     category: "lecture",
     column: "vortraege",
-    date: "2026-11-03",
+    date: "2026-11-04",
     showWeekday: true,
     time: { de: "Uhrzeit folgt", en: "Time to be announced" },
     location: {
