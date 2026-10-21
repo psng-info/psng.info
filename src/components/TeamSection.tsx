@@ -66,6 +66,19 @@ const team: TeamMember[] = [
     isRecruiting: false,
   },
   {
+    name: "Polina Bedrina",
+    psngRoles: [{ de: "Events", en: "Events" }, { de: "Community", en: "Community" }],
+    role: { de: "Psychologie-Promovendin", en: "Psychology PhD student" },
+    uni: "Universität Duisburg-Essen",
+    bio: {
+      de: "Promoviert an der Schnittstelle zwischen psychedelischer Forschung und Entwicklungspsychologie. Engagiert sich in verschiedenen Initiativen der Wissenschaftskommunikation, Aufklärung und Vernetzung. Möchte Wissen zugänglich machen, einen offenen und kritischen Diskurs fördern und Menschen zusammenbringen.",
+      en: "Doing a PhD at the intersection of psychedelic research and developmental psychology. Involved in several initiatives for science communication, education and networking. Wants to make knowledge accessible, encourage open and critical discussion, and bring people together.",
+    },
+    image: polinaImg,
+    linkedin: "https://www.linkedin.com/in/polina-bedrina/",
+    isRecruiting: false,
+  },
+  {
     name: "Stela Malvasija",
     psngRoles: [{ de: "Marketing", en: "Marketing" }, { de: "Outreach", en: "Outreach" }, { de: "Social Media", en: "Social media" }],
     role: { de: "Klinische Psychologin", en: "Clinical psychologist" },
@@ -76,19 +89,6 @@ const team: TeamMember[] = [
     },
     image: stelaImg,
     linkedin: "https://www.linkedin.com/in/stela-malvasija-5510011aa/",
-    isRecruiting: false,
-  },
-  {
-    name: "Polina Bedrina",
-    psngRoles: [{ de: "Events-Lead", en: "Events lead" }, { de: "Community", en: "Community" }],
-    role: null,
-    uni: "Essen",
-    bio: {
-      de: "Leitet die Events des PSNG und kümmert sich um die Community: hält den Austausch in den Gruppen lebendig, begrüßt neue Mitglieder und bringt Studierende aus ganz Deutschland bei Treffen online und vor Ort zusammen.",
-      en: "Leads the PSNG's events and looks after the community: keeps the conversation in our groups alive, welcomes new members and brings students from across Germany together at meetups online and in person.",
-    },
-    image: polinaImg,
-    linkedin: "https://www.linkedin.com/in/polina-bedrina/",
     isRecruiting: false,
   },
   {
