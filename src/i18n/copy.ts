@@ -296,6 +296,8 @@ const de = {
     linkedin: "LinkedIn →",
     contactCta: "Kontakt aufnehmen",
     photoCaption: "Team 2026 im August",
+    founderNotePrefix: "Mitgegründet mit ",
+    founderNoteSuffix: ", der das PSNG über ein Jahr lang mit aufgebaut hat. Danke, Cam!",
   },
 
   partners: {
@@ -775,6 +777,8 @@ const en: Copy = {
     linkedin: "LinkedIn →",
     contactCta: "Get in touch",
     photoCaption: "The team in August 2026",
+    founderNotePrefix: "Co-founded with ",
+    founderNoteSuffix: ", who helped build the PSNG for over a year. Thanks, Cam!",
   },
 
   partners: {
