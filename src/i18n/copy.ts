@@ -38,6 +38,7 @@ const de = {
     headlineAfter: " verbindet",
     students: "250+ Studierende",
     cities: "13+ Städte",
+    bpsaChip: "Live in Berlin: die BPSA",
     tagline:
       "Deutschlands erstes bundesweites studentisches Netzwerk für psychedelische Wissenschaft. Seit März 2026 aktiv.",
     joinWhatsapp: "WhatsApp beitreten",
@@ -522,6 +523,7 @@ const en: Copy = {
     headlineAfter: " connects",
     students: "250+ students",
     cities: "13+ cities",
+    bpsaChip: "Live in Berlin: the BPSA",
     tagline:
       "Germany's first nationwide student network for psychedelic science. Active since March 2026.",
     joinWhatsapp: "Join on WhatsApp",

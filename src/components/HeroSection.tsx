@@ -1,5 +1,6 @@
 import psngLogo from "@/assets/PSNG-Logo-centered-transparent.webp";
-import { WHATSAPP_LINK } from "@/lib/links";
+import bpsaLogo from "@/assets/BPSA-Logo.webp";
+import { BPSA_LINK, WHATSAPP_LINK } from "@/lib/links";
 import { useCopy } from "@/i18n/copy";
 
 /*
@@ -36,13 +37,29 @@ const HeroSection = () => {
           {c.hero.headlineAfter}
         </h1>
         <div
-          className="animate-rise-in flex justify-center gap-3 font-heading text-sm text-foreground/50 mb-5"
+          className="animate-rise-in flex justify-center gap-3 font-heading text-sm text-foreground/50 mb-4"
           style={{ animationDelay: "0.2s" }}
         >
           <span>{c.hero.students}</span>
           <span>·</span>
           <span>{c.hero.cities}</span>
         </div>
+        {/* Fester Hinweis auf die Berliner Lectures statt eines Popups: Er steht
+            in der Kennzahlenzeile, weil er dieselbe Geschichte erzählt – das
+            Netzwerk ist auch vor Ort aktiv. */}
+        <a
+          href={BPSA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="animate-rise-in mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 py-1 pl-1 pr-3.5 font-heading text-sm text-foreground/80 backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+          style={{ animationDelay: "0.22s" }}
+        >
+          {/* Nur das Gehirn-Motiv: Die Wortmarke darunter wäre in 28px unlesbar. */}
+          <span className="h-7 w-7 overflow-hidden rounded-full bg-white">
+            <img src={bpsaLogo} alt="" width={28} height={28} className="h-full w-full origin-[50%_30%] scale-[1.7] object-contain" />
+          </span>
+          {c.hero.bpsaChip} →
+        </a>
         <p
           className="animate-rise-in text-foreground/70 text-base md:text-lg max-w-xl mx-auto mb-8 font-body"
           style={{ animationDelay: "0.25s" }}
