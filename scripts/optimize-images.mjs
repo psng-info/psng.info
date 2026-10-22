@@ -86,6 +86,15 @@ const targets = [
     "Timo-Schmidt",
     { crop: { left: 298, top: 67, width: 795, height: 795 } },
   ],
+  // Tomislavs Portrait von bpsa.psng.info (majic/portrait.jpg), schon ein
+  // Kopf-Schulter-Bild; der Zuschnitt rückt den Kopf nur etwas näher heran.
+  [
+    "Tomislav-Majic-source.jpg",
+    240,
+    88,
+    "Tomislav-Majic",
+    { crop: { left: 90, top: 60, width: 660, height: 660 } },
+  ],
   // BPSA-Logo mit Wortmarke, für Partnerleiste, Partnerkarte und die
   // Kooperationsleiste der Eventkarten. Die Datei bringt einen weißen
   // Hintergrund mit; der wird herausgerechnet, weil die Leiste getönt ist.
@@ -139,6 +148,11 @@ const targets = [
     80,
     `miguel-lecture/miguel-${n}`,
   ]),
+  // Fotos und Zoom-Screenshots von Timos Lecture (20.10.), übernommen von
+  // bpsa.psng.info/tts/ – dort schon auf Webgröße gebracht.
+  ...["photo-01", "photo-02", "photo-03", "zoom-01", "zoom-02", "zoom-03", "zoom-04"].map(
+    (name) => [`tts-lecture-photos/${name}.jpg`, 1200, 80, `tts-lecture/${name}`],
+  ),
   // Screengrab des Medien-Blogs für die Launch-Karte. Der Zuschnitt bringt das
   // 1804x1164-Bild auf 16:9, damit es dieselbe Kachelform hat wie die Videos
   // daneben – und nicht das CSS entscheiden muss, was weggeschnitten wird.

@@ -13,6 +13,14 @@ import alpsPhoto02 from "@/assets/alps-conference/alps-02.webp";
 import bpsaLogo from "@/assets/BPSA-Logo.webp";
 import miguelMoraVeraPhoto from "@/assets/Miguel-Mora-Vera.webp";
 import timoSchmidtPhoto from "@/assets/Timo-Schmidt.webp";
+import tomislavMajicPhoto from "@/assets/Tomislav-Majic.webp";
+import ttsPhoto01 from "@/assets/tts-lecture/photo-01.webp";
+import ttsPhoto02 from "@/assets/tts-lecture/photo-02.webp";
+import ttsPhoto03 from "@/assets/tts-lecture/photo-03.webp";
+import ttsPhotoZoom01 from "@/assets/tts-lecture/zoom-01.webp";
+import ttsPhotoZoom02 from "@/assets/tts-lecture/zoom-02.webp";
+import ttsPhotoZoom03 from "@/assets/tts-lecture/zoom-03.webp";
+import ttsPhotoZoom04 from "@/assets/tts-lecture/zoom-04.webp";
 import medienBlogThumb from "@/assets/Medien-Blog.webp";
 import ytKickoff from "@/assets/yt-fH9gMcj65l4.webp";
 import ytLonergan from "@/assets/yt-LftC0jVmxuI.webp";
@@ -649,7 +657,19 @@ export const events: PsngEvent[] = [
       de: "Zoom-Link via WhatsApp",
       en: "Zoom link via WhatsApp",
     },
+    // Das Video kommt noch; bis dahin Fotos und Zoom-Screenshots, und die
+    // Quellen oben bleiben auch danach stehen.
     assets: {
+      photos: [ttsPhoto01, ttsPhoto02, ttsPhoto03, ttsPhotoZoom01, ttsPhotoZoom02, ttsPhotoZoom03, ttsPhotoZoom04],
+      photoAlts: [
+        { de: "Timo T. Schmidt am Pult im Hörsaal, hinter ihm die Folie „Background & Motivation“", en: "Timo T. Schmidt at the lectern in the lecture hall, the slide “Background & Motivation” behind him" },
+        { de: "Timo gestikuliert am Pult, vorn der Laptop für den Zoom-Stream, an der Wand ein QR-Code zum Mitmachen", en: "Timo gesturing at the lectern, the laptop for the Zoom stream in front, a QR code for taking part on the screen" },
+        { de: "Timo am Pult mit Blick in den Hörsaal, die Zuhörenden in den Reihen", en: "Timo at the lectern looking out into the lecture hall, listeners in the rows" },
+        { de: "Zoom-Übertragung, Folie: „The Central Idea“ – Adolf Dittrichs Ziel, Strukturen veränderter Bewusstseinszustände unabhängig von ihrer Ursache zu finden", en: "Zoom stream, slide: “The Central Idea” – Adolf Dittrich’s aim to find structures of altered states that are independent of their cause" },
+        { de: "Zoom-Übertragung, Folie: die fünf Dimensionen des 5D-ASC im Vergleich von Psilocybin und Placebo", en: "Zoom stream, slide: the five dimensions of the 5D-ASC comparing psilocybin and placebo" },
+        { de: "Zoom-Übertragung, Folie: Fragebögen zu veränderten Bewusstseinszuständen, geordnet nach Bereichen wie Verbundenheit, Selbst und Wahrnehmung", en: "Zoom stream, slide: questionnaires on altered states, grouped into areas such as connectedness, self and perception" },
+        { de: "Zoom-Übertragung: Live-Vorführung der Altered States Database, MEQ30-Werte für Psilocybin als Netzdiagramm", en: "Zoom stream: live demo of the Altered States Database, MEQ30 scores for psilocybin as a spider plot" },
+      ],
       speakerPhoto: timoSchmidtPhoto,
     },
   },
@@ -672,6 +692,9 @@ export const events: PsngEvent[] = [
     speaker: "Dr. med. Tomislav Majić",
     speakerType: "gast",
     noCalendar: true,
+    assets: {
+      speakerPhoto: tomislavMajicPhoto,
+    },
     registrationUrl: WHATSAPP_LINK,
     registrationLabel: {
       de: "Zoom-Link via WhatsApp",
