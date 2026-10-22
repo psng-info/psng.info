@@ -181,6 +181,8 @@ export interface EventAssets {
   /** Alt-Texte parallel zu `photos`, gleicher Index. Fehlt einer, greift ein generischer Fallback. */
   photoAlts?: Localized[];
   attendees?: number;
+  /** Davon online dabei (Zoom). Gesetzt, zeigt die Karte die Aufteilung statt „+“. */
+  attendeesOnline?: number;
   /** Durchschnittsbewertung der Teilnehmenden, z. B. "9/10". */
   rating?: string;
   /** Anteil der Teilnehmenden, die das Event weiterempfehlen würden, in Prozent. */
@@ -670,6 +672,8 @@ export const events: PsngEvent[] = [
         { de: "Zoom-Übertragung, Folie: Fragebögen zu veränderten Bewusstseinszuständen, geordnet nach Bereichen wie Verbundenheit, Selbst und Wahrnehmung", en: "Zoom stream, slide: questionnaires on altered states, grouped into areas such as connectedness, self and perception" },
         { de: "Zoom-Übertragung: Live-Vorführung der Altered States Database, MEQ30-Werte für Psilocybin als Netzdiagramm", en: "Zoom stream: live demo of the Altered States Database, MEQ30 scores for psilocybin as a spider plot" },
       ],
+      attendees: 38,
+      attendeesOnline: 30,
       speakerPhoto: timoSchmidtPhoto,
     },
   },

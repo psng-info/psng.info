@@ -600,7 +600,9 @@ function HighlightCard({ ev }: { ev: PsngEvent }) {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 pt-1 text-sm">
             {a.attendees ? (
               <span className="text-muted-foreground">
-                {a.attendees}+ {c.events.attendeesPlus}
+                {a.attendeesOnline
+                  ? `${a.attendees} ${c.events.attendees} – ${a.attendeesOnline} ${c.events.online}, ${a.attendees - a.attendeesOnline} ${c.events.inPerson}`
+                  : `${a.attendees}+ ${c.events.attendeesPlus}`}
               </span>
             ) : null}
             {a.slidesUrl ? (
