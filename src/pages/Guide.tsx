@@ -525,6 +525,20 @@ const Guide = () => {
 
       <hr />
 
+      <h2 id="further-resources">Further resources</h2>
+      <p>
+        The ALPS Foundation has published{" "}
+        <a href="https://guide.alps.foundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+          guide.alps.foundation
+        </a>
+        , a practical playbook for starting a psychedelic student association at your university. It
+        distils experience from Switzerland (PALA, SPSN), Italy (UNEPSI) and the launch of PSNG, and
+        complements this guide if you want to build an independent, officially recognised student
+        association.
+      </p>
+
+      <hr />
+
       {/* CTA block */}
       <div className="not-prose rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
         <h3 className="font-heading text-lg font-semibold text-foreground mb-2">

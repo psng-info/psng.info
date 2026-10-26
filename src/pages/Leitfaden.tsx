@@ -452,6 +452,20 @@ const Leitfaden = () => {
 
       <hr />
 
+      <h2 id="weitere-ressourcen">Weitere Ressourcen</h2>
+      <p>
+        Die ALPS Foundation hat mit{" "}
+        <a href="https://guide.alps.foundation" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+          guide.alps.foundation
+        </a>{" "}
+        einen englischsprachigen Praxis-Leitfaden zur Gründung psychedelischer Hochschulgruppen
+        veröffentlicht. Er bündelt die Erfahrungen aus der Schweiz (PALA, SPSN), Italien (UNEPSI) und
+        dem Aufbau von PSNG und ergänzt diesen Leitfaden gut, wenn du eine eigenständige,
+        offiziell anerkannte Hochschulgruppe aufbauen willst.
+      </p>
+
+      <hr />
+
       {/* CTA block */}
       <div className="not-prose rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
         <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
