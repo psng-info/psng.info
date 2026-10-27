@@ -702,12 +702,12 @@ export const events: PsngEvent[] = [
     speakerType: "gast",
     noCalendar: true,
     description: {
-      de: "Zur Wahl stehen zwei Themen: Psychedelic Harm Reduction – Risiken und Nebenwirkungen klassischer Psychedelika, akute und anhaltende Krisen, Fallbeispiele aus der Klinik – oder, theoretischer, Intersubjektivität in der psychedelischen Erfahrung. Thema, Uhrzeit und Sprache (voraussichtlich Deutsch) entscheidet die Umfrage in der WhatsApp-Community.",
-      en: "Two topics are up for a vote: psychedelic harm reduction – risks and adverse effects of classic psychedelics, acute and lasting crises, case examples from clinical practice – or, more theoretical, intersubjectivity in the psychedelic experience. Topic, time and language (most likely German) are decided by the poll in the WhatsApp community.",
+      de: "Das Thema wird vor Ort bekannt gegeben: Psychedelic Harm Reduction oder Psychedelic Intersubjectivity.",
+      en: "The topic will be announced at the lecture: Psychedelic Harm Reduction or Psychedelic Intersubjectivity.",
     },
     audienceNote: {
-      de: "Nur live, vor Ort und über Zoom – es gibt keine Aufzeichnung.",
-      en: "Live only, in person and on Zoom – there will be no recording.",
+      de: "Nur live, vor Ort und über Zoom – eine Aufzeichnung gibt es diesmal nicht.",
+      en: "Live only, in person and on Zoom – there will be no recording this time.",
     },
     speakerBio: {
       de: "Tomislav Majić ist Psychiater und Psychotherapeut an der Psychiatrischen Universitätsklinik der Charité im St. Hedwig-Krankenhaus in Berlin und Co-Leiter der Forschungsgruppe Psychedelische Substanzen an der Charité. Er leitet eine Abteilung für Allgemeinpsychiatrie, eine Ambulanz für Doppeldiagnosen und die „Ambulanz Psychedelische Substanzen“, die Menschen mit Störungen im Zusammenhang mit Psychedelika behandelt. Er forscht und arbeitet als Studientherapeut in Studien zur psychedelisch unterstützten Therapie, ist Herausgeber des Bandes „Psychedelic Harm Reduction“ und Dozent am Berliner Institut für Psychotherapie und Psychoanalyse.",
