@@ -245,14 +245,7 @@ const TeamSection = () => {
         </div>
         <p className="text-muted-foreground text-sm text-center mt-12 max-w-xl mx-auto">
           {c.team.founderNotePrefix}
-          <a
-            href="https://www.linkedin.com/in/cameron-hornung-643514158/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            Cameron Hornung
-          </a>
+          Cameron Hornung
           {c.team.founderNoteSuffix}
         </p>
       </div>

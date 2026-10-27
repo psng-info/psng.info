@@ -678,8 +678,10 @@ export const events: PsngEvent[] = [
     },
   },
 
-  // Speaker steht, Thema und Uhrzeit noch nicht. Ohne Kalendereintrag, bis die
-  // Uhrzeit feststeht – sonst landet ein Termin ohne Zeit im Kalender.
+  // Speaker steht, Thema, Uhrzeit und Sprache entscheidet die Umfrage in der
+  // WhatsApp-Community, der Raum ist noch nicht gebucht. Ohne Kalendereintrag,
+  // bis die Uhrzeit feststeht – sonst landet ein Termin ohne Zeit im Kalender.
+  // Keine Aufzeichnung, ausdrücklicher Wunsch des Speakers.
   {
     id: "lecture-majic-2026-11-04",
     title: { de: "Lecture mit Dr. med. Tomislav Majić", en: "Lecture with Dr. med. Tomislav Majić" },
@@ -688,14 +690,57 @@ export const events: PsngEvent[] = [
     column: "vortraege",
     date: "2026-11-04",
     showWeekday: true,
-    time: { de: "Uhrzeit folgt", en: "Time to be announced" },
+    time: {
+      de: "17:30 – 19:00 oder 19:00 – 20:30 Uhr, Umfrage läuft",
+      en: "17:30 – 19:00 or 19:00 – 20:30, poll running",
+    },
     location: {
-      de: "Zoom und vor Ort: HU Berlin, Philippstraße 12, Haus 4, Hörsaal 4",
-      en: "Zoom and in person: HU Berlin, Philippstraße 12, building 4, lecture hall 4",
+      de: "Zoom und vor Ort an der HU Berlin, Raum folgt",
+      en: "Zoom and in person at HU Berlin, room to be announced",
     },
     speaker: "Dr. med. Tomislav Majić",
     speakerType: "gast",
     noCalendar: true,
+    description: {
+      de: "Zur Wahl stehen zwei Themen: Psychedelic Harm Reduction – Risiken und Nebenwirkungen klassischer Psychedelika, akute und anhaltende Krisen, Fallbeispiele aus der Klinik – oder, theoretischer, Intersubjektivität in der psychedelischen Erfahrung. Thema, Uhrzeit und Sprache (voraussichtlich Deutsch) entscheidet die Umfrage in der WhatsApp-Community.",
+      en: "Two topics are up for a vote: psychedelic harm reduction – risks and adverse effects of classic psychedelics, acute and lasting crises, case examples from clinical practice – or, more theoretical, intersubjectivity in the psychedelic experience. Topic, time and language (most likely German) are decided by the poll in the WhatsApp community.",
+    },
+    audienceNote: {
+      de: "Nur live, vor Ort und über Zoom – es gibt keine Aufzeichnung.",
+      en: "Live only, in person and on Zoom – there will be no recording.",
+    },
+    speakerBio: {
+      de: "Tomislav Majić ist Psychiater und Psychotherapeut an der Psychiatrischen Universitätsklinik der Charité im St. Hedwig-Krankenhaus in Berlin und Co-Leiter der Forschungsgruppe Psychedelische Substanzen an der Charité. Er leitet eine Abteilung für Allgemeinpsychiatrie, eine Ambulanz für Doppeldiagnosen und die „Ambulanz Psychedelische Substanzen“, die Menschen mit Störungen im Zusammenhang mit Psychedelika behandelt. Er forscht und arbeitet als Studientherapeut in Studien zur psychedelisch unterstützten Therapie, ist Herausgeber des Bandes „Psychedelic Harm Reduction“ und Dozent am Berliner Institut für Psychotherapie und Psychoanalyse.",
+      en: "Psychiatrist and psychotherapist at the Psychiatric University Hospital of Charité at St. Hedwig Hospital in Berlin, and co-head of the Psychedelic Substances Research Group at Charité. He heads a department of general psychiatry, an outpatient clinic for dual diagnosis and the “Ambulanz Psychedelische Substanzen”, an outpatient clinic treating patients with psychedelic-related disorders. He is a researcher and study therapist in trials investigating psychedelic-assisted therapy, editor of the volume “Psychedelic Harm Reduction”, and a lecturer at the Berlin Institute for Psychotherapy and Psychoanalysis.",
+    },
+    furtherReading: [
+      {
+        text: {
+          de: "Ambulanz Psychedelische Substanzen am St. Hedwig-Krankenhaus – Anlaufstelle bei Problemen nach dem Konsum von Psychedelika.",
+          en: "Ambulanz Psychedelische Substanzen at St. Hedwig Hospital – the outpatient clinic for problems after psychedelic use.",
+        },
+        url: "https://www.alexianer-berlin-hedwigkliniken.de/sthedwig-krankenhaus/leistungen/ambulante-behandlung/ambulanz-psychedelische-substanzen",
+      },
+      {
+        text: {
+          de: "AG Psychotrope Substanzen an der Charité – Forschung zu Psychedelika und psychedelisch unterstützter Therapie.",
+          en: "Psychotropic Substances research group at Charité – research on psychedelics and psychedelic-assisted therapy.",
+        },
+        url: "https://psychiatrie-psychotherapie.charite.de/forschung/suchterkrankungen/ag_psychotrope_substanzen/",
+      },
+    ],
+    partnerCredit: {
+      short: "BPSA",
+      tone: "bpsa",
+      name: "Berlin Psychedelic Science Association",
+      logo: bpsaLogo,
+      role: {
+        de: "Eine gemeinsame Lecture von PSNG und BPSA.",
+        en: "A joint lecture by the PSNG and the BPSA.",
+      },
+      url: BPSA_LINK,
+      instagramUrl: BPSA_INSTAGRAM_LINK,
+    },
     assets: {
       speakerPhoto: tomislavMajicPhoto,
     },
