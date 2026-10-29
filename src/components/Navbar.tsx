@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ExternalLink, Languages, Menu, X } from "lucide-react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
@@ -12,6 +12,7 @@ import {
 } from "@/i18n/locale";
 import { pathFor, switchLocalePath } from "@/i18n/routes";
 import { rememberScrollForLocaleSwitch } from "@/i18n/localeScroll";
+import { useActiveSection } from "@/lib/useActiveSection";
 
 const MOBILE_MENU_ID = "mobile-nav";
 
@@ -83,6 +84,7 @@ const Navbar = () => {
   // Die Sektionen liegen alle auf der Startseite. Auf Unterseiten muss der Link
   // deshalb erst dorthin navigieren, sonst passiert beim Klick schlicht nichts.
   const onHome = pathname === home;
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const update = () => scrollY.set(window.scrollY);
@@ -90,6 +92,20 @@ const Navbar = () => {
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, [scrollY]);
+
+  // Die Höhe der Leiste samt Ankündigung als CSS-Variable: Das
+  // Inhaltsverzeichnis am linken Rand (SectionToc.tsx) klebt direkt darunter.
+  // Sie hängt von Breite und Zeilenumbruch des Banners ab, deshalb gemessen.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const root = document.documentElement;
+    const observer = new ResizeObserver(() =>
+      root.style.setProperty("--nav-height", `${nav.offsetHeight}px`),
+    );
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, []);
 
   // Menü schließen, wenn der Viewport auf Desktop-Breite wächst – sonst bliebe
   // das offene Panel ohne sichtbaren Schließen-Button stehen.
@@ -104,11 +120,15 @@ const Navbar = () => {
 
   const logoOpacity = useTransform(scrollY, [300, 400], [0, 1]);
 
+  // Die Sektion, in der man gerade liest, bekommt oben einen hellen Grund –
+  // dieselbe Markierung wie im Inhaltsverzeichnis am Rand.
+  const active = useActiveSection(c.nav.links.map((l) => l.hash));
+
   const linkClass =
     "font-heading text-sm font-medium text-muted-foreground hover:text-primary transition-colors";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         <Link
           to={home}
@@ -126,9 +146,18 @@ const Navbar = () => {
           <span>PSNG</span>
         </Link>
         <div className="hidden md:flex items-center gap-6">
-          {c.nav.links.map((link) =>
+          {c.nav.links.map((link, i) =>
             onHome ? (
-              <a key={link.hash} href={link.hash} className={linkClass}>
+              // Innenabstand und gleich großer negativer Rand: Die Fläche
+              // ragt über das Wort hinaus, ohne die Abstände zu verschieben.
+              <a
+                key={link.hash}
+                href={link.hash}
+                aria-current={active === i ? "location" : undefined}
+                className={`${linkClass} -mx-2.5 rounded-full px-2.5 py-1 ${
+                  active === i ? "bg-primary/10 text-primary" : ""
+                }`}
+              >
                 {link.label}
               </a>
             ) : (
