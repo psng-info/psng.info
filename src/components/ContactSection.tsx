@@ -1,6 +1,4 @@
-import { useState, useEffect, FormEvent } from "react";
-import { useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useState, useEffect, type FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { CONTACT_EMAIL } from "@/lib/links";
 import { useCopy } from "@/i18n/copy";
+import { withLocale } from "@/i18n/locale";
 
 /**
  * Die Werte gehen an /api/kontakt und landen in der Mail – sie bleiben deutsch und
@@ -46,17 +45,11 @@ const ContactSection = () => {
   const c = useCopy();
   const [status, setStatus] = useState<Status>("idle");
   const [subject, setSubject] = useState("");
-  const { search } = useLocation();
-
-  // Reagiert auch auf Client-seitige Navigation (?subject=… aus den CTAs),
-  // nicht nur auf den ersten Seitenaufruf.
+  // ?subject=… aus den Knöpfen anderer Seiten wählt das Anliegen vor.
   useEffect(() => {
-    const param = new URLSearchParams(search).get("subject");
-    if (param && subjectParamMap[param]) {
-      setSubject(subjectParamMap[param]);
-      setStatus("idle");
-    }
-  }, [search]);
+    const param = new URLSearchParams(window.location.search).get("subject");
+    if (param && subjectParamMap[param]) setSubject(subjectParamMap[param]);
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -95,12 +88,7 @@ const ContactSection = () => {
   return (
     <section id="kontakt" className="py-24 md:py-32">
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center mb-12"
+        <div className="max-w-3xl mx-auto text-center mb-12"
         >
           <p className="font-heading text-sm uppercase tracking-[0.2em] text-primary mb-4">
             {c.contact.eyebrow}
@@ -111,14 +99,9 @@ const ContactSection = () => {
           <p className="text-muted-foreground text-lg leading-relaxed">
             {c.contact.intro}
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-xl mx-auto"
+        <div className="max-w-xl mx-auto"
         >
           {status === "success" ? (
             <div
@@ -228,10 +211,10 @@ const ContactSection = () => {
               </div>
             </form>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default ContactSection;
+export default withLocale(ContactSection);

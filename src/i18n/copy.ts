@@ -101,7 +101,7 @@ const de = {
       {
         key: "events",
         title: "Events & Calls besuchen",
-        desc: "Nimm an monatlichen Lectures und Community Calls teil – online, kostenlos, offen für alle.",
+        desc: "Nimm an monatlichen Lectures und Community Calls teil – in Berlin und online, kostenlos, offen für alle.",
         cta: "Termine ansehen",
       },
       {
@@ -407,6 +407,8 @@ const de = {
       text: "Wir bringen Studierende zusammen, die sich für psychedelische Forschung interessieren: mit Lectures, Community Calls und Unterstützung beim Gründen einer Hochschulgruppe.",
     },
     upNext: "Als Nächstes",
+    featureLabel: "Neu",
+    recapLabel: "Zuletzt",
     since: "Seit März 2026 aktiv",
     agenda: {
       eyebrow: "Termine",
@@ -450,7 +452,7 @@ const de = {
         {
           key: "students",
           title: "Studentisch organisiert",
-          desc: "Getragen von Psychologie- und Medizinstudierenden aus Berlin und Wuppertal.",
+          desc: "Getragen von Psychologie- und Medizinstudierenden aus Berlin, Essen und Wuppertal.",
         },
         {
           key: "science",
@@ -470,6 +472,8 @@ const de = {
       ],
       codeOfConduct: "Code of Conduct lesen →",
       about: "Mehr über das PSNG →",
+      teamLink: "Das ganze Team →",
+      partnersLink: "Alle Partner →",
     },
     proof: {
       eyebrow: "Rückblick",
@@ -644,7 +648,7 @@ const en: Copy = {
       {
         key: "events",
         title: "Come to events & calls",
-        desc: "Take part in monthly lectures and community calls – online, free, open to everyone.",
+        desc: "Take part in monthly lectures and community calls – in Berlin and online, free, open to everyone.",
         cta: "See upcoming dates",
       },
       {
@@ -942,6 +946,8 @@ const en: Copy = {
       text: "We bring together students interested in psychedelic research: with lectures, community calls and support for starting a university group.",
     },
     upNext: "Up next",
+    featureLabel: "New",
+    recapLabel: "Most recent",
     since: "Active since March 2026",
     agenda: {
       eyebrow: "Events",
@@ -1005,6 +1011,8 @@ const en: Copy = {
       ],
       codeOfConduct: "Read the code of conduct →",
       about: "More about the PSNG →",
+      teamLink: "Meet the whole team →",
+      partnersLink: "All partners →",
     },
     proof: {
       eyebrow: "Looking back",

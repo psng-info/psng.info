@@ -60,11 +60,6 @@
      */
     --bpsa-navy-chip: #1b2c6b;
 
-    /* Breite der Inhaltsverzeichnis-Spalte am linken Rand (SectionToc.tsx).
-       Schmaler als auf LessWrong (bis 270px): Die Namen der Sektionen sind
-       kurz, nur der Titel bricht um. */
-    --toc-width: clamp(180px, 15vw, 220px);
-
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'DM Sans', sans-serif;
 
@@ -299,26 +294,3 @@
   }
 }
 
-/*
- * Platz für das Inhaltsverzeichnis am linken Rand (SectionToc.tsx): Ab 960 px
- * weicht der Inhalt jeder Sektion der Spalte aus. Als Innenabstand und nicht
- * als Rand, damit die farbigen Bänder weiter von Kante zu Kante laufen.
- *
- * Rechts wächst ab 1200 px ein gleich breiter Abstand mit, bis der Inhalt
- * wieder mittig steht. So macht es auch LessWrong: Dort gleicht die Spalte für
- * Randkommentare die linke aus, der Text steht kaum neben der Mitte. Auf
- * kleineren Bildschirmen rückt der Inhalt dagegen ganz nach rechts, statt zu
- * schmal zu werden. Darunter ist die Spalte ausgeblendet und alles steht
- * wieder mittig.
- *
- * `main.toc-shift` statt nur der Klasse: Der Hero trägt selbst `px-6`, die
- * höhere Spezifität setzt sich unabhängig von der Reihenfolge im Stylesheet
- * durch.
- */
-@media (min-width: 960px) {
-  main.toc-shift > * {
-    --toc-room: calc(var(--toc-width) + 1.5rem);
-    padding-left: var(--toc-room);
-    padding-right: clamp(0px, calc(100vw - 1200px), var(--toc-room));
-  }
-}

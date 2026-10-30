@@ -1,6 +1,6 @@
 import { getCollection } from "astro:content";
 import { WHATSAPP_LINK } from "@/lib/links";
-import type { Milestone, Partner, SiteEvent } from "./types";
+import type { Feature, Milestone, Partner, SiteEvent } from "./types";
 
 /*
  * Lädt die Collections und löst die Verweise auf. Nur in Astro-Dateien
@@ -35,4 +35,9 @@ export async function loadMilestones(): Promise<Milestone[]> {
     id,
     partner: data.partner ? partners.get(data.partner.id) : undefined,
   }));
+}
+
+export async function loadFeatures(): Promise<Feature[]> {
+  const entries = await getCollection("features");
+  return entries.map(({ id, data }) => ({ ...data, id }));
 }

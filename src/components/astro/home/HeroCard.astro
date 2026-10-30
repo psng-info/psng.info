@@ -1,0 +1,219 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import AddToCalendar from "@/components/AddToCalendarIsland";
+import { copy } from "@/i18n/copy";
+import type { Locale } from "@/i18n/locale";
+import { pick } from "@/i18n/localized";
+import { pathFor } from "@/i18n/routes";
+import { calendarEntry, seriesCalendarEntry } from "@/lib/events/calendarEntry";
+import { formatEventDate, formatEventDateRange, formatEventTime, formatRelativeToToday, formatSeriesTime } from "@/lib/events/format";
+import { eventPath } from "@/lib/events/paths";
+import type { HeroSlot } from "@/lib/events/schedule";
+import { canRegister } from "@/lib/events/schedule";
+import { cardAction, columnLabel } from "@/lib/events/view";
+import { WHATSAPP_LINK } from "@/lib/links";
+import PartnerChip from "../events/PartnerChip.astro";
+import { chip, primaryButton } from "./styles";
+
+/*
+ * Die eine Karte im Hero. Was sie zeigt, entscheidet getHeroSlot – hier wird
+ * nur gerendert. `data-expires` blendet sie aus, falls die tägliche
+ * Neuerstellung ausfällt und der Termin vorbei ist (scripts/freshness.ts).
+ */
+interface Props {
+  /** Nicht `slot` – das Wort ist in Astro für Slots vergeben. */
+  hero: Exclude<HeroSlot, { kind: "none" }>;
+  locale: Locale;
+  ref: Date;
+}
+
+const { hero: slot, locale, ref } = Astro.props;
+const c = copy[locale];
+const external = { target: "_blank", rel: "noopener noreferrer" };
+
+const label = { event: c.lab.upNext, series: c.lab.upNext, feature: c.lab.featureLabel, recap: c.lab.recapLabel }[slot.kind];
+const date = slot.kind === "event" || slot.kind === "recap" ? slot.event.date : slot.kind === "series" ? slot.series.date : undefined;
+const expires =
+  slot.kind === "event" ? (slot.event.endDate ?? slot.event.date) : slot.kind === "series" ? slot.series.date : slot.kind === "feature" ? slot.feature.until : undefined;
+
+const event = slot.kind === "event" || slot.kind === "recap" ? slot.event : undefined;
+const image =
+  slot.kind === "event"
+    ? slot.event.cover && { src: slot.event.cover.src, alt: pick(slot.event.cover.alt, locale) }
+    : slot.kind === "recap"
+      ? slot.event.photos?.[0] && { src: slot.event.photos[0].src, alt: pick(slot.event.photos[0].alt, locale) ?? "" }
+      : undefined;
+const action = event && cardAction(event, locale, c, ref);
+const calendar = slot.kind === "event" ? calendarEntry(slot.event, locale, c) : undefined;
+const featureUrl = slot.kind === "feature" ? slot.feature.cta.url : "";
+const link = "inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline";
+---
+
+<article aria-labelledby="hero-card" class="next-event-glow relative" data-expires={expires}>
+  <div class="overflow-hidden rounded-2xl border border-border bg-card">
+    <div class="flex items-center justify-between gap-3 border-b border-border bg-primary/5 px-5 py-3 md:px-6">
+      <h2 id="hero-card" class="flex items-center gap-2 font-heading text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+        <span class="h-2 w-2 rounded-full bg-primary" aria-hidden="true"></span>
+        {label}
+      </h2>
+      {
+        date && slot.kind !== "recap" && (
+          <p class="font-heading text-xs font-medium text-muted-foreground" data-relative={date}>
+            {formatRelativeToToday(date, locale, ref)}
+          </p>
+        )
+      }
+    </div>
+
+    {
+      // Auf dem Handy ohne Bild: Dort soll der Termin selbst im ersten
+      // Bildschirm stehen, nicht sein Plakat.
+      image && (
+        <Image
+          src={image.src as ImageMetadata}
+          alt={image.alt}
+          widths={[560, 1120]}
+          sizes="(min-width: 1024px) 560px, 100vw"
+          class="hidden aspect-[40/21] w-full bg-muted object-cover sm:block"
+        />
+      )
+    }
+
+    <div class="p-5 md:p-6">
+      {
+        event && (
+          <>
+            <p class="mb-3 font-heading text-base font-semibold text-primary md:text-lg">
+              {slot.kind === "event" ? formatEventDateRange(event, locale) : formatEventDate(event.date, locale)}
+            </p>
+            <div class="mb-3 flex flex-wrap items-center gap-2">
+              <span class={chip}>{columnLabel(event.column, c)}</span>
+              {event.partner?.tone && <PartnerChip partner={event.partner} />}
+            </div>
+            <h3 class="font-heading text-xl font-bold leading-snug text-foreground md:text-2xl">
+              {action && !action.external ? (
+                <a href={action.href} class="hover:text-primary">
+                  {pick(event.title, locale)}
+                </a>
+              ) : (
+                pick(event.title, locale)
+              )}
+            </h3>
+            {event.speaker && (
+              <div class="mt-3 flex items-center gap-3">
+                {event.speakerPhoto && (
+                  <Image
+                    src={event.speakerPhoto as ImageMetadata}
+                    alt=""
+                    width={48}
+                    height={48}
+                    densities={[1, 2]}
+                    class="h-12 w-12 shrink-0 rounded-full object-cover"
+                  />
+                )}
+                <p class="font-heading text-sm font-medium text-primary">{event.speaker}</p>
+              </div>
+            )}
+          </>
+        )
+      }
+
+      {
+        slot.kind === "event" && (
+          <>
+            <div class="mt-4 space-y-1 text-sm text-muted-foreground">
+              <p class="font-medium text-foreground">{formatEventTime(slot.event, locale)}</p>
+              <p>{pick(slot.event.location, locale)}</p>
+              {slot.event.partner?.role && <p>{pick(slot.event.partner.role, locale)}</p>}
+            </div>
+            <div class="mt-5 flex flex-wrap items-center gap-3">
+              {canRegister(slot.event, ref) && (
+                <a href={slot.event.registrationUrl} {...external} class={primaryButton}>
+                  {pick(slot.event.registrationLabel, locale) ?? c.events.register}
+                </a>
+              )}
+              {calendar && <AddToCalendar client:visible locale={locale} event={calendar} />}
+            </div>
+          </>
+        )
+      }
+
+      {
+        slot.kind === "recap" && slot.event.attendees && (
+          <p class="mt-3 text-sm text-muted-foreground">
+            {slot.event.attendees} {c.events.attendees}
+            {slot.event.rating && ` · ${c.events.rating} ${slot.event.rating}`}
+          </p>
+        )
+      }
+
+      {
+        slot.kind === "series" && (
+          <>
+            <p class="mb-3 font-heading text-base font-semibold text-primary md:text-lg">
+              {formatEventDate(slot.series.date, locale, true)}
+            </p>
+            <div class="mb-3 flex flex-wrap items-center gap-2">
+              <span class={chip}>{columnLabel(slot.series.column, c)}</span>
+            </div>
+            <h3 class="font-heading text-xl font-bold leading-snug text-foreground md:text-2xl">
+              {slot.series.labelKey === "semesterStart" ? c.events.seriesSemesterLabel : c.events.seriesLabel}
+            </h3>
+            <p class="mt-3 text-sm text-muted-foreground">{c.events.seriesNote}</p>
+            <p class="mt-4 text-sm font-medium text-foreground">
+              {formatSeriesTime(slot.series)} · {slot.series.location}
+            </p>
+            <div class="mt-5 flex flex-wrap items-center gap-3">
+              <a href={WHATSAPP_LINK} {...external} class={primaryButton}>
+                {c.hero.joinWhatsapp}
+              </a>
+              <AddToCalendar client:visible locale={locale} event={seriesCalendarEntry(slot.series, locale, c)} />
+            </div>
+          </>
+        )
+      }
+
+      {
+        slot.kind === "feature" && (
+          <>
+            <h3 class="font-heading text-xl font-bold leading-snug text-foreground md:text-2xl">
+              {pick(slot.feature.title, locale)}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">{pick(slot.feature.text, locale)}</p>
+            <a
+              href={featureUrl}
+              {...(featureUrl.startsWith("/") ? {} : external)}
+              class={`${primaryButton} mt-5 gap-1.5`}
+            >
+              {pick(slot.feature.cta.label, locale)}
+              {!featureUrl.startsWith("/") && <ExternalLink size={14} aria-hidden="true" />}
+            </a>
+          </>
+        )
+      }
+
+      {
+        action && (
+          <a
+            href={action.href}
+            {...(action.external ? external : {})}
+            class={`${link} mt-5`}
+          >
+            {action.label}
+            {action.external ? <ExternalLink size={13} aria-hidden="true" /> : <ArrowRight size={14} aria-hidden="true" />}
+          </a>
+        )
+      }
+      {
+        slot.kind === "series" && (
+          <a href={pathFor("events", locale)} class={`${link} mt-5`}>
+            {c.eventPage.allEvents}
+            <ArrowRight size={14} aria-hidden="true" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

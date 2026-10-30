@@ -1,0 +1,16 @@
+# Dieselbe Aussage wie der Meilenstein „Medien-Blog ist online“, für die Wochen,
+# in denen kein Termin im Hero steht.
+title:
+  de: Der Medien-Blog ist online
+  en: The media blog is live
+text:
+  de: "Unser gemeinsames Projekt mit PARAB: Beiträge rund um psychedelische Wissenschaft zum Lesen, Hören und Sehen – und alle Aufnahmen unserer Lectures an einem Ort."
+  en: "Our joint project with PARAB: pieces on psychedelic science to read, listen to and watch – and every recording of our lectures in one place."
+cta:
+  label:
+    de: Zum Medien-Blog
+    en: Go to the media blog
+  url: https://medien.psng.info
+from: "2026-10-30"
+until: "2027-01-31"
+priority: 1

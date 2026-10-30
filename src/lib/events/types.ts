@@ -47,12 +47,4 @@ export interface SeriesDate {
 }
 
 /** Ein redaktioneller Hinweis für den Hero, mit festem Zeitraum. */
-export interface Feature {
-  id: string;
-  title: Localized;
-  text: Localized;
-  cta: { label: Localized; url: string };
-  from: string;
-  until: string;
-  priority: number;
-}
+export type Feature = CollectionEntry<"features">["data"] & { id: string };

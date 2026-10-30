@@ -1,19 +1,5 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import { loadEvents } from "@/lib/events/load";
-import { eventPath } from "@/lib/events/paths";
-import { hasPage } from "@/lib/events/schedule";
-import { alternatesOf } from "@/lib/seo/alternates";
-
-// Platzhalter – die eigentliche Startseite kommt in Phase 5.
-const events = (await loadEvents()).filter(hasPage);
+import HomePage from "@/components/astro/home/HomePage.astro";
 ---
 
-<BaseLayout locale="de" title="PSNG" description="Platzhalter" alternates={alternatesOf("home")} noindex>
-  <div class="container mx-auto max-w-3xl px-4 pb-24 pt-32">
-    <h1 class="font-heading text-4xl font-bold">PSNG – Umbau</h1>
-    <ul class="mt-6 list-disc pl-6">
-      {events.map((e) => <li><a class="text-primary underline" href={eventPath(e.slug, "de")}>{e.slug}</a></li>)}
-    </ul>
-  </div>
-</BaseLayout>
+<HomePage locale="de" />

@@ -221,4 +221,20 @@ const team = defineCollection({
     }),
 });
 
-export const collections = { events, milestones, partners, team };
+const features = defineCollection({
+  loader: glob({ pattern: "*/feature.yaml", base: "./src/content/features", generateId: byFolder }),
+  schema: z
+    .object({
+      title: localized,
+      text: localized,
+      cta: z.object({ label: localized, url: z.string().regex(/^(https:|\/)/) }),
+      /** Erster und letzter Tag im Hero, beide einschließlich. Ohne Ende kein Feature – es bliebe sonst ewig stehen. */
+      from: isoDate,
+      until: isoDate,
+      /** Bei mehreren gleichzeitig gewinnt die höhere Zahl. */
+      priority: z.number().int().default(1),
+    })
+    .refine((f) => f.until >= f.from, { message: "until liegt vor from", path: ["until"] }),
+});
+
+export const collections = { events, milestones, partners, team, features };
