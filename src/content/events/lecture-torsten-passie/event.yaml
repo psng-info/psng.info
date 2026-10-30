@@ -5,6 +5,7 @@ subtitle:
 role: own
 category: lecture
 column: vortraege
+showcase: true
 date: "2026-08-11"
 showWeekday: true
 startTime: "19:30"

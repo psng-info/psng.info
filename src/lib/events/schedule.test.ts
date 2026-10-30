@@ -185,6 +185,10 @@ describe("getProofEvents", () => {
     const dates = proof.map((e) => e.date);
     expect(dates).toEqual(dates.toSorted().reverse());
   });
+  it("always includes hand-picked events", () => {
+    const picked = events.filter((e) => e.showcase).map((e) => e.slug);
+    expect(getProofEvents(events, ref).map((e) => e.slug)).toEqual(expect.arrayContaining(picked));
+  });
   it("skips talks that belong to an evening and anything without a page", () => {
     for (const e of getProofEvents(events, ref, 20)) {
       expect(e.partOf).toBeUndefined();

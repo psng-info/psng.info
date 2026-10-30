@@ -140,14 +140,18 @@ export function getChildEvents(events: SiteEvent[], slug: string): SiteEvent[] {
  */
 /**
  * Die Belege auf der Startseite: vergangene Events mit eigener Seite und Bild.
- * Events mit Zahlen gehen vor – sie belegen am meisten –, danach die neuesten.
+ * Von Hand gesetzte (`showcase`) gehen vor, dann Events mit Zahlen – sie
+ * belegen am meisten –, danach die neuesten.
  * Vorträge eines Abends zählen über den Abend, nicht einzeln. Angezeigt wird
  * die Auswahl wieder neueste zuerst.
  */
 export function getProofEvents(events: SiteEvent[], ref: Date, count = 4): SiteEvent[] {
   return events
     .filter((e) => isPast(e, ref) && hasPage(e) && !e.partOf && proofImage(e))
-    .sort((a, b) => Number(!a.attendees) - Number(!b.attendees) || byDateDesc(a, b))
+    .sort(
+      (a, b) =>
+        Number(!a.showcase) - Number(!b.showcase) || Number(!a.attendees) - Number(!b.attendees) || byDateDesc(a, b),
+    )
     .slice(0, count)
     .sort(byDateDesc);
 }

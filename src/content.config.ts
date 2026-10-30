@@ -46,6 +46,8 @@ const events = defineCollection({
         /** Kurzes Label für besonders hervorgehobene Events. */
         highlightBadge: localized.optional(),
         featured: z.boolean().optional(),
+        /** Gesetzt unter den Highlights der Startseite, vor allen anderen. */
+        showcase: z.boolean().optional(),
         /** Im Archiv als große Feature-Karte mit Karussell. */
         featuredLarge: z.boolean().optional(),
 
