@@ -9,9 +9,12 @@ language: en
 speaker: Eric Lonergan, PhD cand.
 speakerType: student
 speakerLinkedinUrl: https://www.linkedin.com/in/eric-lonergan-563b0683/
+speakerBio:
+  de: Eric hat seinen B.Sc. in Neurowissenschaften an der University of Wisconsin-Madison gemacht. Dort arbeitete er als Research Assistant in einem Labor, das die neuronalen Grundlagen posttraumatischer Belastung mit funktioneller Bildgebung untersucht, und in einem Labor, das die antidepressive Wirkung psychedelischer Substanzen elektrophysiologisch erforscht. 2022 kam er als Fast-Track-PhD-Fellow (Einstein Center for Neurosciences Berlin) ins Decision Circuits Lab und schloss 2023 seinen M.Sc. in Medical Neurosciences an der Charité ab, mit einer Arbeit zu Halluzinationsmodellen bei Nagetieren. Er forscht zu den neuronalen und serotonergen Mechanismen von Halluzinationen.
+  en: Eric received his B.Sc. in neuroscience from the University of Wisconsin-Madison, where he worked as a research assistant at a lab investigating the neural underpinnings of post-traumatic stress with functional imaging, and at a lab investigating the antidepressant action of psychedelic substances with electrophysiology. He joined the Decision Circuits Lab in 2022 as a fast-track Ph.D. fellow (Einstein Center for Neurosciences Berlin) and obtained his M.Sc. in Medical Neurosciences (Charité) in 2023, working on hallucination models in rodents. His research focuses on the neural and serotonergic mechanisms underlying hallucinations.
 description:
-  de: "Ein breiter Überblick: Was Psychedelika sind und wie sie im Gehirn wirken – wie sie Wahrnehmung verändern und psychische Erkrankungen behandeln können. Eric forscht am Decision Circuits Lab (Einstein Center for Neurosciences Berlin) zu den neuronalen und serotonergen Mechanismen von Halluzinationen."
-  en: "A broad overview: what psychedelics are and how they act in the brain — how they alter perception and how they can treat mental illness. Eric researches the neural and serotonergic mechanisms of hallucinations at the Decision Circuits Lab (Einstein Center for Neurosciences Berlin)."
+  de: "Ein breiter Überblick: Was Psychedelika sind und wie sie im Gehirn wirken – wie sie Wahrnehmung verändern und psychische Erkrankungen behandeln können."
+  en: "A broad overview: what psychedelics are and how they act in the brain — how they alter perception and how they can treat mental illness."
 partner:
   id: bpsa
 recording:

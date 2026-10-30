@@ -176,6 +176,7 @@ export function getUpcomingSeriesDates(events: SiteEvent[], count: number, ref: 
       location: LECTURE_SERIES.location,
       column: LECTURE_SERIES.column,
       labelKey: override?.labelKey,
+      coHost: override?.coHost,
     });
   }
   return out;

@@ -226,6 +226,7 @@ const proofPhoto = proof?.photos?.[0];
                         </h3>
                         <p class="mt-1 text-sm text-muted-foreground">
                           {formatSeriesTime(entry.series)} · {entry.series.location}. {c.events.seriesNote}
+                          {entry.series.coHost && ` ${c.events.seriesCoHost} ${entry.series.coHost}.`}
                         </p>
                       </>
                     ) : (

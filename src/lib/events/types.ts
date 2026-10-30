@@ -44,6 +44,7 @@ export interface SeriesDate {
   location: string;
   column: EventColumn;
   labelKey?: SeriesLabelKey;
+  coHost?: string;
 }
 
 /** Ein redaktioneller Hinweis für den Hero, mit festem Zeitraum. */

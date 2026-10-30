@@ -29,6 +29,8 @@ export interface SeriesOverride {
   date: string;
   /** Ersetzt das Standardlabel, wenn der Anlass einen eigenen Namen hat. */
   labelKey?: SeriesLabelKey;
+  /** Kurzname eines Mitveranstalters, wenn der Termin gemeinsam stattfindet. */
+  coHost?: string;
 }
 
 /**
@@ -44,5 +46,5 @@ export interface SeriesOverride {
 export const SERIES_OVERRIDES: SeriesOverride[] = [
   { date: "2026-10-20", labelKey: "semesterStart" },
   { date: "2026-11-04" },
-  { date: "2026-12-03" },
+  { date: "2026-12-03", coHost: "BPSA" },
 ];
