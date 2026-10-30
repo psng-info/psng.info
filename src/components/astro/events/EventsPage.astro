@@ -66,13 +66,9 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
             href={INSTAGRAM_LINK}
             {...external}
             class={link}>Instagram</a
-          >{c.events.introAfter}
+          >{c.events.introAfter}{" "}<span class="font-medium text-foreground">{c.events.seriesNoteBefore}</span>{" "}{seriesNote}
         </p>
       </div>
-
-      <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground">
-        <span class="font-medium text-foreground">{c.events.seriesNoteBefore}</span>{" "}{seriesNote}
-      </p>
 
       <div class="mb-10 flex flex-col items-center gap-4">
         <nav aria-label={c.events.eyebrow} class="inline-flex rounded-full bg-muted p-1">
