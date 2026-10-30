@@ -1,26 +1,31 @@
 ---
-import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { pick } from "@/i18n/localized";
+import { loadEvents } from "@/lib/events/load";
+import { hasPage } from "@/lib/events/schedule";
+import { formatEventDate, formatEventTime } from "@/lib/events/format";
 
+// Vorläufig: Phase 4 baut die richtige Detailseite.
 export async function getStaticPaths() {
-  const events = await getCollection("events");
-  return events.map((event) => ({ params: { slug: event.id }, props: { event } }));
+  const events = await loadEvents();
+  return events.filter(hasPage).map((event) => ({ params: { slug: event.slug }, props: { event } }));
 }
 
-const { event } = Astro.props;
-const e = event.data;
+const { event: e } = Astro.props;
 const title = pick(e.title, "de");
 ---
 
 <BaseLayout title={`${title} – PSNG`} description={title}>
   <main class="container mx-auto max-w-3xl px-4 py-24">
     <h1 class="font-heading text-4xl font-bold text-foreground">{title}</h1>
-    <p class="mt-4 text-muted-foreground">{e.date} · {e.startTime} – {e.endTime} · {pick(e.location, "de")}</p>
+    <p class="mt-4 text-muted-foreground">
+      {formatEventDate(e.date, "de")} · {formatEventTime(e, "de")} · {pick(e.location, "de")}
+    </p>
     {e.speakerPhoto && (
-      <Image src={e.speakerPhoto} alt="" width={96} height={96} class="mt-6 h-24 w-24 rounded-full object-cover" />
+      <Image src={e.speakerPhoto as ImageMetadata} alt="" width={96} height={96} class="mt-6 h-24 w-24 rounded-full object-cover" />
     )}
-    <p class="mt-2 font-heading text-primary">{e.speaker}</p>
+    {e.speaker && <p class="mt-2 font-heading text-primary">{e.speaker}</p>}
   </main>
 </BaseLayout>

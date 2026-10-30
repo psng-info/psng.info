@@ -1,0 +1,28 @@
+title: The Neuroscience of Psychedelics and Prosocial Effects
+subtitle: From receptor binding to behaviour – what do we know about how psychedelics work?
+role: co-hosted
+category: lecture
+column: vortraege
+date: "2026-08-08"
+showWeekday: true
+startTime: "16:00"
+endTime: "20:00"
+attendance: in-person
+location: Molecule Office @ König Galerie, Alexandrinenstraße 118–121, 10969 Berlin
+venue:
+  name: Molecule Office @ König Galerie
+  street: Alexandrinenstraße 118–121
+  postalCode: "10969"
+  city: Berlin
+  country: DE
+language: en
+partOf: abend-rund-um-psychedelika
+speaker: Dr. Prateep Beed
+speakerType: gast
+speakerBio: A Berlin-based neuroscientist who also designs immersive experiences using virtual reality. He completed his PhD at the Charité – Universitätsmedizin Berlin and spent more than a decade there and at the Berlin Institute of Health studying how excitatory and inhibitory activity is balanced in cortical networks, and what happens to that balance in neurodegenerative disease such as Alzheimer's. Alongside the lab work he co-founded Immersia Labs, which develops multisensory VR for emotional regulation and stress reduction, and he advises the MIND Foundation on neuroscience.
+description: "Psychedelics can be studied at every level of the nervous system, from receptor binding to behaviour. Prateep Beed walks through those levels, asks how serotonergic psychedelics compare in drug harm rankings, and traces how the research field developed over time. He then covers individual effect domains – neuroplasticity, therapeutic outcomes in depression, altered self-experience – and closes on prosocial effects: MDMA, LSD and psilocybin compared on empathy, trust and felt connectedness, and which of those are dose-dependent or persist beyond the acute drug state."
+partner:
+  id: bpsa
+recording:
+  url: https://www.youtube.com/watch?v=7TlMMklQ34g
+  thumbnail: ./recording.webp

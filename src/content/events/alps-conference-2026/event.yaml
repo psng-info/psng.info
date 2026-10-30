@@ -1,0 +1,27 @@
+title: ALPS Research Conference 2026
+role: external
+ownPage: true
+category: conference
+column: community
+date: "2026-10-09"
+endDate: "2026-10-10"
+attendance: in-person
+location: Kultur & Kongresshaus Aarau
+venue:
+  name: Kultur & Kongresshaus Aarau
+  city: Aarau
+  country: CH
+description:
+  de: Die ALPS Conference der Schweizer ALPS Foundation ist einer der zentralen Treffpunkte für psychedelische Forschung in Europa. Zwei Tage lang kommen dort Forschende, Studierende und die Community zusammen, bei Vorträgen, Postern und Panels. Wir waren mit dem PSNG dabei, haben uns gemeinsam Vorträge angehört, uns mit anderen Studierendenorganisationen vernetzt und uns untereinander besser kennengelernt. Wenn du dich für psychedelische Forschung interessierst, lohnt sich die Reise zur Konferenz. Es gibt auch Volunteering-Möglichkeiten, bei denen das Ticket inklusive ist.
+  en: The ALPS Conference, run by the Swiss ALPS Foundation, is one of the central meeting points for psychedelic research in Europe. For two days, researchers, students and the wider community come together for talks, posters and panels. We went as the PSNG, sat in on talks together, connected with other student organisations and got to know each other better. If you're interested in psychedelic research, the conference is worth the trip. There are also volunteering spots that include a ticket.
+externalUrl: https://alpsconference.com
+externalLabel: alpsconference.com
+photos:
+  - src: ./alps-01.webp
+    alt:
+      de: Die PSNG-Gruppe winkt auf der Treppe vor dem ALPS- und dem PSNG-Banner
+      en: The PSNG group waving on the stairs in front of the ALPS and PSNG banners
+  - src: ./alps-02.webp
+    alt:
+      de: Gruppenbild aller Teilnehmenden der ALPS Conference 2026 im Saal in Aarau
+      en: Group photo of everyone at the ALPS Conference 2026 in the hall in Aarau

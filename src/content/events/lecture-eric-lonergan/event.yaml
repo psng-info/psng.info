@@ -1,0 +1,19 @@
+title: Introduction to Psychedelic Neuroscience
+role: co-hosted
+category: lecture
+column: vortraege
+date: "2026-06-09"
+startTime: "19:00"
+endTime: "20:00"
+language: en
+speaker: Eric Lonergan, PhD cand.
+speakerType: student
+speakerLinkedinUrl: https://www.linkedin.com/in/eric-lonergan-563b0683/
+description:
+  de: "Ein breiter Überblick: Was Psychedelika sind und wie sie im Gehirn wirken – wie sie Wahrnehmung verändern und psychische Erkrankungen behandeln können. Eric forscht am Decision Circuits Lab (Einstein Center for Neurosciences Berlin) zu den neuronalen und serotonergen Mechanismen von Halluzinationen."
+  en: "A broad overview: what psychedelics are and how they act in the brain — how they alter perception and how they can treat mental illness. Eric researches the neural and serotonergic mechanisms of hallucinations at the Decision Circuits Lab (Einstein Center for Neurosciences Berlin)."
+partner:
+  id: bpsa
+recording:
+  url: https://www.youtube.com/watch?v=LftC0jVmxuI
+  thumbnail: ./recording.webp

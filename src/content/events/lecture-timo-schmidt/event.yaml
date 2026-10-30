@@ -1,0 +1,86 @@
+title: The Systematic Scientific Study of Altered States of Consciousness
+subtitle:
+  de: Wie lassen sich psychedelische und andere veränderte Bewusstseinszustände systematisch beschreiben, messen und vergleichen?
+  en: How can psychedelic and other altered states of consciousness be systematically described, measured and compared?
+role: co-hosted
+category: lecture
+column: vortraege
+date: "2026-10-20"
+showWeekday: true
+startTime: "19:00"
+endTime: "20:30"
+timeNote:
+  de: inkl. Apéro
+  en: incl. apéro
+attendance: hybrid
+location:
+  de: "Zoom und vor Ort: HU Berlin, Philippstraße 12, Haus 4, Hörsaal 4"
+  en: "Zoom and in person: HU Berlin, Philippstraße 12, building 4, lecture hall 4"
+venue:
+  name: Humboldt-Universität zu Berlin
+  city: Berlin
+  country: DE
+  street: Philippstraße 12
+  postalCode: "10115"
+language: en
+speaker: Prof. Dr. Timo Torsten Schmidt
+speakerType: gast
+speakerPhoto: ./speaker.webp
+speakerBio:
+  de: Timo Torsten Schmidt ist Kognitionswissenschaftler und Professor für Cognitive Neuroscience an der Medical School Berlin (MSB), wo er den Masterstudiengang Cognitive Neuroscience leitet. Er forscht zur Neurowissenschaft und Phänomenologie veränderter Bewusstseinszustände – psychedelische Zustände, Meditation, stroboskopische Lichtstimulation. Er hat die Altered States Database gegründet, eine große Sammlung für den quantitativen Vergleich subjektiver Erfahrungen über verschiedene Induktionsmethoden hinweg, und ist Mitgründer und Vorstandsmitglied von CIRCE, einer gemeinnützigen Organisation für interdisziplinäre und partizipative Bewusstseinsforschung.
+  en: Timo Torsten Schmidt is a cognitive neuroscientist and Professor of Cognitive Neuroscience at Medical School Berlin (MSB), where he leads the MSc Cognitive Neuroscience programme. His research focuses on the neuroscience and phenomenology of altered states of consciousness, including psychedelic states, meditation and stroboscopic light stimulation. He founded the Altered States Database, a large-scale resource for the quantitative comparison of subjective experiences across different methods of inducing altered states, and is a co-founder and board member of CIRCE, a non-profit organisation promoting interdisciplinary and participatory research on consciousness and altered states.
+description:
+  de: Veränderte Bewusstseinszustände – besonders die durch Psychedelika ausgelösten – verändern Wahrnehmung, Gefühl, Denken und Selbsterleben tiefgreifend. Der Vortrag stellt Ansätze vor, diese vielschichtigen Erfahrungen systematisch zu beschreiben, zu quantifizieren und zu klassifizieren. An der Altered States Database (ASDB) zeigt Timo T. Schmidt, wie psychometrische Daten aus vielen experimentellen Studien den quantitativen Vergleich zwischen verschiedenen Substanzen und anderen bewusstseinsverändernden Techniken möglich machen. Zum Schluss geht es darum, wie groß angelegte Erhebungen und Citizen Science die Vielfalt veränderter Erfahrungen auch außerhalb des Labors kartieren können.
+  en: Altered states of consciousness, particularly those induced by psychedelics, involve profound changes across perception, emotion, cognition and self-experience. The talk introduces approaches for systematically describing, quantifying and classifying these multidimensional experiences. Drawing on the Altered States Database (ASDB), Timo T. Schmidt shows how psychometric data accumulated across experimental studies enable quantitative comparisons between different substances and other consciousness-modifying techniques. It closes on how large-scale and citizen-science approaches can help map the diversity of altered experiences beyond traditional laboratory settings.
+audienceNote:
+  de: 45 Minuten Vortrag, danach Fragen und Antworten.
+  en: A 45-minute talk, followed by Q&A.
+furtherReading:
+  - text:
+      de: asdb.info – offene Datenbank mit Fragebogendaten zu veränderten Bewusstseinszuständen, ausgelöst durch Substanzen wie durch Methoden ohne Substanz. Online selbst vergleichbar.
+      en: asdb.info – an open-science database of questionnaire data on altered states, induced by substances and by non-drug methods. Compare them yourself online.
+    url: https://asdb.info
+  - text: Fort, L. D., Costines, C., Wittmann, M., Demertzi, A., & Schmidt, T. T. (2025). Classification schemes of altered states of consciousness. Neuroscience & Biobehavioral Reviews, 175, 106178.
+    url: https://doi.org/10.1016/j.neubiorev.2025.106178
+  - text: "Prugger, J., Derdiyok, E., Dinkelacker, J., Costines, C., & Schmidt, T. T. (2022). The Altered States Database: Psychometric data from a systematic literature review. Scientific Data, 9, 720."
+    url: https://doi.org/10.1038/s41597-022-01822-4
+partner:
+  id: bpsa
+  role:
+    de: Eine gemeinsame Lecture von PSNG und BPSA.
+    en: A joint lecture by the PSNG and the BPSA.
+registrationUrl: whatsapp
+registrationLabel:
+  de: Zoom-Link via WhatsApp
+  en: Zoom link via WhatsApp
+photos:
+  - src: ./photo-01.webp
+    alt:
+      de: Timo T. Schmidt am Pult im Hörsaal, hinter ihm die Folie „Background & Motivation“
+      en: Timo T. Schmidt at the lectern in the lecture hall, the slide “Background & Motivation” behind him
+  - src: ./photo-02.webp
+    alt:
+      de: Timo gestikuliert am Pult, vorn der Laptop für den Zoom-Stream, an der Wand ein QR-Code zum Mitmachen
+      en: Timo gesturing at the lectern, the laptop for the Zoom stream in front, a QR code for taking part on the screen
+  - src: ./photo-03.webp
+    alt:
+      de: Timo am Pult mit Blick in den Hörsaal, die Zuhörenden in den Reihen
+      en: Timo at the lectern looking out into the lecture hall, listeners in the rows
+  - src: ./zoom-01.webp
+    alt:
+      de: "Zoom-Übertragung, Folie: „The Central Idea“ – Adolf Dittrichs Ziel, Strukturen veränderter Bewusstseinszustände unabhängig von ihrer Ursache zu finden"
+      en: "Zoom stream, slide: “The Central Idea” – Adolf Dittrich’s aim to find structures of altered states that are independent of their cause"
+  - src: ./zoom-02.webp
+    alt:
+      de: "Zoom-Übertragung, Folie: die fünf Dimensionen des 5D-ASC im Vergleich von Psilocybin und Placebo"
+      en: "Zoom stream, slide: the five dimensions of the 5D-ASC comparing psilocybin and placebo"
+  - src: ./zoom-03.webp
+    alt:
+      de: "Zoom-Übertragung, Folie: Fragebögen zu veränderten Bewusstseinszuständen, geordnet nach Bereichen wie Verbundenheit, Selbst und Wahrnehmung"
+      en: "Zoom stream, slide: questionnaires on altered states, grouped into areas such as connectedness, self and perception"
+  - src: ./zoom-04.webp
+    alt:
+      de: "Zoom-Übertragung: Live-Vorführung der Altered States Database, MEQ30-Werte für Psilocybin als Netzdiagramm"
+      en: "Zoom stream: live demo of the Altered States Database, MEQ30 scores for psilocybin as a spider plot"
+attendees: 38
+attendeesOnline: 30

@@ -1,0 +1,90 @@
+title: Logos und Ekstase. Zur Genealogie eines akademischen Tabus | Hybrid Event
+subtitle:
+  de: Was hat die Geschichte des Denkens mit psychedelischer Erfahrung zu tun?
+  en: What does the history of thought have to do with psychedelic experience?
+role: co-hosted
+category: lecture
+column: vortraege
+date: "2026-09-08"
+showWeekday: true
+startTime: "19:00"
+endTime: "20:30"
+attendance: hybrid
+location:
+  de: "Zoom und vor Ort: HU Campus Nord, Leonor-Michaelis-Haus, 4. OG, Raum 503a"
+  en: "Zoom and in person: HU Campus Nord, Leonor-Michaelis-Haus, 4th floor, room 503a"
+venue:
+  name: HU Campus Nord, Leonor-Michaelis-Haus
+  city: Berlin
+  country: DE
+language: de
+speaker: Miguel Estéfano Mora Vera, PhD cand.
+speakerType: student
+speakerPhoto: ./speaker.webp
+speakerLinkedinUrl: https://www.linkedin.com/in/miguel-estefano-mora-vera/
+speakerBio:
+  de: Philosoph, Musiker und Komponist. Er promoviert an der Universität Freiburg und lebt in Berlin.
+  en: Philosopher, musician and composer. He is doing his doctorate at the University of Freiburg and lives in Berlin.
+description:
+  de: Ein interdisziplinärer Vortrag über Philosophie, Religion, Geschichte und die Frage, was überhaupt als legitime Form von Erkenntnis gilt.
+  en: An interdisciplinary talk on philosophy, religion, history, and the question of what counts as a legitimate form of knowledge in the first place.
+audienceNote:
+  de: Kostenlos und offen für alle.
+  en: Free and open to everyone.
+partner:
+  id: bpsa
+  role:
+    de: Eine gemeinsame Lecture von PSNG und BPSA.
+    en: A joint lecture by the PSNG and the BPSA.
+registrationUrl: whatsapp
+registrationLabel:
+  de: Zoom-Link via WhatsApp
+  en: Zoom link via WhatsApp
+recording:
+  url: https://www.youtube.com/watch?v=R4pILAsjxWM
+  thumbnail: ./recording.webp
+photos:
+  - src: ./miguel-01.webp
+    alt:
+      de: Eine Reihe aufmerksamer Zuhörender
+      en: A row of attentive listeners
+  - src: ./miguel-02.webp
+    alt:
+      de: Miguel erklärt mit erhobener Hand
+      en: Miguel explaining with a raised hand
+  - src: ./miguel-03.webp
+    alt:
+      de: Zuhörende in der ersten Reihe, eine lacht
+      en: Listeners in the front row, one of them laughing
+  - src: ./miguel-04.webp
+    alt:
+      de: Miguel spricht, den Stift in der Hand
+      en: Miguel speaking, pen in hand
+  - src: ./miguel-05.webp
+    alt:
+      de: Zuhörende, nah aufgenommen
+      en: Listeners, close up
+  - src: ./miguel-06.webp
+    alt:
+      de: Mitschrift mit Füller im Notizbuch
+      en: Notes taken with a fountain pen
+  - src: ./miguel-07.webp
+    alt:
+      de: Zwei Zuhörende im Profil
+      en: Two listeners in profile
+  - src: ./miguel-08.webp
+    alt:
+      de: Ein Teilnehmer stellt in der Diskussion eine Frage
+      en: A participant asking a question in the discussion
+  - src: ./miguel-09.webp
+    alt:
+      de: Ein Teilnehmer gestikuliert in der Diskussion
+      en: A participant gesturing during the discussion
+  - src: ./miguel-10.webp
+    alt:
+      de: "Der Raum von hinten: Miguel am Tisch, im Vordergrund der Laptop für den Zoom-Stream"
+      en: "The room from the back: Miguel at the desk, the laptop for the Zoom stream in front"
+  - src: ./miguel-11.webp
+    alt:
+      de: "Laptop mit Zoom: Die Online-Teilnehmenden während der Fragerunde"
+      en: "Laptop with Zoom: the online participants during the Q&A"

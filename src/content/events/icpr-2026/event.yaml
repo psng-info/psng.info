@@ -1,0 +1,21 @@
+title: ICPR 2026
+role: external
+category: conference
+column: community
+date: "2026-06-05"
+attendance: in-person
+location: Haarlem
+venue:
+  name: ICPR
+  city: Haarlem
+  country: NL
+description:
+  de: "International Conference on Psychedelic Research: Europas wichtigste wissenschaftliche Konferenz für Psychedelika-Forschung. Das PSNG hat sich auch hier als Gruppe getroffen, ein wichtiger Schritt in der Vernetzung mit der europäischen Forschungscommunity."
+  en: "International Conference on Psychedelic Research: Europe's most important scientific conference on psychedelic research. The PSNG met up here as a group too — an important step in connecting with the European research community."
+externalUrl: https://icpr-conference.com
+externalLabel: icpr-conference.com
+photos:
+  - src: ./icpr-1.webp
+    alt:
+      de: PSNG-Gruppe mit Konferenzausweisen auf einer Steinbank vor einer Glasfassade
+      en: PSNG group with conference badges on a stone bench in front of a glass facade

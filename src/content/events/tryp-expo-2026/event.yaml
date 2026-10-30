@@ -1,0 +1,21 @@
+title: TRYP Expo
+role: external
+category: conference
+column: community
+date: "2026-05-16"
+attendance: in-person
+location: Funkhaus Berlin
+venue:
+  name: Funkhaus Berlin
+  city: Berlin
+  country: DE
+description:
+  de: "Europas größtes Event an der Schnittstelle von Psychedelika-Forschung, Mental Health und Bewusstseinskultur: 80+ Speaker, 150+ Aussteller, drei Tage Funkhaus Berlin. Das PSNG hat sich dort als Community getroffen: gemeinsamer Besuch, Banner, und Mittagessen."
+  en: "Europe's largest event at the intersection of psychedelic research, mental health and consciousness culture: 80+ speakers, 150+ exhibitors, three days at Funkhaus Berlin. The PSNG met up there as a community — we went together, brought a banner and had lunch."
+externalUrl: https://tryp.de
+externalLabel: tryp.de
+photos:
+  - src: ./tryp-1.webp
+    alt:
+      de: PSNG-Gruppe mit erhobenen Armen neben dem PSNG-Banner vor der Milchbar
+      en: PSNG group raising their arms next to the PSNG banner in front of the Milchbar

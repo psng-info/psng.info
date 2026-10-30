@@ -1,0 +1,155 @@
+title:
+  de: Ein Abend rund um Psychedelika, Forschung, Verbindung & Austausch
+  en: An evening around psychedelics, research, connection & exchange
+role: co-hosted
+category: gathering
+column: community
+highlightBadge:
+  de: Erstes eigenes In-Person-Event
+  en: Our first in-person event
+featuredLarge: true
+date: "2026-08-08"
+showWeekday: true
+startTime: "16:00"
+endTime: "20:00"
+timeNote:
+  de: Einlass ab 15:30
+  en: doors from 15:30
+attendance: in-person
+location: Molecule Office @ König Galerie, Alexandrinenstraße 118–121, 10969 Berlin
+venue:
+  name: Molecule Office @ König Galerie
+  street: Alexandrinenstraße 118–121
+  postalCode: "10969"
+  city: Berlin
+  country: DE
+description:
+  de: "Unser erstes eigenes In-Person-Treffen, gemeinsam mit der Berlin Psychedelic Science Association (BPSA), zu Gast im Molecule Office. Ein Abend zum Ankommen, Kennenlernen und Austauschen: mit einem Vortrag von Dr. Prateep Beed zu den prosozialen Effekten von Psychedelika, einem interaktiven Workshop von Eric Lonergan (PhD cand.) und Jennifer Them (PhD cand.), einem Impuls-Talk von Stela Malvasija, M.Sc. zur Integration und einer Klangmeditation mit Journalling, geleitet von Lucie André (Beyond Yoga) und Daniel Burckhardt (HRL). Durch den Abend führte Lennert van de Kreeke. Dazu ein mit viel Liebe selbstgemachtes veganes Fingerfood-Buffet und ein Büchertisch vom Nachtschatten Verlag mit psychedelischer Literatur zum Stöbern. Danach gemeinsames Abendessen auswärts für alle, die mochten. Danke an alle, die dabei waren!"
+  en: "Our first in-person meet-up, together with the Berlin Psychedelic Science Association (BPSA) and hosted at the Molecule Office. An evening to arrive, meet people and talk: a lecture by Dr Prateep Beed on the prosocial effects of psychedelics, an interactive workshop by Eric Lonergan (PhD cand.) and Jennifer Them (PhD cand.), a short talk on integration by Stela Malvasija, M.Sc., and a sound meditation with journalling led by Lucie André (Beyond Yoga) and Daniel Burckhardt (HRL). Lennert van de Kreeke hosted the evening. Plus a lovingly home-made vegan finger-food buffet and a book table from Nachtschatten Verlag with psychedelic literature to browse. Afterwards, dinner out together for anyone who felt like it. Thank you to everyone who came!"
+audienceNote:
+  de: Für Studierende und alle Interessierten, Vorwissen braucht ihr keins.
+  en: For students and anyone else interested — no prior knowledge needed.
+contribution:
+  de: 5 bis 10 € empfohlen, freiwillig, niemand wird abgewiesen
+  en: €5–10 suggested, voluntary, nobody is turned away
+partner:
+  id: bpsa
+  role:
+    de: Gemeinsam von der BPSA und dem PSNG veranstaltet.
+    en: Organised jointly by the BPSA and the PSNG.
+registrationUrl: https://luma.com/n6io5052
+short:
+  url: https://youtube.com/shorts/T5r5fJ9OOm0?feature=share
+  thumbnail: ./short.webp
+photos:
+  - src: ./abend-31.webp
+    alt:
+      de: Weitwinkelblick von der Empore auf den vollen Raum im Abschlusskreis
+      en: Wide view from the gallery of the full room in the closing circle
+  - src: ./abend-09.webp
+    alt:
+      de: Gruppenfoto auf der Bühne
+      en: Group photo on stage
+  - src: ./abend-29.webp
+    alt:
+      de: Sprecherin am Mikrofon zur Klangmeditation
+      en: Speaker at the microphone introducing the sound meditation
+  - src: ./abend-32.webp
+    alt:
+      de: Folie 'Prosocial Effects' während des Vortrags von Prateep Beed
+      en: Slide reading 'Prosocial Effects' during Prateep Beed's talk
+  - src: ./abend-04.webp
+    alt:
+      de: Sprecher mit Klangschale während des Vortrags
+      en: Speaker holding a singing bowl during the talk
+  - src: ./abend-17.webp
+    alt:
+      de: Abschlusskreis im Innenraum
+      en: Closing circle indoors
+  - src: ./abend-11.webp
+    alt:
+      de: Loungebereich mit Gong für die Klangmeditation
+      en: Lounge area with a gong for the sound meditation
+  - src: ./abend-16.webp
+    alt:
+      de: Gruppe im Garten nach der Veranstaltung
+      en: Group in the garden after the event
+  - src: ./abend-10.webp
+    alt:
+      de: Banner der Community am Eingang
+      en: Community banner at the entrance
+  - src: ./abend-01.webp
+    alt:
+      de: Leuchtschild von Molecule am Eingang des Veranstaltungsorts
+      en: Molecule's illuminated sign at the entrance to the venue
+  - src: ./abend-18.webp
+    alt:
+      de: Vorbereiteter Raum mit Sitzkissen für den Workshop
+      en: The room set up with floor cushions for the workshop
+  - src: ./abend-19.webp
+    alt:
+      de: Folie mit Vergleich potenzieller Risiken verschiedener Substanzen
+      en: Slide comparing the potential harms of different substances
+  - src: ./abend-20.webp
+    alt:
+      de: Publikum aufmerksam beim Vortrag
+      en: The audience listening to the talk
+  - src: ./abend-27.webp
+    alt:
+      de: Publikum vor der Folie zu Psilocybin
+      en: The audience in front of the slide on psilocybin
+  - src: ./abend-06.webp
+    alt:
+      de: Teilnehmende im Gespräch beim Empfang
+      en: Attendees talking during the reception
+  - src: ./abend-21.webp
+    alt:
+      de: Teilnehmende im lebhaften Gespräch
+      en: Attendees in lively conversation
+  - src: ./abend-22.webp
+    alt:
+      de: Teilnehmende beim Get-together
+      en: Attendees at the get-together
+  - src: ./abend-23.webp
+    alt:
+      de: Teilnehmerin im Gespräch
+      en: An attendee in conversation
+  - src: ./abend-24.webp
+    alt:
+      de: Teilnehmerinnen im herzlichen Gespräch
+      en: Two attendees in warm conversation
+  - src: ./abend-33.webp
+    alt:
+      de: Reich gedeckter Fingerfood-Tisch im Garten
+      en: A well-stocked finger-food table in the garden
+  - src: ./abend-07.webp
+    alt:
+      de: Veganes Fingerfood für den Abend
+      en: Vegan finger food for the evening
+  - src: ./abend-26.webp
+    alt:
+      de: Büchertisch mit psychedelischer Literatur
+      en: Book table with psychedelic literature
+  - src: ./abend-25.webp
+    alt:
+      de: Teilnehmerin im Garten des Veranstaltungsorts
+      en: An attendee in the venue's garden
+  - src: ./abend-28.webp
+    alt:
+      de: Teilnehmende beim Austausch im Garten
+      en: Attendees talking in the garden
+  - src: ./abend-12.webp
+    alt:
+      de: Teilnehmende im Stehkreis zur Klangmeditation
+      en: Attendees standing in a circle for the sound meditation
+  - src: ./abend-30.webp
+    alt:
+      de: Teilnehmende im Workshop auf dem Boden
+      en: Attendees sitting on the floor during the workshop
+  - src: ./abend-15.webp
+    alt:
+      de: Teilnehmer im Gespräch
+      en: An attendee in conversation
+attendees: 30
+rating: 9/10
+recommendPercent: 81

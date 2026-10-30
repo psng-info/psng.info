@@ -1,12 +1,51 @@
 title:
   de: Lecture mit Dr. med. Tomislav Majić
   en: Lecture with Dr. med. Tomislav Majić
+subtitle:
+  de: Thema folgt
+  en: Topic to be announced
+role: co-hosted
+category: lecture
+column: vortraege
 date: "2026-11-04"
+showWeekday: true
 startTime: "19:00"
 endTime: "20:30"
 attendance: hybrid
 location:
   de: Zoom und vor Ort an der HU Berlin, Raum folgt
   en: Zoom and in person at HU Berlin, room to be announced
+venue:
+  name: Humboldt-Universität zu Berlin
+  city: Berlin
+  country: DE
 speaker: Dr. med. Tomislav Majić
+speakerType: gast
 speakerPhoto: ./speaker.webp
+speakerBio:
+  de: Tomislav Majić ist Psychiater und Psychotherapeut an der Psychiatrischen Universitätsklinik der Charité im St. Hedwig-Krankenhaus in Berlin und Co-Leiter der Forschungsgruppe Psychedelische Substanzen an der Charité. Er leitet eine Abteilung für Allgemeinpsychiatrie, eine Ambulanz für Doppeldiagnosen und die „Ambulanz Psychedelische Substanzen“, die Menschen mit Störungen im Zusammenhang mit Psychedelika behandelt. Er forscht und arbeitet als Studientherapeut in Studien zur psychedelisch unterstützten Therapie, ist Herausgeber des Bandes „Psychedelic Harm Reduction“ und Dozent am Berliner Institut für Psychotherapie und Psychoanalyse.
+  en: Psychiatrist and psychotherapist at the Psychiatric University Hospital of Charité at St. Hedwig Hospital in Berlin, and co-head of the Psychedelic Substances Research Group at Charité. He heads a department of general psychiatry, an outpatient clinic for dual diagnosis and the “Ambulanz Psychedelische Substanzen”, an outpatient clinic treating patients with psychedelic-related disorders. He is a researcher and study therapist in trials investigating psychedelic-assisted therapy, editor of the volume “Psychedelic Harm Reduction”, and a lecturer at the Berlin Institute for Psychotherapy and Psychoanalysis.
+description:
+  de: "Das Thema wird vor Ort bekannt gegeben: Psychedelic Harm Reduction oder Psychedelic Intersubjectivity."
+  en: "The topic will be announced at the lecture: Psychedelic Harm Reduction or Psychedelic Intersubjectivity."
+audienceNote:
+  de: Nur live, vor Ort und über Zoom – eine Aufzeichnung gibt es diesmal nicht.
+  en: Live only, in person and on Zoom – there will be no recording this time.
+furtherReading:
+  - text:
+      de: Ambulanz Psychedelische Substanzen am St. Hedwig-Krankenhaus – Anlaufstelle bei Problemen nach dem Konsum von Psychedelika.
+      en: Ambulanz Psychedelische Substanzen at St. Hedwig Hospital – the outpatient clinic for problems after psychedelic use.
+    url: https://www.alexianer-berlin-hedwigkliniken.de/sthedwig-krankenhaus/leistungen/ambulante-behandlung/ambulanz-psychedelische-substanzen
+  - text:
+      de: AG Psychotrope Substanzen an der Charité – Forschung zu Psychedelika und psychedelisch unterstützter Therapie.
+      en: Psychotropic Substances research group at Charité – research on psychedelics and psychedelic-assisted therapy.
+    url: https://psychiatrie-psychotherapie.charite.de/forschung/suchterkrankungen/ag_psychotrope_substanzen/
+partner:
+  id: bpsa
+  role:
+    de: Eine gemeinsame Lecture von PSNG und BPSA.
+    en: A joint lecture by the PSNG and the BPSA.
+registrationUrl: whatsapp
+registrationLabel:
+  de: Zoom-Link via WhatsApp
+  en: Zoom link via WhatsApp
