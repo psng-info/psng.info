@@ -17,7 +17,7 @@ import TimelineRow from "./TimelineRow.astro";
  * Termin, dann heute, dann rückwärts durch alles Gewesene.
  *
  * Gebaut mit dem Datum des Builds; scripts/timeline.ts führt Heute-Marker,
- * Abstände, Filter und „Mehr anzeigen“ im Browser nach. Ohne JavaScript ist
+ * Abstände und Filter im Browser nach. Ohne JavaScript ist
  * alles da, nur ungefiltert.
  */
 interface Props {
@@ -103,7 +103,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
 
       <div class="mx-auto max-w-5xl">
         {upcoming.length === 0 && <p class="mb-8 text-center text-muted-foreground">{c.eventPage.noUpcoming}</p>}
-        <ol class="timeline relative" data-page-size="8">
+        <ol class="timeline relative">
           <span aria-hidden="true" class="absolute bottom-2 top-2 left-[0.75rem] w-px bg-border md:left-[7.25rem]"></span>
           {upcoming.map((entry) => <TimelineRow entry={entry} locale={locale} upcoming isNext={entry.id === nextId} ref={ref} />)}
           <li class="timeline-today grid grid-cols-[1.5rem_minmax(0,1fr)] items-center md:grid-cols-[6.5rem_1.5rem_minmax(0,1fr)] my-1" aria-hidden="true">
@@ -115,16 +115,6 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
           </li>
           {past.map((entry) => <TimelineRow entry={entry} locale={locale} upcoming={false} ref={ref} />)}
         </ol>
-        <div class="flex justify-center">
-          <button
-            type="button"
-            class="timeline-more rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-            data-label={c.events.showMore}
-            hidden
-          >
-            {c.events.showMore}
-          </button>
-        </div>
       </div>
 
       <div class="mt-14 rounded-2xl border border-border/60 bg-muted/40 p-8 text-center">

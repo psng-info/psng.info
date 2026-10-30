@@ -39,7 +39,14 @@ const dot = upcoming
 const e = entry.kind === "event" ? entry.event : undefined;
 const action = e && cardAction(e, locale, c, ref);
 const thumb = e && (cardImage(e, ref) as ImageMetadata | undefined);
-const feature = entry.kind === "event" && entry.variant === "feature" && !upcoming;
+// Gewesenes mit Material zeigt es groß – die Fotos sind der Beleg, dass hier
+// wirklich Leute zusammenkommen. Vorher bleibt die Karte schlank.
+const big = !upcoming && Boolean(thumb);
+const extraPhotos = big ? (e?.photos ?? []).filter((p) => p.src !== thumb).slice(0, 4) : [];
+// Als Literale, damit Tailwind sie findet. Ein einzelnes Zusatzfoto nimmt
+// die halbe Breite, mehrere teilen sich die Zeile.
+const stripCols = ["", "grid-cols-2", "grid-cols-2", "grid-cols-3", "grid-cols-4"][extraPhotos.length];
+const wide = "(min-width: 1024px) 860px, (min-width: 768px) calc(100vw - 12rem), 100vw";
 const chip = "rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground";
 const card = "rounded-xl border border-border/60 bg-card transition-shadow hover:shadow-lg";
 ---
@@ -85,7 +92,11 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
 
     {
       entry.kind === "milestone" && (
-        <div class={`${card} p-5`}>
+        <div class={`${card} overflow-hidden`}>
+          {entry.milestone.image && (
+            <Image src={entry.milestone.image as ImageMetadata} alt="" widths={[640, 960, 1280]} sizes={wide} class="aspect-video w-full bg-muted object-cover object-top" />
+          )}
+          <div class="p-5">
           <div class="mb-2 flex flex-wrap items-center gap-2">
             {entry.milestone.badge && (
               <span class="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
@@ -112,6 +123,7 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
               ))}
             </div>
           )}
+          </div>
         </div>
       )
     }
@@ -119,8 +131,24 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
     {
       e && (
         <article class={`${card} overflow-hidden`}>
-          {feature && thumb && (
-            <Image src={thumb} alt="" widths={[640, 1024]} sizes="(min-width: 768px) 640px, 100vw" class="aspect-[2/1] w-full object-cover" />
+          {big && (
+            <a href={action?.href} {...(action?.external ? { target: "_blank", rel: "noopener noreferrer" } : {})} tabindex="-1" aria-hidden="true" class="group relative block">
+              <Image src={thumb!} alt="" widths={[640, 960, 1280]} sizes={wide} class="aspect-video w-full bg-muted object-cover" />
+              {e.recording && thumb === e.recording.thumbnail && (
+                <span class="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors group-hover:bg-black/20">
+                  <PlayCircle size={64} strokeWidth={1.5} className="text-white drop-shadow-lg" aria-hidden="true" />
+                </span>
+              )}
+            </a>
+          )}
+          {extraPhotos.length > 0 && (
+            <ul class={`grid gap-1 pt-1 ${stripCols}`}>
+              {extraPhotos.map((p) => (
+                <li>
+                  <Image src={p.src as ImageMetadata} alt={pick(p.alt, locale) ?? ""} widths={[220, 440]} sizes="(min-width: 1024px) 215px, 25vw" class="aspect-[4/3] w-full bg-muted object-cover" />
+                </li>
+              ))}
+            </ul>
           )}
           <div class="flex gap-4 p-5">
             <div class="min-w-0 flex-1">
@@ -196,10 +224,10 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
               }
             </div>
             {
-              !feature && thumb ? (
+              !big && thumb ? (
                 <Image src={thumb} alt="" width={176} height={99} densities={[1, 2]} class="hidden aspect-video w-44 shrink-0 self-start rounded-lg object-cover sm:block" />
               ) : (
-                !feature &&
+                !big &&
                 e.speakerPhoto && (
                   <Image
                     src={e.speakerPhoto as ImageMetadata}
