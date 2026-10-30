@@ -17,14 +17,13 @@ import { calendarEntry, seriesCalendarEntry } from "@/lib/events/calendarEntry";
 import { formatEventDate, formatEventDateRange, formatEventTime, formatSeriesTime } from "@/lib/events/format";
 import { loadEvents, loadFeatures } from "@/lib/events/load";
 import { eventPath } from "@/lib/events/paths";
-import { getHeroSlot, getLatestRatedEvent, getUpcomingAgenda, parseEventDate } from "@/lib/events/schedule";
+import { getHeroSlot, getProofEvents, getUpcomingAgenda, parseEventDate, proofImage } from "@/lib/events/schedule";
 import { LECTURE_SERIES } from "@/lib/events/series";
 import { cardAction, columnLabel } from "@/lib/events/view";
 import { legacyAnchorTargets } from "@/lib/legacyAnchors";
 import { BPSA_LINK, WHATSAPP_LINK } from "@/lib/links";
 import { alternatesOf } from "@/lib/seo/alternates";
 import { graph, organizationNode, websiteNode } from "@/lib/seo/structuredData";
-import PartnerStrip from "../events/cards/PartnerStrip.astro";
 import HeroCard from "./HeroCard.astro";
 import { chip, eyebrow, primaryButton, secondaryButton, sectionTitle, textLink } from "./styles";
 
@@ -48,9 +47,11 @@ const heroId = slot.kind === "event" ? slot.event.slug : slot.kind === "series" 
 const agenda = getUpcomingAgenda(events, ref)
   .filter((entry) => entry.id !== heroId)
   .slice(0, 3);
-const rated = getLatestRatedEvent(events, ref);
-// Steht derselbe Rückblick schon im Hero, braucht es ihn weiter unten nicht noch einmal.
-const proof = rated && !(slot.kind === "recap" && slot.event.slug === rated.slug) ? rated : undefined;
+// Steht ein Rückblick schon im Hero, braucht es ihn weiter unten nicht noch einmal.
+const proof = getProofEvents(
+  events.filter((e) => !(slot.kind === "recap" && slot.event.slug === e.slug)),
+  ref,
+);
 const legacy = legacyAnchorTargets(events, locale);
 
 const anchor = (hash: string) => `#${hash}`;
@@ -73,14 +74,15 @@ const dateParts = (iso: string) => {
   return { weekday: fmt({ weekday: "short" }), day: fmt({ day: "numeric" }), month: fmt({ month: "short" }) };
 };
 
-const proofFigures = proof
-  ? [
-      { value: String(proof.attendees), label: c.events.attendees },
-      { value: proof.rating!, label: c.events.rating },
-      ...(proof.recommendPercent ? [{ value: `${proof.recommendPercent} %`, label: c.events.recommend }] : []),
-    ]
-  : [];
-const proofPhoto = proof?.photos?.[0];
+/** Die eine Zeile, die eine Kachel belegt: Zahlen, sonst Aufzeichnung, Ort oder Fotos. */
+const proofFigure = (e: (typeof proof)[number]) => {
+  if (e.attendees) {
+    return [`${e.attendees} ${c.events.attendees}`, e.rating && `${e.rating} ${c.events.rating}`].filter(Boolean).join(" · ");
+  }
+  if (e.recording) return `▶ ${c.eventPage.recording}`;
+  if (e.venue) return `${e.venue.city}${e.venue.country !== "DE" ? ` (${e.venue.country})` : ""}`;
+  return `${e.photos?.length ?? 0} ${c.eventPage.photos}`;
+};
 ---
 
 <BaseLayout
@@ -265,45 +267,67 @@ const proofPhoto = proof?.photos?.[0];
   </section>
 
   {
-    proof && (
+    proof.length > 0 && (
       <section aria-labelledby="home-proof" class="bg-white py-16 md:py-24">
-        <div class="container mx-auto grid items-center gap-10 px-4 sm:px-6 md:grid-cols-2 lg:gap-16">
-          {proofPhoto && (
-            <Image
-              src={proofPhoto.src as ImageMetadata}
-              alt={pick(proofPhoto.alt, locale) ?? c.events.photoFallback}
-              widths={[600, 1200]}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              class="aspect-[4/3] w-full rounded-2xl object-cover"
-              data-reveal
-            />
-          )}
-          <div data-reveal>
-            <p class={`${eyebrow} mb-3`}>{c.lab.proof.eyebrow}</p>
-            <h2 id="home-proof" class="font-heading text-2xl font-bold leading-snug text-foreground md:text-3xl">
-              {pick(proof.highlightBadge, locale) ?? pick(proof.title, locale)}
-            </h2>
-            <p class="mt-2 text-sm text-muted-foreground">
-              {formatEventDate(proof.date, locale)}
-              {proof.partner ? ` · ${c.events.with} ${proof.partner.short ?? proof.partner.name}` : ""}
+        <div class="container mx-auto px-4 sm:px-6">
+          <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
+            <div>
+              <p class={`${eyebrow} mb-3`}>{c.lab.proof.eyebrow}</p>
+              <h2 id="home-proof" class={sectionTitle}>{c.lab.proof.title}</h2>
+            </div>
+            <a href={pathFor("events", locale)} class={textLink}>{c.lab.agenda.all}</a>
+          </div>
+          {/* Auf dem Handy ein Streifen zum Wischen, darüber ein Raster. */}
+          <ul class="-mx-4 mt-10 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden" data-reveal>
+            {proof.map((e) => (
+              <li class="w-[78%] shrink-0 snap-start sm:w-auto">
+                <a href={eventPath(e.slug, locale)} class="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg">
+                  <div class="aspect-[4/3] overflow-hidden bg-muted">
+                    <Image
+                      src={proofImage(e) as ImageMetadata}
+                      alt=""
+                      widths={[400, 800]}
+                      sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 78vw"
+                      class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div class="p-5">
+                    <p class="text-xs text-muted-foreground">
+                      {formatEventDate(e.date, locale)}
+                      {e.partner ? ` · ${c.events.with} ${e.partner.short ?? e.partner.name}` : ""}
+                    </p>
+                    <h3 class="mt-1 line-clamp-2 font-heading text-base font-semibold leading-snug text-foreground group-hover:text-primary">
+                      {pick(e.title, locale)}
+                    </h3>
+                    <p class="mt-3 text-sm font-medium text-foreground">{proofFigure(e)}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-14" data-reveal>
+            <p class="text-center font-heading text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.partners.stripeLabel}</p>
+            <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+              {
+                partners.map((partner) => (
+                  <li>
+                    <a href={partner.url} {...external} title={partner.displayName ?? partner.name} class="block opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
+                      <Image
+                        src={partner.logo}
+                        alt={partner.displayName ?? partner.name}
+                        height={48}
+                        densities={[1, 2]}
+                        class="h-12 w-auto max-w-[9rem] object-contain"
+                      />
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="mt-6 text-center">
+              <a href={`${pathFor("about", locale)}#kooperation`} class={textLink}>{c.lab.credibility.partnersLink}</a>
             </p>
-            <dl class="mt-8 grid grid-cols-3 gap-4 border-y border-border py-6">
-              {proofFigures.map((f) => (
-                // Im DOM erst die Bezeichnung (so verlangt es <dl>), sichtbar die Zahl oben.
-                <div class="flex flex-col-reverse">
-                  <dt class="mt-1 text-xs text-muted-foreground md:text-sm">{f.label}</dt>
-                  <dd class="font-heading text-3xl font-bold text-foreground md:text-4xl">{f.value}</dd>
-                </div>
-              ))}
-            </dl>
-            <a href={eventPath(proof.slug, locale)} class={`${textLink} mt-6 inline-block`}>
-              {c.lab.proof.more}
-            </a>
-            {proof.partner && proof.role === "co-hosted" && (
-              <div class="mt-6 overflow-hidden rounded-xl">
-                <PartnerStrip partner={proof.partner} locale={locale} />
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -376,29 +400,6 @@ const proofPhoto = proof?.photos?.[0];
         </div>
       </div>
 
-      <div class="mt-14" data-reveal>
-        <p class="text-center font-heading text-xs uppercase tracking-[0.2em] text-muted-foreground">{c.partners.stripeLabel}</p>
-        <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-          {
-            partners.map((partner) => (
-              <li>
-                <a href={partner.url} {...external} title={partner.displayName ?? partner.name} class="block opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
-                  <Image
-                    src={partner.logo}
-                    alt={partner.displayName ?? partner.name}
-                    height={48}
-                    densities={[1, 2]}
-                    class="h-12 w-auto max-w-[9rem] object-contain"
-                  />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-        <p class="mt-6 text-center">
-          <a href={`${pathFor("about", locale)}#kooperation`} class={textLink}>{c.lab.credibility.partnersLink}</a>
-        </p>
-      </div>
     </div>
   </section>
 

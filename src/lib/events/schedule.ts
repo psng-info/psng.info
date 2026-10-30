@@ -138,8 +138,23 @@ export function getChildEvents(events: SiteEvent[], slug: string): SiteEvent[] {
  * Das jüngste vergangene Event mit Rückmeldung der Teilnehmenden – ein Beleg,
  * dass Veranstaltungen stattfinden und ankommen, ohne Zahlen zu erfinden.
  */
-export function getLatestRatedEvent(events: SiteEvent[], ref: Date): SiteEvent | undefined {
-  return getHighlightEvents(events, ref).find((e) => e.attendees && e.rating);
+/**
+ * Die Belege auf der Startseite: vergangene Events mit eigener Seite und Bild.
+ * Events mit Zahlen gehen vor – sie belegen am meisten –, danach die neuesten.
+ * Vorträge eines Abends zählen über den Abend, nicht einzeln. Angezeigt wird
+ * die Auswahl wieder neueste zuerst.
+ */
+export function getProofEvents(events: SiteEvent[], ref: Date, count = 4): SiteEvent[] {
+  return events
+    .filter((e) => isPast(e, ref) && hasPage(e) && !e.partOf && proofImage(e))
+    .sort((a, b) => Number(!a.attendees) - Number(!b.attendees) || byDateDesc(a, b))
+    .slice(0, count)
+    .sort(byDateDesc);
+}
+
+/** Das Bild eines Events für eine Kachel: Titelbild, erstes Foto oder Video-Still. */
+export function proofImage(e: SiteEvent) {
+  return e.cover?.src ?? e.photos?.[0]?.src ?? e.recording?.thumbnail;
 }
 
 // ── Lecture-Reihe ────────────────────────────────────────────────────────────

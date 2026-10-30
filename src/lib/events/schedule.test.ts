@@ -7,7 +7,7 @@ import {
   getChildEvents,
   getHeroSlot,
   getHighlightEvents,
-  getLatestRatedEvent,
+  getProofEvents,
   getPastPlainEvents,
   getTimelineEntries,
   getUpcomingAgenda,
@@ -175,11 +175,21 @@ describe("getUpcomingAgenda", () => {
   });
 });
 
-describe("getLatestRatedEvent", () => {
-  it("returns a past event that carries both attendance and rating", () => {
-    const e = getLatestRatedEvent(events, new Date(2026, 9, 8));
-    expect(e?.attendees).toBeGreaterThan(0);
-    expect(e?.rating).toBeTruthy();
+describe("getProofEvents", () => {
+  const ref = new Date(2026, 9, 30);
+  it("keeps events with figures, then fills with the newest, newest first", () => {
+    const proof = getProofEvents(events, ref);
+    expect(proof.length).toBeLessThanOrEqual(4);
+    const withFigures = events.filter((e) => e.attendees && e.date < "2026-10-30" && hasPage(e) && !e.partOf);
+    for (const e of withFigures) expect(proof.map((p) => p.slug)).toContain(e.slug);
+    const dates = proof.map((e) => e.date);
+    expect(dates).toEqual(dates.toSorted().reverse());
+  });
+  it("skips talks that belong to an evening and anything without a page", () => {
+    for (const e of getProofEvents(events, ref, 20)) {
+      expect(e.partOf).toBeUndefined();
+      expect(hasPage(e)).toBe(true);
+    }
   });
 });
 

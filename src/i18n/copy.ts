@@ -479,7 +479,7 @@ const de = {
     },
     proof: {
       eyebrow: "Rückblick",
-      more: "Zum Rückblick →",
+      title: "Was wir schon gemacht haben",
     },
   },
 
@@ -1024,7 +1024,7 @@ const en: Copy = {
     },
     proof: {
       eyebrow: "Looking back",
-      more: "See the recap →",
+      title: "What we've done so far",
     },
   },
 
