@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.webp";
 import teamPhoto from "@/assets/Team-2026-08.webp";
 import AddToCalendar from "@/components/AddToCalendarIsland";
@@ -21,7 +21,7 @@ import { getHeroSlot, getProofEvents, getUpcomingAgenda, parseEventDate, proofIm
 import { LECTURE_SERIES } from "@/lib/events/series";
 import { cardAction, columnLabel } from "@/lib/events/view";
 import { legacyAnchorTargets } from "@/lib/legacyAnchors";
-import { BPSA_LINK, WHATSAPP_LINK } from "@/lib/links";
+import { WHATSAPP_LINK } from "@/lib/links";
 import { alternatesOf } from "@/lib/seo/alternates";
 import { graph, organizationNode, websiteNode } from "@/lib/seo/structuredData";
 import HeroCard from "./HeroCard.astro";
@@ -110,14 +110,6 @@ const proofFigure = (e: (typeof proof)[number]) => {
       ]}
     >
       <div class="animate-rise-in">
-        <a
-          href={BPSA_LINK}
-          {...external}
-          class="mb-5 inline-flex items-center gap-1.5 rounded-full badge-bpsa px-3 py-1 font-heading text-xs font-medium transition-opacity hover:opacity-90"
-        >
-          {c.hero.bpsaChip}
-          <ArrowRight size={12} aria-hidden="true" />
-        </a>
         <p class={`${eyebrow} mb-4`}>{c.lab.hero.eyebrow}</p>
         <h1 class="font-heading text-[2rem] font-bold leading-[1.1] text-foreground sm:text-5xl lg:text-[3.5rem]">
           {c.lab.hero.headlineBefore}<span class="gradient-text">{c.lab.hero.headlineAccent}</span>{c.lab.hero.headlineAfter}
@@ -127,6 +119,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
           <a href={WHATSAPP_LINK} {...external} class={primaryButton}>{c.hero.joinWhatsapp}</a>
           <a href={anchor(HOME_ANCHORS.groups)} class={secondaryButton}>{c.hero.foundGroup}</a>
         </div>
+        <p class="mt-3 text-xs text-muted-foreground">{c.lab.hero.whatsappNote}</p>
       </div>
       {
         slot.kind !== "none" && (
@@ -406,7 +399,6 @@ const proofFigure = (e: (typeof proof)[number]) => {
   <section id={HOME_ANCHORS.faq} aria-labelledby="home-faq" class="scroll-mt-20 py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
       <div class="mx-auto mb-10 max-w-3xl text-center" data-reveal>
-        <p class={`${eyebrow} mb-3`}>{c.faq.eyebrow}</p>
         <h2 id="home-faq" class={sectionTitle}>{c.faq.title}</h2>
       </div>
       <div class="mx-auto max-w-2xl space-y-3" data-reveal>

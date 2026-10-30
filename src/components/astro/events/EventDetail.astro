@@ -38,10 +38,7 @@ const register = canRegister(e, ref) && e.registrationUrl;
 const children = getChildEvents(events, e.slug);
 const parent = e.partOf ? events.find((x) => x.slug === e.partOf) : undefined;
 // Die Nachbarn in der Zeit, unter allen Events mit eigener Seite.
-// Die Vorträge eines Abends stehen auf dessen Seite – als Nachbarn zählt der Abend.
-const chronological = events
-  .filter((x) => hasPage(x) && (!x.partOf || x.slug === e.slug))
-  .sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug));
+const chronological = events.filter(hasPage).sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug));
 const position = chronological.findIndex((x) => x.slug === e.slug);
 const neighbours = { prev: chronological[position - 1], next: chronological[position + 1] };
 // Der nächste anstehende Termin – nur, wenn er weder diese Seite noch schon

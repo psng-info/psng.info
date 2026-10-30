@@ -39,7 +39,6 @@ const de = {
     headlineAfter: " verbindet",
     students: "250+ Studierende",
     cities: "13+ Städte",
-    bpsaChip: "Live in Berlin: die BPSA",
     tagline:
       "Deutschlands erstes bundesweites studentisches Netzwerk für psychedelische Wissenschaft. Seit März 2026 aktiv.",
     joinWhatsapp: "WhatsApp beitreten",
@@ -263,9 +262,14 @@ const de = {
   },
 
   faq: {
-    eyebrow: "Häufige Fragen",
     title: "FAQ",
     items: [
+      {
+        key: "whatsapp",
+        question: "Wer sieht meine Nummer in der WhatsApp-Community?",
+        answer:
+          "Die anderen Mitglieder: Studierende und wissenschaftlich Interessierte aus der Psychedelika-Forschung in Deutschland. Austreten kannst du jederzeit.",
+      },
       {
         key: "student",
         question:
@@ -407,6 +411,7 @@ const de = {
       headlineAccent: "psychedelische Wissenschaft",
       headlineAfter: ".",
       text: "Wir bringen Studierende zusammen, die sich für psychedelische Forschung interessieren: mit Lectures, Community Calls und Unterstützung beim Gründen einer Hochschulgruppe.",
+      whatsappNote: "Deine Nummer sehen nur Mitglieder der Community. Austreten geht jederzeit.",
     },
     upNext: "Als Nächstes",
     featureLabel: "Neu",
@@ -592,7 +597,6 @@ const en: Copy = {
     headlineAfter: " connects",
     students: "250+ students",
     cities: "13+ cities",
-    bpsaChip: "Live in Berlin: the BPSA",
     tagline:
       "Germany's first nationwide student network for psychedelic science. Active since March 2026.",
     joinWhatsapp: "Join on WhatsApp",
@@ -815,9 +819,14 @@ const en: Copy = {
   },
 
   faq: {
-    eyebrow: "Common questions",
     title: "FAQ",
     items: [
+      {
+        key: "whatsapp",
+        question: "Who sees my number in the WhatsApp community?",
+        answer:
+          "The other members: students and people with a scientific interest in psychedelic research in Germany. You can leave at any time.",
+      },
       {
         key: "student",
         question:
@@ -952,6 +961,7 @@ const en: Copy = {
       headlineAccent: "psychedelic science",
       headlineAfter: ".",
       text: "We bring together students interested in psychedelic research: with lectures, community calls and support for starting a university group.",
+      whatsappNote: "Only community members see your number. You can leave at any time.",
     },
     upNext: "Up next",
     featureLabel: "New",
