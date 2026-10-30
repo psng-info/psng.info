@@ -1,0 +1,30 @@
+# Baut psng.info jeden Morgen neu. Die Seiten sind statisch und kennen nur das
+# Datum ihres Builds – ohne Neubau stünde ein vergangener Termin weiter als
+# „kommend“ auf der Startseite und unter /events.
+#
+# Der Deploy Hook kommt aus Vercel (Project → Settings → Git → Deploy Hooks,
+# Branch `main`) und liegt als Repository-Secret VERCEL_DEPLOY_HOOK vor.
+name: Täglicher Neubau
+
+on:
+  schedule:
+    # 03:00 UTC = 04:00 Uhr im Winter, 05:00 Uhr im Sommer.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Deploy Hook auslösen
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::Secret VERCEL_DEPLOY_HOOK fehlt"
+            exit 1
+          fi
+          curl --fail --silent --show-error --max-time 30 -X POST "$HOOK" > /dev/null
