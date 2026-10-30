@@ -68,9 +68,11 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
     </a>
     <div class="flex gap-2">
       {
-        (["prev", "next"] as const).map((dir) => {
+        // Wie im Zeitstrahl, wo das Neuere oben steht: links geht es zum
+        // späteren Event, rechts zum früheren.
+        (["next", "prev"] as const).map((dir) => {
           const target = neighbours[dir];
-          const Icon = dir === "prev" ? ChevronLeft : ChevronRight;
+          const Icon = dir === "next" ? ChevronLeft : ChevronRight;
           const label = dir === "prev" ? p.prevEvent : p.nextEvent;
           const cls = "flex h-9 w-9 items-center justify-center rounded-full border border-border";
           return target ? (
@@ -351,7 +353,15 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
             )
           )
         }
-        {calendar && <AddToCalendar client:visible locale={locale} event={calendar} />}
+        {
+          // Eigener Block: Die Insel selbst ist `display: contents` und nimmt
+          // den Abstand von `space-y-4` nicht an.
+          calendar && (
+            <div>
+              <AddToCalendar client:visible locale={locale} event={calendar} />
+            </div>
+          )
+        }
         {
           (e.websiteUrl || e.externalUrl) && (
             <a href={e.websiteUrl ?? e.externalUrl} {...external} class={textLink}>
@@ -424,25 +434,25 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
 
   {
     (neighbours.prev || neighbours.next) && (
-      <nav class="mt-16 grid gap-4 border-t border-border/60 pt-10 sm:grid-cols-2" aria-label={`${p.prevEvent} / ${p.nextEvent}`}>
-        {neighbours.prev ? (
-          <a href={eventPath(neighbours.prev.slug, locale)} class="group rounded-xl border border-border/60 bg-card p-5 transition-shadow hover:shadow-lg">
+      <nav class="mt-16 grid gap-4 border-t border-border/60 pt-10 sm:grid-cols-2" aria-label={`${p.nextEvent} / ${p.prevEvent}`}>
+        {neighbours.next ? (
+          <a href={eventPath(neighbours.next.slug, locale)} class="group rounded-xl border border-border/60 bg-card p-5 transition-shadow hover:shadow-lg">
             <span class="inline-flex items-center gap-1 text-xs text-muted-foreground">
               <ChevronLeft size={14} aria-hidden="true" />
-              {p.prevEvent} · {formatEventDate(neighbours.prev.date, locale)}
+              {p.nextEvent} · {formatEventDate(neighbours.next.date, locale)}
             </span>
-            <span class="mt-1 block font-heading font-semibold text-foreground group-hover:text-primary">{pick(neighbours.prev.title, locale)}</span>
+            <span class="mt-1 block font-heading font-semibold text-foreground group-hover:text-primary">{pick(neighbours.next.title, locale)}</span>
           </a>
         ) : (
           <span />
         )}
-        {neighbours.next && (
-          <a href={eventPath(neighbours.next.slug, locale)} class="group rounded-xl border border-border/60 bg-card p-5 text-right transition-shadow hover:shadow-lg">
+        {neighbours.prev && (
+          <a href={eventPath(neighbours.prev.slug, locale)} class="group rounded-xl border border-border/60 bg-card p-5 text-right transition-shadow hover:shadow-lg">
             <span class="inline-flex items-center gap-1 text-xs text-muted-foreground">
-              {p.nextEvent} · {formatEventDate(neighbours.next.date, locale)}
+              {p.prevEvent} · {formatEventDate(neighbours.prev.date, locale)}
               <ChevronRight size={14} aria-hidden="true" />
             </span>
-            <span class="mt-1 block font-heading font-semibold text-foreground group-hover:text-primary">{pick(neighbours.next.title, locale)}</span>
+            <span class="mt-1 block font-heading font-semibold text-foreground group-hover:text-primary">{pick(neighbours.prev.title, locale)}</span>
           </a>
         )}
       </nav>
