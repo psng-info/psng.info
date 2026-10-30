@@ -268,7 +268,7 @@ const de = {
         key: "whatsapp",
         question: "Wer sieht meine Nummer in der WhatsApp-Community?",
         answer:
-          "Die anderen Mitglieder: Studierende und wissenschaftlich Interessierte aus der Psychedelika-Forschung in Deutschland. Austreten kannst du jederzeit.",
+          "Die anderen Mitglieder: Studierende und wissenschaftlich Interessierte aus der Psychedelika-Forschung in Deutschland.",
       },
       {
         key: "student",
@@ -411,7 +411,7 @@ const de = {
       headlineAccent: "psychedelische Wissenschaft",
       headlineAfter: ".",
       text: "Wir bringen Studierende zusammen, die sich für psychedelische Forschung interessieren: mit Lectures, Community Calls und Unterstützung beim Gründen einer Hochschulgruppe.",
-      whatsappNote: "Deine Nummer sehen nur Mitglieder der Community. Austreten geht jederzeit.",
+      whatsappNote: "Deine Nummer sehen nur Mitglieder der Community. WhatsApp ist für den Austausch da, alle Infos stehen auf der Website.",
     },
     upNext: "Als Nächstes",
     featureLabel: "Neu",
@@ -825,7 +825,7 @@ const en: Copy = {
         key: "whatsapp",
         question: "Who sees my number in the WhatsApp community?",
         answer:
-          "The other members: students and people with a scientific interest in psychedelic research in Germany. You can leave at any time.",
+          "The other members: students and people with a scientific interest in psychedelic research in Germany.",
       },
       {
         key: "student",
@@ -961,7 +961,7 @@ const en: Copy = {
       headlineAccent: "psychedelic science",
       headlineAfter: ".",
       text: "We bring together students interested in psychedelic research: with lectures, community calls and support for starting a university group.",
-      whatsappNote: "Only community members see your number. You can leave at any time.",
+      whatsappNote: "Only community members see your number. WhatsApp is for conversation; all information is on this website.",
     },
     upNext: "Up next",
     featureLabel: "New",
