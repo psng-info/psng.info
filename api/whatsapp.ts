@@ -8,7 +8,10 @@
  * Braucht GOATCOUNTER_TOKEN in Vercel (API-Token mit „Record pageviews“).
  * Fehlt er oder antwortet GoatCounter nicht, wird trotzdem weitergeleitet.
  */
-import { WHATSAPP_LINK } from "../src/lib/links";
+// Bewusst hier und nicht aus src/lib/links importiert: Vercel lädt die
+// Function als Node-ESM, und der Import ohne Dateiendung schlägt dort fehl.
+// links.test.ts prüft, dass beide Links gleich sind.
+const WHATSAPP_LINK = "https://chat.whatsapp.com/LBUA3UpzOV9BW1v59EZK8w?s=cl&p=i&ilr=1";
 
 const ENDPOINT = "https://psng.goatcounter.com/api/v0/count";
 // Vorschau-Dienste und Crawler öffnen Links auch – das sind keine Beitritte.

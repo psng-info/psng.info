@@ -1,6 +1,7 @@
 /**
  * Zentrale Sammelstelle für externe Links, die an mehreren Stellen auftauchen.
- * Rotiert der WhatsApp-Einladungslink, reicht hier eine Änderung.
+ * Rotiert der WhatsApp-Einladungslink: hier und in api/whatsapp.ts ändern
+ * (ein Test vergleicht beide).
  */
 
 export const WHATSAPP_LINK =
