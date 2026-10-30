@@ -146,6 +146,8 @@ const de = {
     seriesNote: "Termin steht. Thema und Speaker geben wir rechtzeitig bekannt.",
     today: "heute",
     detailsSoon: "Weitere Details folgen bald.",
+    prevPhoto: "Vorheriges Foto",
+    nextPhoto: "Nächstes Foto",
     dateLabel: "Datum:",
     locationLabel: "Ort:",
     contributionLabel: "Beitrag:",
@@ -482,6 +484,7 @@ const de = {
 
   eventPage: {
     allEvents: "Alle Events",
+    eventPage: "Eigene Seite zum Event",
     upcomingTitle: "Kommende Termine",
     pastTitle: "Rückblick",
     noUpcoming:
@@ -692,6 +695,8 @@ const en: Copy = {
     seriesNote: "The date is set. We'll announce topic and speaker in good time.",
     today: "today",
     detailsSoon: "More details to follow.",
+    prevPhoto: "Previous photo",
+    nextPhoto: "Next photo",
     dateLabel: "Date:",
     locationLabel: "Location:",
     contributionLabel: "Contribution:",
@@ -1020,6 +1025,7 @@ const en: Copy = {
 
   eventPage: {
     allEvents: "All events",
+    eventPage: "Event page",
     upcomingTitle: "Upcoming",
     pastTitle: "Past events",
     noUpcoming:

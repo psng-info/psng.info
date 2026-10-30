@@ -1,0 +1,33 @@
+---
+import { copy } from "@/i18n/copy";
+import type { Locale } from "@/i18n/locale";
+import type { SiteEvent } from "@/lib/events/types";
+
+/*
+ * Die Sprache einer Veranstaltung, wenn sie nicht die der Seite ist – vor der
+ * Beschreibung, damit niemand einen Text in der anderen Sprache für ein
+ * Versehen hält. Ohne Angabe im Event erscheint nichts: Bei einem
+ * Konferenzbesuch wäre jede Sprachangabe erfunden.
+ */
+interface Props {
+  event: SiteEvent;
+  locale: Locale;
+}
+
+const { event: e, locale } = Astro.props;
+const c = copy[locale];
+const phrasing = e.category === "lecture" ? c.events.languageNote.talk : c.events.languageNote.event;
+---
+
+{
+  e.language && e.language !== locale && (
+    <p class="text-sm text-muted-foreground">
+      {phrasing.before}
+      <span class="font-medium text-foreground">
+        {phrasing.in}
+        {c.events.languages[e.language]}
+      </span>
+      .
+    </p>
+  )
+}

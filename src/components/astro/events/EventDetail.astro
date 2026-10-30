@@ -405,16 +405,6 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
 </article>
 
 <script>
-  // Das Video lädt erst nach dem Klick – vorher geht keine Anfrage an YouTube.
-  for (const button of document.querySelectorAll<HTMLButtonElement>("button[data-youtube]")) {
-    button.addEventListener("click", () => {
-      const frame = document.createElement("iframe");
-      frame.src = button.dataset.youtube!;
-      frame.title = button.dataset.title ?? "";
-      frame.allow = "autoplay; encrypted-media; picture-in-picture";
-      frame.allowFullscreen = true;
-      frame.className = "absolute inset-0 h-full w-full";
-      button.replaceWith(frame);
-    });
-  }
+  import { initYouTubeButtons } from "@/scripts/youtube";
+  initYouTubeButtons();
 </script>

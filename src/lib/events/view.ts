@@ -44,12 +44,6 @@ export function cardAction(e: SiteEvent, locale: Locale, c: Copy, ref: Date): Ca
 
 type ImageLike = SiteEvent["cover"] extends infer T ? (T extends { src: infer S } ? S : never) : never;
 
-/** Vorschaubild einer Karte: nachher echtes Material, vorher das Motiv. */
-export function cardImage(e: SiteEvent, ref: Date): ImageLike | undefined {
-  if (isPast(e, ref)) return e.recording?.thumbnail ?? e.photos?.[0]?.src ?? e.cover?.src;
-  return e.cover?.src;
-}
-
 /**
  * Vorschaubild für geteilte Links. Das eigens gestaltete zuerst, dann das
  * Motiv, dann echte Fotos oder das Video-Standbild. Ohne all das greift das

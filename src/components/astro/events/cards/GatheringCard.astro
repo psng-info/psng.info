@@ -1,0 +1,99 @@
+---
+import { ArrowRight } from "lucide-react";
+import { copy } from "@/i18n/copy";
+import type { Locale } from "@/i18n/locale";
+import { pick } from "@/i18n/localized";
+import { formatEventDate } from "@/lib/events/format";
+import { eventPath } from "@/lib/events/paths";
+import { hasPage } from "@/lib/events/schedule";
+import type { SiteEvent } from "@/lib/events/types";
+import { columnLabel } from "@/lib/events/view";
+import { getYouTubeEmbedUrl } from "@/lib/youtube";
+import PartnerChip from "../PartnerChip.astro";
+import PartnerStrip from "./PartnerStrip.astro";
+import PhotoCarousel from "./PhotoCarousel.astro";
+import YouTubeButton from "./YouTubeButton.astro";
+
+/*
+ * Die große Karte für ein besonders großes vergangenes Event (`featuredLarge`):
+ * Text und Mini-Aftermovie nebeneinander, darunter Aftermovie und alle Fotos.
+ */
+interface Props {
+  event: SiteEvent;
+  locale: Locale;
+}
+
+const { event: e, locale } = Astro.props;
+const c = copy[locale];
+const title = pick(e.title, locale);
+const embed = e.recording && getYouTubeEmbedUrl(e.recording.url);
+const shortEmbed = e.short && getYouTubeEmbedUrl(e.short.url);
+const luma = Boolean(e.registrationUrl?.includes("luma.com"));
+const figures = [
+  e.attendees && `${e.attendees} ${c.events.attendees}`,
+  e.rating && `${e.rating} ${c.events.rating}`,
+  e.recommendPercent !== undefined && `${e.recommendPercent}% ${c.events.recommend}`,
+].filter(Boolean);
+const link = "text-sm font-medium text-primary hover:underline";
+---
+
+<article class="overflow-hidden rounded-xl border border-border/60 bg-card transition-shadow hover:shadow-lg">
+  <div class="grid items-start gap-6 p-5 lg:grid-cols-2">
+    <div class="space-y-3">
+      <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+        <span class="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground">{columnLabel(e.column, c)}</span>
+        {
+          e.highlightBadge && (
+            <span class="gradient-psychedelic rounded-full px-2.5 py-0.5 text-xs font-medium text-primary-foreground">{pick(e.highlightBadge, locale)}</span>
+          )
+        }
+        {e.partner?.tone && <PartnerChip partner={e.partner} />}
+        <span>{formatEventDate(e.date, locale)}</span>
+      </div>
+      <h2 class="font-heading text-xl font-semibold leading-snug text-foreground">{title}</h2>
+      {e.location && <p class="text-sm text-muted-foreground">{pick(e.location, locale)}</p>}
+      {e.description && <p class="whitespace-pre-line text-sm text-muted-foreground">{pick(e.description, locale)}</p>}
+      {figures.length > 0 && <p class="text-sm text-muted-foreground">{figures.join(" · ")}</p>}
+      {
+        hasPage(e) && (
+          <a href={eventPath(e.slug, locale)} class="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary">
+            {c.eventPage.eventPage}
+            <ArrowRight size={14} aria-hidden="true" />
+          </a>
+        )
+      }
+    </div>
+
+    {
+      shortEmbed && (
+        <div class="border-t border-border/60 pt-5 lg:border-t-0 lg:pt-0">
+          <h3 class="mb-4 text-center font-heading text-lg font-semibold">{c.events.shortTitle}</h3>
+          <div class="relative mx-auto aspect-[9/16] w-full max-w-[18rem] overflow-hidden rounded-lg bg-muted">
+            <YouTubeButton
+              embed={shortEmbed}
+              thumbnail={e.short!.thumbnail}
+              title={`${c.events.shortTitle}: ${title}`}
+              label={`${c.events.playShort} ${title}`}
+              widths={[288, 576]}
+              sizes="288px"
+            />
+          </div>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="flex flex-col gap-4 p-5 pt-0">
+    {
+      embed && (
+        <div class="relative aspect-video w-full overflow-hidden rounded-lg bg-muted">
+          <YouTubeButton embed={embed} thumbnail={e.recording!.thumbnail} title={title} label={`${c.events.playAftermovie} ${title}`} />
+        </div>
+      )
+    }
+    {e.photos?.length && <PhotoCarousel photos={e.photos} title={title} locale={locale} variant="contain" />}
+    {luma && <a href={e.registrationUrl} target="_blank" rel="noopener noreferrer" class={link}>{c.events.lumaLink}</a>}
+  </div>
+
+  {e.partner && e.role === "co-hosted" && <PartnerStrip partner={e.partner} locale={locale} />}
+</article>

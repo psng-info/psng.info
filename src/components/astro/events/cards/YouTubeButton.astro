@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+/*
+ * Standbild mit Play-Knopf; erst der Klick lädt das Video (scripts/youtube.ts).
+ * Füllt den umgebenden Rahmen – Seitenverhältnis und Rundung setzt der Aufrufer.
+ */
+interface Props {
+  embed: string;
+  thumbnail: unknown;
+  /** Titel des iframes nach dem Klick. */
+  title: string;
+  /** Beschriftung des Knopfs für Screenreader. */
+  label: string;
+  widths?: number[];
+  sizes?: string;
+}
+
+const { embed, thumbnail, title, label, widths = [640, 960, 1280], sizes = "(min-width: 1024px) 860px, 100vw" } = Astro.props;
+---
+
+<button type="button" data-youtube={embed} data-title={title} class="group absolute inset-0 flex items-center justify-center" aria-label={label}>
+  <Image src={thumbnail as ImageMetadata} alt="" widths={widths} sizes={sizes} class="absolute inset-0 h-full w-full object-cover" />
+  <span class="absolute inset-0 bg-black/25 transition-colors group-hover:bg-black/40"></span>
+  <span class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform group-hover:scale-110">
+    <svg viewBox="0 0 24 24" class="ml-1 h-7 w-7" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+  </span>
+</button>
