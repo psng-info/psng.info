@@ -9,6 +9,7 @@ import { getTimelineEntries } from "@/lib/events/schedule";
 import { LECTURE_SERIES } from "@/lib/events/series";
 import { INSTAGRAM_LINK, WHATSAPP_LINK } from "@/lib/links";
 import { alternatesOf } from "@/lib/seo/alternates";
+import { primaryButton, secondaryButton } from "../home/styles";
 import TimelineRow from "./TimelineRow.astro";
 
 /*
@@ -109,14 +110,14 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
         <div class="mt-5 flex flex-wrap justify-center gap-3">
           <a
             href={`${pathFor("home", locale)}?subject=vortrag#${HOME_ANCHORS.contact}`}
-            class="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            class={primaryButton}
           >
             {c.events.proposeTalk}
           </a>
           <a
             href={WHATSAPP_LINK}
             {...external}
-            class="rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            class={secondaryButton}
           >
             {c.events.askInWhatsapp}
           </a>

@@ -312,7 +312,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
               {
                 partners.map((partner) => (
                   <li>
-                    <a href={partner.url} {...external} title={partner.displayName ?? partner.name} class="block opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
+                    <a href={partner.url} {...external} title={partner.displayName ?? partner.name} class="block transition [@media(hover:hover)]:opacity-70 [@media(hover:hover)]:grayscale [@media(hover:hover)]:hover:opacity-100 [@media(hover:hover)]:hover:grayscale-0">
                       <Image
                         src={partner.logo}
                         alt={partner.displayName ?? partner.name}

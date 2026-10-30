@@ -81,6 +81,20 @@
     @apply border-border;
   }
 
+  /* Keine einzelnen Wörter in der letzten Zeile: Überschriften gleichmäßig,
+     Fließtext ohne Schusterjungen. Browser ohne Unterstützung ignorieren es. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
   html {
     overscroll-behavior-y: none;
     /* Die Navigation ist fixiert; ohne diesen Versatz landen Anker-Ziele

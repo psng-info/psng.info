@@ -111,8 +111,8 @@ const label = "font-medium text-foreground";
         )
       }
       <div class="mb-2"><LanguageNote event={e} locale={locale} /></div>
-      <p class="mb-4 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{pick(e.description, locale) ?? c.events.detailsSoon}</p>
-      {e.speakerBio && <p class="mb-4 text-sm leading-relaxed text-muted-foreground">{pick(e.speakerBio, locale)}</p>}
+      <p class="mb-4 max-w-[70ch] whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{pick(e.description, locale) ?? c.events.detailsSoon}</p>
+      {e.speakerBio && <p class="mb-4 max-w-[70ch] text-sm leading-relaxed text-muted-foreground">{pick(e.speakerBio, locale)}</p>}
       {
         e.furtherReading?.length && (
           <div class="mb-4">
@@ -129,7 +129,7 @@ const label = "font-medium text-foreground";
           </div>
         )
       }
-      {e.audienceNote && <p class="mb-4 text-sm leading-relaxed text-muted-foreground">{pick(e.audienceNote, locale)}</p>}
+      {e.audienceNote && <p class="mb-4 max-w-[70ch] text-sm leading-relaxed text-muted-foreground">{pick(e.audienceNote, locale)}</p>}
       {
         parent && (
           <p class="mb-4 text-sm text-muted-foreground">

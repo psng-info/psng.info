@@ -14,7 +14,9 @@ export function initGallery(): void {
   const slides = track.children.length;
   const count = dialog.querySelector<HTMLElement>("[data-gallery-count]");
   const index = () => Math.round(track.scrollLeft / track.clientWidth);
-  const go = (i: number, behavior: ScrollBehavior = "smooth") =>
+  // Wer Animationen abgeschaltet hat, springt statt zu gleiten.
+  const smooth: ScrollBehavior = matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+  const go = (i: number, behavior = smooth) =>
     track.scrollTo({ left: ((i + slides) % slides) * track.clientWidth, behavior });
   const images = [...track.querySelectorAll("img")];
   // `loading="lazy"` greift im Dialog nicht verlässlich – das aktuelle Foto
