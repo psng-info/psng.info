@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { CONTACT_EMAIL } from "@/lib/links";
+import { track } from "@/scripts/track";
 import { useCopy } from "@/i18n/copy";
 import { withLocale } from "@/i18n/locale";
 
@@ -73,6 +74,7 @@ const ContactSection = () => {
       if (!response.ok || !result?.ok) throw new Error("Submission failed");
 
       setStatus("success");
+      track(`kontakt/${subject || "ohne-anliegen"}`);
       form.reset();
       setSubject("");
     } catch {

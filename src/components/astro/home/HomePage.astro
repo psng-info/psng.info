@@ -101,7 +101,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
     }
   </script>
 
-  <section class="relative overflow-hidden pb-12 pt-24 md:pb-20 md:pt-32">
+  <section data-track="hero" class="relative overflow-hidden pb-12 pt-24 md:pb-20 md:pt-32">
     <Image src={heroBg} alt="" widths={[960, 1920]} sizes="100vw" loading="eager" class="absolute inset-0 -z-10 h-full w-full object-cover" />
     <div
       class:list={[
@@ -123,7 +123,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
       </div>
       {
         slot.kind !== "none" && (
-          <div class="animate-rise-in" style="animation-delay: 0.1s">
+          <div class="animate-rise-in" style="animation-delay: 0.1s" data-track="hero-karte">
             <HeroCard hero={slot} locale={locale} ref={ref} />
           </div>
         )

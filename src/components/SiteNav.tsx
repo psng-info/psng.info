@@ -107,7 +107,7 @@ function SiteNav({ switchTo, current }: Props) {
   };
 
   return (
-    <nav className="glass fixed inset-x-0 top-0 z-50">
+    <nav data-site-nav className="glass fixed inset-x-0 top-0 z-50">
       <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <a
           href={home}

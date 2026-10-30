@@ -114,9 +114,11 @@ const ogImageUrl = absoluteUrl(ogImage.src);
       // Nach einem Sprachwechsel dort weiterlesen, wo man war (siehe localeScroll.ts).
       import { consumeScrollForLocaleSwitch } from "@/i18n/localeScroll";
       import { initReveal } from "@/scripts/reveal";
+      import { initTracking } from "@/scripts/track";
       const top = consumeScrollForLocaleSwitch();
       if (top !== null) window.scrollTo({ top, behavior: "instant" });
       initReveal();
+      initTracking();
     </script>
   </body>
 </html>
