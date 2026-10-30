@@ -21,7 +21,12 @@ interface Props {
 
 const { locale } = Astro.props;
 const c = copy[locale];
-const [team, partners] = await Promise.all([loadTeam(), loadPartnerList()]);
+const [team, partnerList] = await Promise.all([loadTeam(), loadPartnerList()]);
+// Hier alphabetisch, damit keine Reihenfolge eine Rangfolge behauptet; `order`
+// gilt weiter für die Logoleiste der Startseite.
+const partners = partnerList.toSorted((a, b) =>
+  (a.displayName ?? a.name).localeCompare(b.displayName ?? b.name, locale),
+);
 const contact = (subject: string) => `${pathFor("home", locale)}?subject=${subject}#${HOME_ANCHORS.contact}`;
 
 /** Die Symbole gehören zur Gestaltung, nicht zum Text – verbunden über den Schlüssel der Säule. */

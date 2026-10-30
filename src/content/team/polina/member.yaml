@@ -2,7 +2,8 @@ name: "Polina Bedrina"
 order: 4
 photo: ./photo.webp
 roles:
-  - "Events"
+  - de: "Lecture-Reihe"
+    en: "Lecture series"
   - "Community"
 study:
   de: "Psychologie-Promovendin"
