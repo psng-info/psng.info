@@ -24,6 +24,7 @@ import { legacyAnchorTargets } from "@/lib/legacyAnchors";
 import { BPSA_LINK, WHATSAPP_LINK } from "@/lib/links";
 import { alternatesOf } from "@/lib/seo/alternates";
 import { graph, organizationNode, websiteNode } from "@/lib/seo/structuredData";
+import PartnerStrip from "../events/cards/PartnerStrip.astro";
 import HeroCard from "./HeroCard.astro";
 import { chip, eyebrow, primaryButton, secondaryButton, sectionTitle, textLink } from "./styles";
 
@@ -297,6 +298,11 @@ const proofPhoto = proof?.photos?.[0];
             <a href={eventPath(proof.slug, locale)} class={`${textLink} mt-6 inline-block`}>
               {c.lab.proof.more}
             </a>
+            {proof.partner && proof.role === "co-hosted" && (
+              <div class="mt-6 overflow-hidden rounded-xl">
+                <PartnerStrip partner={proof.partner} locale={locale} />
+              </div>
+            )}
           </div>
         </div>
       </section>

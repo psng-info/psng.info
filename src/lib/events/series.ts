@@ -34,7 +34,8 @@ export interface SeriesOverride {
 /**
  * Ausnahmen vom Takt. Der Oktobertermin liegt eine Woche nach dem zweiten
  * Dienstag: Zum Semesterstart ist die Uni erst danach wieder voll da. Der
- * Novembertermin liegt eine Woche davor, auf einem Mittwoch.
+ * Novembertermin liegt eine Woche davor, auf einem Mittwoch, der
+ * Dezembertermin auf dem 3., einem Donnerstag.
  *
  * Bewusst ein Override statt eines Events ohne Thema und Speaker – ein
  * abweichender Termin ist immer noch nur ein Termin, und als Event hätte er
@@ -43,4 +44,5 @@ export interface SeriesOverride {
 export const SERIES_OVERRIDES: SeriesOverride[] = [
   { date: "2026-10-20", labelKey: "semesterStart" },
   { date: "2026-11-04" },
+  { date: "2026-12-03" },
 ];

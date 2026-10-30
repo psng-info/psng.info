@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Languages, Menu, X } from "lucide-react";
+import { ExternalLink, Languages, Menu, X } from "lucide-react";
 import psngLogo from "@/assets/PSNG-Logo-centered.webp";
 import { WHATSAPP_LINK } from "@/lib/links";
 import { useCopy } from "@/i18n/copy";
@@ -79,11 +79,12 @@ function SiteNav({ switchTo, current }: Props) {
     return () => mq.removeEventListener("change", close);
   }, [open]);
 
-  const links: { key: string; label: string; href: string; section?: NavSection }[] = [
+  const links: { key: string; label: string; href: string; section?: NavSection; external?: boolean }[] = [
     { key: "events", label: c.lab.nav.events, href: pathFor("events", locale), section: "events" },
     { key: "groups", label: c.lab.nav.groups, href: `${home}#${HOME_ANCHORS.groups}` },
     { key: "guide", label: c.lab.nav.guide, href: pathFor("guide", locale), section: "guide" },
     { key: "about", label: c.lab.nav.about, href: pathFor("about", locale), section: "about" },
+    { key: "media", label: c.nav.media, href: "https://medien.psng.info", external: true },
   ];
 
   const linkClass = "font-heading text-sm font-medium transition-colors hover:text-primary";
@@ -96,9 +97,11 @@ function SiteNav({ switchTo, current }: Props) {
         href={link.href}
         aria-current={active ? "page" : undefined}
         onClick={mobile ? () => setOpen(false) : undefined}
-        className={`${linkClass} ${active ? "text-primary" : "text-muted-foreground"} ${mobile ? "py-1.5" : ""}`}
+        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className={`${linkClass} ${active ? "text-primary" : "text-muted-foreground"} ${mobile ? "py-1.5" : ""} ${link.external ? "inline-flex items-center gap-1" : ""}`}
       >
         {link.label}
+        {link.external && <ExternalLink size={13} aria-hidden="true" />}
       </a>
     );
   };

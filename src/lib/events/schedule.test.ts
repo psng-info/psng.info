@@ -119,9 +119,9 @@ describe("getUpcomingSeriesDates", () => {
 
   it("computes the second Tuesday, skipping months that carry a real event", () => {
     // September (Miguel), Oktober (Override 20.10., Timo Schmidt) und
-    // November (Override 4.11., Majić) sind schon belegt.
+    // November (Override 4.11., Majić) sind schon belegt; Dezember per Override am 3.
     expect(getUpcomingSeriesDates(events, 3, ref).map((s) => s.date)).toEqual([
-      "2026-12-08",
+      "2026-12-03",
       "2027-01-12",
       "2027-02-09",
     ]);
@@ -136,7 +136,7 @@ describe("getUpcomingSeriesDates", () => {
   });
 
   it("still lists a date that falls on the reference day", () => {
-    expect(getUpcomingSeriesDates(events, 1, new Date(2026, 11, 8))[0]?.date).toBe("2026-12-08");
+    expect(getUpcomingSeriesDates(events, 1, new Date(2027, 0, 12))[0]?.date).toBe("2027-01-12");
   });
 });
 
@@ -229,7 +229,7 @@ describe("getHeroSlot", () => {
 
   it("falls back to the next lecture date when no event is near", () => {
     const slot = getHeroSlot(events, [], new Date(2026, 10, 20));
-    expect(slot.kind === "series" && slot.series.date).toBe("2026-12-08");
+    expect(slot.kind === "series" && slot.series.date).toBe("2026-12-03");
   });
 
   it("shows the active feature with the highest priority when nothing is scheduled", () => {

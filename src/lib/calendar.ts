@@ -229,8 +229,8 @@ function veventLines(event: CalendarEvent, now: Date): string[] {
 }
 
 /**
- * Ein Kalender mit beliebig vielen Terminen – für die einzelne Datei hinter
- * „Zum Kalender hinzufügen“ ebenso wie für den abonnierbaren /events.ics.
+ * Ein Kalender mit beliebig vielen Terminen, z. B. für die Datei hinter
+ * „Zum Kalender hinzufügen“.
  * `now` nur für den Test – der Zeitstempel soll sonst der echte sein.
  */
 export function toIcsCalendar(events: CalendarEvent[], now: Date = new Date(), name?: string): string {

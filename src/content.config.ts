@@ -99,6 +99,8 @@ const events = defineCollection({
         speakerBio: localized.optional(),
 
         description: localized.optional(),
+        /** Offizieller Abstract des Vortrags – nur auf der eigenen Seite, /events zeigt `description`. */
+        abstract: z.object({ title: localized.optional(), text: localized }).optional(),
         /** Für wen das Event gedacht ist. */
         audienceNote: localized.optional(),
         /** Teilnahmebeitrag. */

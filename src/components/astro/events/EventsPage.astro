@@ -1,5 +1,4 @@
 ---
-import { CalendarPlus } from "lucide-react";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { copy } from "@/i18n/copy";
 import type { Locale } from "@/i18n/locale";
@@ -57,7 +56,6 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
   alternates={alternatesOf("events")}
   current="events"
 >
-  <link slot="head" rel="alternate" type="text/calendar" title="PSNG" href="/events.ics" />
   <section class="pb-24 pt-32 md:pb-32 md:pt-40">
     <div class="container mx-auto max-w-6xl px-6">
       <div class="mx-auto mb-10 max-w-3xl text-center">
@@ -91,14 +89,6 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
             ))
           }
         </nav>
-        <a
-          href="/events.ics"
-          title={c.eventPage.subscribeHint}
-          class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-        >
-          <CalendarPlus size={15} aria-hidden="true" />
-          {c.eventPage.subscribe}
-        </a>
       </div>
 
       <div class="mx-auto max-w-5xl">

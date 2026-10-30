@@ -489,8 +489,6 @@ const de = {
     pastTitle: "Rückblick",
     noUpcoming:
       "Gerade steht kein Termin fest. Neue Events kündigen wir zuerst in der WhatsApp-Community an.",
-    subscribe: "Kalender abonnieren",
-    subscribeHint: "Alle Termine automatisch im eigenen Kalender – auch die, die erst noch dazukommen.",
     details: "Details",
     detailsAndRegister: "Details & Anmeldung",
     toRecap: "Zum Rückblick",
@@ -507,6 +505,10 @@ const de = {
     photos: "Fotos",
     numbers: "In Zahlen",
     next: "Als Nächstes",
+    prevEvent: "Vorheriges Event",
+    nextEvent: "Nächstes Event",
+    ofWhichOnline: "davon online",
+    abstract: "Abstract",
     partner: "In Kooperation mit",
     status: {
       cancelled: "Abgesagt",
@@ -1030,8 +1032,6 @@ const en: Copy = {
     pastTitle: "Past events",
     noUpcoming:
       "Nothing is scheduled right now. We announce new events in the WhatsApp community first.",
-    subscribe: "Subscribe to the calendar",
-    subscribeHint: "Every date in your own calendar automatically – including the ones still to come.",
     details: "Details",
     detailsAndRegister: "Details & registration",
     toRecap: "See the recap",
@@ -1048,6 +1048,10 @@ const en: Copy = {
     photos: "Photos",
     numbers: "In numbers",
     next: "Coming up",
+    prevEvent: "Previous event",
+    nextEvent: "Next event",
+    ofWhichOnline: "of which online",
+    abstract: "Abstract",
     partner: "In cooperation with",
     status: {
       cancelled: "Cancelled",
