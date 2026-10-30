@@ -182,14 +182,43 @@ const partners = defineCollection({
   loader: glob({ pattern: "*/partner.yaml", base: "./src/content/partners", generateId: byFolder }),
   schema: ({ image }) =>
     z.object({
-      short: z.string(),
+      /** Kürzel für Chips, z. B. „BPSA“. */
+      short: z.string().optional(),
       name: z.string(),
+      /** Name auf der Partnerkarte, wenn er vom kurzen Namen abweicht. */
+      displayName: z.string().optional(),
       /** Farbwelt des Chips; die Klassen dazu heißen `badge-*` in index.css. */
-      tone: z.enum(["bpsa", "parab"]),
+      tone: z.enum(["bpsa", "parab"]).optional(),
+      /** Reihenfolge auf der Seite – wer am engsten mit uns arbeitet, steht vorn. */
+      order: z.number().int(),
       logo: image(),
       url: z.url(),
       instagramUrl: z.url().optional(),
+      telegramUrl: z.url().optional(),
+      /** Ein Angebot an die Community, z. B. Artikel einreichen. */
+      opportunity: z
+        .object({ url: z.string().regex(/^(https:|mailto:)/), label: localized.optional() })
+        .optional(),
+      description: localized,
     }),
 });
 
-export const collections = { events, milestones, partners };
+const team = defineCollection({
+  loader: glob({ pattern: "*/member.yaml", base: "./src/content/team", generateId: byFolder }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      order: z.number().int(),
+      photo: image(),
+      /** Aufgaben im PSNG, aus dem HR-Sheet (Tab Members). */
+      roles: z.array(localized),
+      /** Studium oder Beruf. */
+      study: localized.optional(),
+      /** Hochschule oder Ort. */
+      place: localized.optional(),
+      bio: localized,
+      linkedinUrl: z.url().optional(),
+    }),
+});
+
+export const collections = { events, milestones, partners, team };

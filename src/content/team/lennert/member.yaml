@@ -1,0 +1,14 @@
+name: "Lennert van de Kreeke"
+order: 2
+photo: ./photo.webp
+roles:
+  - de: "Koordination"
+    en: "Coordination"
+study:
+  de: "Medizinstudent"
+  en: "Medical student"
+place: "Charité Berlin"
+bio:
+  de: "Aktiv in der klinischen Psychedelikaforschung und engagiert bei der ALPS Foundation in der Schweiz. Studiert Medizin in Berlin und sieht im PSNG großes Potenzial für Verbindung, Austausch und gemeinsame Entwicklung."
+  en: "Active in clinical psychedelic research and involved with the ALPS Foundation in Switzerland. Studies medicine in Berlin and sees great potential in the PSNG for connection, exchange and shared growth."
+linkedinUrl: https://www.linkedin.com/in/lennert-van-de-kreeke-1b860828b/

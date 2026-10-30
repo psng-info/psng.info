@@ -1,0 +1,32 @@
+---
+import { ArrowLeft } from "lucide-react";
+import BaseLayout from "./BaseLayout.astro";
+import { copy } from "@/i18n/copy";
+import { pathFor } from "@/i18n/routes";
+
+/** Lange Textseiten: Impressum, Datenschutz, Code of Conduct, Leitfaden. */
+type Props = Parameters<typeof BaseLayout>[0] & { heading: string };
+
+const { heading, ...layout } = Astro.props;
+const c = copy[layout.locale];
+---
+
+<BaseLayout {...layout}>
+  <div class="container mx-auto px-6 pb-24 pt-32 md:pt-40">
+    <div class="mx-auto max-w-3xl">
+      <a
+        href={pathFor("home", layout.locale)}
+        class="mb-8 inline-flex items-center gap-2 font-heading text-sm text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft size={16} aria-hidden="true" />
+        {c.legal.back}
+      </a>
+      <h1 class="mb-10 font-heading text-3xl font-bold text-foreground md:text-5xl">{heading}</h1>
+      <div
+        class="prose prose-sm prose-neutral max-w-none font-body md:prose-base prose-headings:font-heading prose-a:text-primary"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

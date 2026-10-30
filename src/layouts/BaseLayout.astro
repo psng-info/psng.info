@@ -1,27 +1,122 @@
 ---
 import "@/index.css";
+import Footer from "@/components/astro/Footer.astro";
+import SiteNav, { type NavSection } from "@/components/SiteNav";
+import { copy } from "@/i18n/copy";
+import { type Locale, localeOgTags, localeTags, locales } from "@/i18n/locale";
+import { pathFor } from "@/i18n/routes";
+import { absoluteUrl } from "@/lib/seo/site";
 
-interface Props {
-  title: string;
-  description: string;
-  lang?: "de" | "en";
+/*
+ * Das eine Gerüst jeder Seite: Head mit allem, was Suchmaschinen und
+ * Link-Vorschauen lesen, Navigation, Inhalt, Footer. Alles im Head steht im
+ * ausgelieferten HTML – kein Crawler muss JavaScript ausführen, um es zu sehen.
+ */
+export interface SocialImage {
+  /** Pfad oder absolute URL. */
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
 }
 
-const { title, description, lang = "de" } = Astro.props;
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /**
+   * Die Sprachfassungen dieser Seite, die es wirklich gibt – sie werden zu
+   * hreflang. Eine Seite ohne Übersetzung gibt nur ihre eigene an.
+   */
+  alternates: Partial<Record<Locale, string>>;
+  /** Ziel des Canonical, wenn es nicht die Seite selbst ist (unübersetzte englische Event-Seite). */
+  canonical?: string;
+  /** Ziele der Sprachwahl; ohne Angabe die Fassungen aus `alternates`, sonst die Startseite. */
+  switchTo?: Partial<Record<Locale, string>>;
+  image?: SocialImage;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  jsonLd?: object;
+  current?: NavSection;
+}
+
+const { locale, title, description, alternates, image, ogType = "website", noindex, jsonLd, current } = Astro.props;
+const c = copy[locale];
+const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
+const canonical = absoluteUrl(Astro.props.canonical ?? alternates[locale] ?? path);
+const versions = locales.filter((l) => alternates[l]);
+const switchTo = Object.fromEntries(
+  locales.map((l) => [l, Astro.props.switchTo?.[l] ?? alternates[l] ?? pathFor("home", l)]),
+) as Record<Locale, string>;
+
+const ogImage = image ?? { src: "/og-image.jpg", alt: c.meta.home.description, width: 1200, height: 630 };
+const ogImageUrl = absoluteUrl(ogImage.src);
 ---
 
 <!doctype html>
-<html lang={lang === "de" ? "de-DE" : "en-GB"}>
+<html lang={localeTags[locale]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="PSNG" />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonical} />}
+    {
+      versions.length > 1 &&
+        versions.map((l) => <link rel="alternate" hreflang={localeTags[l]} href={absoluteUrl(alternates[l]!)} />)
+    }
+    {versions.length > 1 && <link rel="alternate" hreflang="x-default" href={absoluteUrl(alternates[versions[0]]!)} />}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="PSNG" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={localeOgTags[locale]} />
+    {versions.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={localeOgTags[l]} />)}
+    <meta property="og:image" content={ogImageUrl} />
+    {ogImage.width && <meta property="og:image:width" content={String(ogImage.width)} />}
+    {ogImage.height && <meta property="og:image:height" content={String(ogImage.height)} />}
+    <meta property="og:image:alt" content={ogImage.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImage.alt} />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <!-- Selbst gehostete Schriften: keine Verbindung zu Google beim Seitenaufruf. -->
     <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/fonts/fonts.css" />
+    <script is:inline data-goatcounter="https://psng.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <slot name="head" />
   </head>
-  <body class="bg-white">
-    <slot />
+  <body class="flex min-h-screen flex-col bg-background">
+    <!-- Der erste fokussierbare Punkt: ein Sprung an der Navigation vorbei. -->
+    <a
+      href="#inhalt"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-card focus:px-4 focus:py-2 focus:font-heading focus:text-sm focus:font-medium focus:text-primary focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+    >
+      {c.nav.skipToContent}
+    </a>
+    <SiteNav client:load locale={locale} switchTo={switchTo} current={current} />
+    <!-- tabindex=-1: Ohne Fokus spränge nur der Blick, nicht die Tastatur. -->
+    <main id="inhalt" tabindex="-1" class="flex-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+
+    <script>
+      // Nach einem Sprachwechsel dort weiterlesen, wo man war (siehe localeScroll.ts).
+      import { consumeScrollForLocaleSwitch } from "@/i18n/localeScroll";
+      import { initReveal } from "@/scripts/reveal";
+      const top = consumeScrollForLocaleSwitch();
+      if (top !== null) window.scrollTo({ top, behavior: "instant" });
+      initReveal();
+    </script>
   </body>
 </html>

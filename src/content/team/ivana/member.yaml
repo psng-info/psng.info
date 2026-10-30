@@ -1,0 +1,14 @@
+name: "Ivana Sterr"
+order: 1
+photo: ./photo.webp
+roles:
+  - de: "Vereinsgründung"
+    en: "Founding the association"
+  - "Lectures"
+study:
+  de: "Medizinstudentin"
+  en: "Medical student"
+place: "Charité Berlin"
+bio:
+  de: "Studiert Medizin und ist als studentische Hilfskraft an der Charité in der klinischen psychedelischen Forschung tätig. Inspiriert von der offenen, vernetzten Community bei Events der ALPS Foundation in der Schweiz."
+  en: "Studies medicine and works as a student assistant in clinical psychedelic research at the Charité. Inspired by the open, well-connected community at ALPS Foundation events in Switzerland."

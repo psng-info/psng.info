@@ -1,0 +1,75 @@
+---
+import { Instagram, Linkedin, Mail, Youtube } from "lucide-react";
+import { copy } from "@/i18n/copy";
+import type { Locale } from "@/i18n/locale";
+import { existsIn, pathFor } from "@/i18n/routes";
+import { CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK, WHATSAPP_LINK, YOUTUBE_LINK } from "@/lib/links";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = copy[locale];
+// Impressum und Datenschutz gibt es nur auf Deutsch. Der Link führt trotzdem
+// dorthin – der Hinweis daneben sagt vorher, was einen erwartet.
+const germanOnly = (key: "imprint" | "privacy") => (existsIn(key, locale) ? "" : ` ${c.footer.germanOnly}`);
+
+const social = [
+  { href: `mailto:${CONTACT_EMAIL}`, label: CONTACT_EMAIL, Icon: Mail, external: false },
+  { href: INSTAGRAM_LINK, label: "@psng.info", Icon: Instagram, external: true },
+  { href: YOUTUBE_LINK, label: "YouTube", Icon: Youtube, external: true },
+  { href: LINKEDIN_LINK, label: "LinkedIn", Icon: Linkedin, external: true },
+];
+const legal = [
+  { href: pathFor("imprint", locale), label: c.footer.imprint + germanOnly("imprint") },
+  { href: pathFor("privacy", locale), label: c.footer.privacy + germanOnly("privacy") },
+  { href: pathFor("guide", locale), label: c.footer.guide },
+  { href: pathFor("codeOfConduct", locale), label: c.footer.codeOfConduct },
+  { href: "https://medien.psng.info", label: c.nav.media, external: true },
+];
+const external = { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<footer class="gradient-psychedelic py-16">
+  <div class="container mx-auto px-6">
+    <div class="mx-auto max-w-3xl text-center">
+      <div class="mb-8 flex flex-wrap items-center justify-center gap-6">
+        {social.map(({ href, label, Icon, external: ext }) => (
+          <a
+            href={href}
+            {...(ext ? external : {})}
+            class="flex items-center gap-2 text-sm text-primary-foreground/80 transition-colors hover:text-primary-foreground"
+          >
+            <Icon size={16} aria-hidden="true" />
+            {label}
+          </a>
+        ))}
+      </div>
+      <div class="mb-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <a
+          href={WHATSAPP_LINK}
+          {...external}
+          class="inline-flex items-center justify-center rounded-lg bg-primary-foreground px-8 py-3 font-heading text-sm font-medium text-primary transition-opacity hover:opacity-90"
+        >
+          {c.footer.joinWhatsapp}
+        </a>
+      </div>
+      <div class="border-t border-primary-foreground/20 pt-8">
+        <div class="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          {legal.map(({ href, label, external: ext }) => (
+            <a
+              href={href}
+              {...(ext ? external : {})}
+              class="font-heading text-xs text-primary-foreground/60 transition-colors hover:text-primary-foreground"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <p class="font-heading text-xs text-primary-foreground/50">© {new Date().getFullYear()} {c.footer.rights}</p>
+        <p class="mt-2 font-heading text-xs text-primary-foreground/50">{c.footer.thanks}</p>
+      </div>
+    </div>
+  </div>
+</footer>

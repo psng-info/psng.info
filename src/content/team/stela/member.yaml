@@ -1,0 +1,16 @@
+name: "Stela Malvasija"
+order: 5
+photo: ./photo.webp
+roles:
+  - "Marketing"
+  - "Outreach"
+  - de: "Social Media"
+    en: "Social media"
+study:
+  de: "Klinische Psychologin"
+  en: "Clinical psychologist"
+place: "Euro-FH Europäische Fernhochschule Hamburg"
+bio:
+  de: "Klinische Psychologin mit besonderem Interesse an Psychedelika. Erforscht, wie veränderte Bewusstseinszustände Genesung, Verbundenheit und neue Narrative ermöglichen können – im Individuum und im Kollektiv."
+  en: "Clinical psychologist with a particular interest in psychedelics. Researches how altered states of consciousness can enable recovery, connectedness and new narratives, in the individual and in the collective."
+linkedinUrl: https://www.linkedin.com/in/stela-malvasija-5510011aa/

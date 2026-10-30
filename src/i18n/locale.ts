@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { createContext, createElement, useContext, type ComponentType, type ReactNode } from "react";
 
 /**
  * Die Seite gibt es auf Deutsch und Englisch. Deutsch ist die Standardsprache
@@ -27,9 +27,34 @@ export function localeFromPath(pathname: string): Locale {
   return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "de";
 }
 
+/*
+ * Die Sprache kommt von der Astro-Seite, die sie aus ihrem Pfad kennt, und
+ * wird an jede React-Wurzel als Prop gereicht (siehe `withLocale`). Jede Insel
+ * ist eine eigene Wurzel – ein Context über die ganze Seite gibt es nicht.
+ */
+const LocaleContext = createContext<Locale | null>(null);
+
+export function LocaleProvider({ locale, children }: { locale: Locale; children?: ReactNode }) {
+  return createElement(LocaleContext.Provider, { value: locale }, children);
+}
+
 /** Die Sprache der gerade angezeigten Seite. */
 export function useLocale(): Locale {
-  return localeFromPath(useLocation().pathname);
+  const locale = useContext(LocaleContext);
+  // Lieber laut scheitern als eine englische Seite still auf Deutsch rendern.
+  if (!locale) throw new Error("useLocale() außerhalb von LocaleProvider – fehlt withLocale()?");
+  return locale;
+}
+
+/**
+ * Macht eine Komponente zur Wurzel, die Astro einbinden kann: Sie bekommt die
+ * Sprache als Prop und reicht sie per Context nach unten weiter.
+ */
+export function withLocale<P extends object>(Component: ComponentType<P>) {
+  const Wrapped = ({ locale, ...props }: P & { locale: Locale }) =>
+    createElement(LocaleProvider, { locale }, createElement(Component as ComponentType<object>, props));
+  Wrapped.displayName = `withLocale(${Component.displayName ?? Component.name})`;
+  return Wrapped;
 }
 
 /** Die jeweils andere Sprache – der Umschalter kennt nur zwei Zustände. */

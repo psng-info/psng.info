@@ -1,0 +1,9 @@
+name: "Psychedelia Stiftung"
+order: 10
+logo: ./logo.webp
+url: https://psychedelia-stiftung.de/
+opportunity:
+  url: "https://psychedelia-stiftung.de/kontakt/"
+description:
+  de: "Die Psychedelia-Stiftung fördert den kulturellen, künstlerischen und wissenschaftlichen Austausch zu psychedelischen Erfahrungen. Ihr Ziel: gesellschaftliche Akzeptanz für den wohltuenden Umgang mit veränderten Bewusstseinszuständen – mit Blick auf Sicherheit, Respekt und persönliche Entwicklung."
+  en: "The Psychedelia Foundation supports cultural, artistic and scientific exchange around psychedelic experiences. Its aim: social acceptance for a beneficial approach to altered states of consciousness, with an eye on safety, respect and personal development."

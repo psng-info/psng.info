@@ -87,8 +87,8 @@
   html {
     overscroll-behavior-y: none;
     /* Die Navigation ist fixiert; ohne diesen Versatz landen Anker-Ziele
-       darunter. Deckt Navbar (~68px) + Ankündigungsleiste + etwas Luft ab. */
-    scroll-padding-top: 9rem;
+       darunter. Deckt die Leiste (~65px) und etwas Luft ab. */
+    scroll-padding-top: 6rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -97,10 +97,8 @@
     }
   }
 
-  /* Wer Animationen abgeschaltet hat, bekommt keine. Die Einblend-Effekte der
-     Sektionen übernimmt zusätzlich framer-motion über <MotionConfig
-     reducedMotion="user"> – die rendern dann direkt ihren Endzustand, statt
-     auf opacity:0 stehen zu bleiben. */
+  /* Wer Animationen abgeschaltet hat, bekommt keine. Das Einblenden beim
+     Scrollen (scripts/reveal.ts) setzt in dem Fall gar nicht erst ein. */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -162,6 +160,24 @@
 
   .animate-rise-in {
     animation: rise-in 0.5s ease-out both;
+  }
+
+  /*
+   * Einblenden beim Hereinscrollen, siehe scripts/reveal.ts. Verborgen wird
+   * nur, was das Skript selbst markiert hat – ohne JavaScript, bei
+   * reduzierter Bewegung und für alles, was beim Laden schon zu sehen ist,
+   * steht der Inhalt einfach da.
+   */
+  [data-reveal] {
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  [data-reveal].reveal-pending {
+    opacity: 0;
+    transform: translateY(24px);
   }
 
   @media (prefers-reduced-motion: reduce) {

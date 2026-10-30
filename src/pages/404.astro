@@ -1,10 +1,63 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { copy } from "@/i18n/copy";
+import { locales } from "@/i18n/locale";
+import { pathFor } from "@/i18n/routes";
+import { HOME_ANCHORS } from "@/lib/anchors";
+
+/*
+ * Vercel liefert diese Seite mit Status 404 für jede unbekannte Adresse aus –
+ * eine Datei für beide Sprachen. Beide Fassungen stehen im HTML; das Skript
+ * unten zeigt unter /en/… die englische. Ohne JavaScript bleibt es Deutsch.
+ */
+const targets = (l: (typeof locales)[number]): Record<string, string> => ({
+  home: pathFor("home", l),
+  events: pathFor("events", l),
+  guide: pathFor("guide", l),
+  contact: `${pathFor("home", l)}#${HOME_ANCHORS.contact}`,
+});
 ---
 
-<BaseLayout title="Seite nicht gefunden – PSNG" description="Diese Seite gibt es nicht.">
-  <main class="container mx-auto max-w-3xl px-4 py-24">
-    <h1 class="font-heading text-4xl font-bold text-foreground">404</h1>
-    <p class="mt-4 text-muted-foreground">Diese Seite gibt es nicht. <a class="text-primary underline" href="/">Zur Startseite</a></p>
-  </main>
+<BaseLayout locale="de" title={`${copy.de.notFound.title} – PSNG`} description={copy.de.notFound.title} alternates={{}} noindex>
+  <div class="container mx-auto px-6 pb-24 pt-40">
+    {
+      locales.map((l) => {
+        const c = copy[l].notFound;
+        return (
+          <div class="mx-auto max-w-xl text-center" data-locale={l} hidden={l !== "de"} lang={l}>
+            <p class="mb-4 font-heading text-sm uppercase tracking-[0.2em] text-primary">{c.eyebrow}</p>
+            <h1 class="mb-4 font-heading text-3xl font-bold text-foreground md:text-5xl">{c.title}</h1>
+            <p class="mb-2 leading-relaxed text-muted-foreground">
+              {c.textBefore}
+              <code class="text-foreground" data-path />
+              {c.textAfter}
+            </p>
+            <p class="mb-8 leading-relaxed text-muted-foreground">{c.continue}</p>
+            <div class="flex flex-wrap justify-center gap-3">
+              {c.suggestions.map((s) => (
+                <a
+                  href={targets(l)[s.key]}
+                  class="inline-flex items-center justify-center rounded-lg border border-primary/30 px-5 py-2.5 font-heading text-sm font-medium text-primary transition-colors hover:bg-primary/5"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
 </BaseLayout>
+
+<script is:inline define:vars={{ enTitle: `${copy.en.notFound.title} – PSNG` }}>
+  {
+    const path = location.pathname;
+    const en = path === "/en" || path.startsWith("/en/");
+    document.querySelectorAll("[data-path]").forEach((el) => (el.textContent = path));
+    if (en) {
+      document.querySelectorAll("[data-locale]").forEach((el) => (el.hidden = el.dataset.locale !== "en"));
+      document.title = enTitle;
+    }
+  }
+</script>

@@ -302,6 +302,12 @@ const de = {
     photoCaption: "Team 2026 im August",
     founderNotePrefix: "Mitgegründet mit ",
     founderNoteSuffix: ", der das PSNG über ein Jahr lang mit aufgebaut hat. Danke, Cam!",
+    recruiting: {
+      name: "Teil des Teams werden",
+      tag: "Wir suchen Verstärkung",
+      place: "Bundesweit",
+      text: "Du begeisterst dich für psychedelische Wissenschaft und möchtest das PSNG aktiv mitgestalten? Wir freuen uns über engagierte Studierende aus ganz Deutschland, die unser Netzwerk stärken wollen.",
+    },
   },
 
   partners: {
@@ -388,7 +394,7 @@ const de = {
   lab: {
     title: "PSNG – Vorschau",
     nav: {
-      events: "Termine",
+      events: "Events",
       groups: "Hochschulgruppen",
       guide: "Leitfaden",
       about: "Über uns",
@@ -486,6 +492,16 @@ const de = {
       title: "Code of Conduct – PSNG",
       description:
         "Die Grundsätze, nach denen wir im PSNG zusammenarbeiten: wissenschaftsbasiert, ohne Substanzkonsum, ohne therapeutische Angebote.",
+    },
+    about: {
+      title: "Über uns – PSNG",
+      description:
+        "Wer hinter dem PSNG steht, wofür wir uns einsetzen und mit welchen Organisationen wir zusammenarbeiten.",
+    },
+    events: {
+      title: "Events – PSNG",
+      description:
+        "Lectures, Community Calls und Treffen des PSNG: kommende Termine und Rückblicke mit Aufzeichnungen und Fotos.",
     },
     imprint: {
       title: "Impressum – PSNG",
@@ -787,6 +803,12 @@ const en: Copy = {
     photoCaption: "The team in August 2026",
     founderNotePrefix: "Co-founded with ",
     founderNoteSuffix: ", who helped build the PSNG for over a year. Thanks, Cam!",
+    recruiting: {
+      name: "Join the team",
+      tag: "We're looking for people",
+      place: "Nationwide",
+      text: "Excited about psychedelic science and keen to help shape the PSNG? We'd love to hear from committed students across Germany who want to strengthen the network.",
+    },
   },
 
   partners: {
@@ -964,6 +986,16 @@ const en: Copy = {
       title: "Code of Conduct – PSNG",
       description:
         "The principles we work by at the PSNG: science-based, no substance use, no therapeutic services.",
+    },
+    about: {
+      title: "About – PSNG",
+      description:
+        "Who is behind the PSNG, what we stand for and which organisations we work with.",
+    },
+    events: {
+      title: "Events – PSNG",
+      description:
+        "PSNG lectures, community calls and meet-ups: upcoming dates and recaps with recordings and photos.",
     },
     imprint: {
       title: "Imprint – PSNG",

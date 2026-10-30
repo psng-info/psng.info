@@ -14,6 +14,8 @@ import { DEFAULT_LOCALE, type Locale, localeFromPath } from "./locale";
  */
 export type RouteKey =
   | "home"
+  | "events"
+  | "about"
   | "guide"
   | "codeOfConduct"
   | "imprint"
@@ -32,6 +34,16 @@ export const routes: Record<RouteKey, RouteDefinition> = {
     path: { de: "/", en: "/en" },
     priority: "1.0",
     changefreq: "weekly",
+  },
+  events: {
+    path: { de: "/events", en: "/en/events" },
+    priority: "0.9",
+    changefreq: "weekly",
+  },
+  about: {
+    path: { de: "/ueber-uns", en: "/en/about" },
+    priority: "0.7",
+    changefreq: "monthly",
   },
   guide: {
     path: { de: "/leitfaden", en: "/en/guide" },

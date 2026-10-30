@@ -6,6 +6,7 @@ import { pick } from "@/i18n/localized";
 import { loadEvents } from "@/lib/events/load";
 import { hasPage } from "@/lib/events/schedule";
 import { formatEventDate, formatEventTime } from "@/lib/events/format";
+import { eventPath } from "@/lib/events/paths";
 
 // Vorläufig: Phase 4 baut die richtige Detailseite.
 export async function getStaticPaths() {
@@ -17,8 +18,14 @@ const { event: e } = Astro.props;
 const title = pick(e.title, "de");
 ---
 
-<BaseLayout title={`${title} – PSNG`} description={title}>
-  <main class="container mx-auto max-w-3xl px-4 py-24">
+<BaseLayout
+  locale="de"
+  title={`${title} – PSNG`}
+  description={title}
+  alternates={{ de: eventPath(e.slug, "de") }}
+  current="events"
+>
+  <div class="container mx-auto max-w-3xl px-4 pb-24 pt-32">
     <h1 class="font-heading text-4xl font-bold text-foreground">{title}</h1>
     <p class="mt-4 text-muted-foreground">
       {formatEventDate(e.date, "de")} · {formatEventTime(e, "de")} · {pick(e.location, "de")}
@@ -27,5 +34,5 @@ const title = pick(e.title, "de");
       <Image src={e.speakerPhoto as ImageMetadata} alt="" width={96} height={96} class="mt-6 h-24 w-24 rounded-full object-cover" />
     )}
     {e.speaker && <p class="mt-2 font-heading text-primary">{e.speaker}</p>}
-  </main>
+  </div>
 </BaseLayout>

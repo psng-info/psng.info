@@ -1,6 +1,11 @@
 short: BPSA
 name: Berlin Psychedelic Science Association
+displayName: "Berlin Psychedelic Science Association (BPSA)"
 tone: bpsa
+order: 1
 logo: ./logo.webp
 url: https://bpsa.psng.info
 instagramUrl: https://www.instagram.com/bpsa.berlin/
+description:
+  de: "Eine Gruppe Berliner Studierender, die psychedelische Wissenschaft an die Hochschulen der Stadt bringt. Ihre Lectures finden gelegentlich in Zusammenarbeit mit dem PSNG statt, und unser erstes eigenes In-Person-Event haben wir zusammen auf die Beine gestellt."
+  en: "A group of Berlin students bringing psychedelic science to the city's universities. Their lectures are occasionally held together with the PSNG, and we put on our first in-person event jointly."

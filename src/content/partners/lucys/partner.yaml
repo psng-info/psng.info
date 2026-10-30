@@ -1,0 +1,13 @@
+name: "Lucys Magazin"
+order: 9
+logo: ./logo.webp
+url: https://www.lucys-magazin.com/
+instagramUrl: https://www.instagram.com/lucys.magazin/
+opportunity:
+  url: "mailto:info@lucys-magazin.com?subject=Artikel%20aus%20der%20PSNG-Community"
+  label:
+    de: "Artikel einreichen"
+    en: "Submit an article"
+description:
+  de: "Das Magazin des Nachtschatten Verlags über Psychedelika, Bewusstsein, Kultur und Gesundheit – mit ausführlichen, gut recherchierten Hintergrundtexten in der Rubrik Xtra. Lucys lädt die PSNG-Community ausdrücklich ein, eigene Artikel einzureichen, ganz niederschwellig. Die Hefte verteilen wir gelegentlich auch auf unseren Events."
+  en: "The Nachtschatten Verlag's magazine on psychedelics, consciousness, culture and health — with long, well-researched in-depth pieces in its Xtra section. Lucys explicitly invites the PSNG community to submit their own articles, with a low barrier to entry. We sometimes hand out copies at our events, too."

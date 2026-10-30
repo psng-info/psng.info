@@ -1,6 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
 import { copy } from "./copy";
+import { hasPage, isTranslated } from "@/lib/events/schedule";
+import { testEvents } from "@/lib/events/testData";
+import { indexablePages } from "@/lib/seo/pages";
+import { sitemapXml } from "@/lib/seo/sitemap";
 import { locales, localeFromPath } from "./locale";
 import {
   alternatesFor,
@@ -141,16 +144,26 @@ describe("routes", () => {
 });
 
 describe("sitemap.xml", () => {
-  const xml = readFileSync("public/sitemap.xml", "utf-8");
-  const listed = [...xml.matchAll(/<loc>https:\/\/psng\.info([^<]*)<\/loc>/g)]
-    .map((m) => m[1])
-    .map((p) => (p === "" ? "/" : p));
+  const xml = sitemapXml(indexablePages(testEvents));
+  const listed = [...xml.matchAll(/<loc>https:\/\/psng\.info([^<]*)<\/loc>/g)].map((m) => m[1]);
 
   it("lists every page in every language it exists in", () => {
     const expected = routeKeys
       .flatMap((key) => locales.map((l) => routes[key].path[l]))
       .filter((p): p is string => p !== null);
-    expect([...listed].sort()).toEqual([...new Set(expected)].sort());
+    for (const path of expected) expect(listed, path).toContain(path);
+  });
+
+  it("lists every event page, the English one only when translated", () => {
+    for (const e of testEvents.filter(hasPage)) {
+      expect(listed, e.slug).toContain(`/events/${e.slug}`);
+      expect(listed.includes(`/en/events/${e.slug}`), e.slug).toBe(isTranslated(e));
+    }
+  });
+
+  it("lists nothing twice and no event without a page", () => {
+    expect(new Set(listed).size).toBe(listed.length);
+    for (const e of testEvents.filter((x) => !hasPage(x))) expect(listed).not.toContain(`/events/${e.slug}`);
   });
 
   it("gives every translated page its hreflang pair", () => {

@@ -22,7 +22,7 @@ const TIME_ZONE = "Europe/Berlin";
 /**
  * Ein Termin, so wie ein Kalender ihn braucht: Datum und Uhrzeit getrennt,
  * nicht als Anzeigetext. Was auf der Karte steht („19:00 – 20:00“), liest
- * `parseTimeRange` in data/events.ts aus – hier wird nicht mehr geraten.
+ * die Event-Daten aus (startTime/endTime) – hier wird nicht mehr geraten.
  */
 export interface CalendarEvent {
   /** Stabile Kennung, wird zur UID. Über sie erkennt ein Kalender ein Update. */
@@ -64,9 +64,9 @@ export interface CalendarSpan {
  * Unterschied zwischen einem Termin, der im Kalender richtig steht, und einem,
  * bei dem man zu spät kommt.
  */
-function zoneOffsetMs(instant: number): number {
+function zoneOffsetMs(instant: number, timeZone = TIME_ZONE): number {
   const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: TIME_ZONE,
+    timeZone,
     hour12: false,
     year: "numeric",
     month: "2-digit",
@@ -90,15 +90,29 @@ function zoneOffsetMs(instant: number): number {
 }
 
 /** Ortszeit („20.10.2026, 19:00 in Berlin“) als echter Zeitpunkt. */
-function toInstant(dateIso: string, time: string): Date {
+function toInstant(dateIso: string, time: string, timeZone = TIME_ZONE): Date {
   const [year, month, day] = dateIso.split("-").map(Number);
   const [hour, minute] = time.split(":").map(Number);
   const wall = Date.UTC(year, month - 1, day, hour, minute);
   // Zweimal rechnen: erst mit dem Versatz zur Wandzeit schätzen, dann mit dem
   // Versatz zum geschätzten Zeitpunkt korrigieren. An den beiden Umstellungs-
   // wochenenden liegen beide Werte eine Stunde auseinander.
-  const guess = wall - zoneOffsetMs(wall);
-  return new Date(wall - zoneOffsetMs(guess));
+  const guess = wall - zoneOffsetMs(wall, timeZone);
+  return new Date(wall - zoneOffsetMs(guess, timeZone));
+}
+
+/**
+ * Ortszeit als ISO 8601 mit Versatz („2026-11-04T19:00:00+01:00“) – so, wie
+ * Suchmaschinen sie in strukturierten Daten erwarten. Ohne Versatz rät jeder
+ * Leser die Zeitzone selbst.
+ */
+export function localDateTime(dateIso: string, time: string, timeZone = TIME_ZONE): string {
+  const offset = zoneOffsetMs(toInstant(dateIso, time, timeZone).getTime(), timeZone) / 60000;
+  const sign = offset < 0 ? "-" : "+";
+  const abs = Math.abs(offset);
+  const hh = String(Math.floor(abs / 60)).padStart(2, "0");
+  const mm = String(abs % 60).padStart(2, "0");
+  return `${dateIso}T${time}:00${sign}${hh}:${mm}`;
 }
 
 /** Der Tag danach – ganztägige Einträge enden nach RFC 5545 exklusiv. */

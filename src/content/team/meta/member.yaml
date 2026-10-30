@@ -1,0 +1,14 @@
+name: "Meta Laubinger"
+order: 3
+photo: ./photo.webp
+roles:
+  - de: "Vereinsgründung"
+    en: "Founding the association"
+study:
+  de: "Psychologie-Masterandin"
+  en: "Psychology master's student"
+place: "Bergische Universität Wuppertal"
+bio:
+  de: "Wissenschaftliche Hilfskraft in der klinischen Psychologie. Überzeugt, dass Psychedelika ein kraftvolles Werkzeug zur Erforschung des Bewusstseins sind und systematische Forschung ihr therapeutisches Potenzial nutzbar machen kann."
+  en: "Research assistant in clinical psychology. Convinced that psychedelics are a powerful tool for studying consciousness, and that systematic research can make their therapeutic potential usable."
+linkedinUrl: https://www.linkedin.com/in/meta-laubinger-905634395/

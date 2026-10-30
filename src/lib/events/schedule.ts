@@ -1,3 +1,4 @@
+import { hasTranslation } from "@/i18n/localized";
 import { LECTURE_SERIES, SERIES_OVERRIDES } from "./series";
 import type { EventColumn, Feature, Milestone, SeriesDate, SiteEvent } from "./types";
 
@@ -76,6 +77,15 @@ export function hasContent(e: SiteEvent): boolean {
 export function hasPage(e: SiteEvent): boolean {
   if (e.role === "external" && !e.ownPage) return false;
   return hasContent(e) || hasAssets(e);
+}
+
+/**
+ * Ob die englische Seite eine echte Übersetzung ist. Nur dann bekommt sie
+ * hreflang und einen Platz in der Sitemap; sonst zeigt ihr Canonical auf die
+ * deutsche Seite, und Suchmaschinen werten sie nicht als eigene Fassung.
+ */
+export function isTranslated(e: SiteEvent): boolean {
+  return hasTranslation(e.title) && (!e.description || hasTranslation(e.description));
 }
 
 /**

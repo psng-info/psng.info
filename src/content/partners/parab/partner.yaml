@@ -1,6 +1,11 @@
 short: PARAB
 name: Psychedelic Awareness & Research Association Basel
+displayName: "PARAB – Psychedelic Awareness & Research Association Basel"
 tone: parab
+order: 2
 logo: ./logo.webp
 url: https://parab.ch
 instagramUrl: https://www.instagram.com/psychedelicassociationbasel/
+description:
+  de: "Multidisziplinäre Studierendenorganisation aus Basel und Teil des Swiss Psychedelic Student Network. PARAB bringt Wissen über die therapeutische Anwendung von Psychedelika zu Fachleuten wie Öffentlichkeit – und betreibt gemeinsam mit uns den Medien-Blog."
+  en: "A multidisciplinary student organisation from Basel and part of the Swiss Psychedelic Student Network. PARAB brings knowledge about the therapeutic use of psychedelics to professionals and the public alike — and runs the media blog together with us."

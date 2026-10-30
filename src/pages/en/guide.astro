@@ -1,0 +1,558 @@
+---
+import ProseLayout from "@/layouts/ProseLayout.astro";
+import { copy } from "@/i18n/copy";
+import { alternatesOf } from "@/lib/seo/alternates";
+import { curriculumTopics, nicheTopics } from "@/data/curriculum";
+import { pick } from "@/i18n/localized";
+import { pathFor } from "@/i18n/routes";
+
+/*
+ * Englische Fassung des Leitfadens. Eigene Komponente statt Textbausteinen:
+ * Das hier ist ein durchgehendes Dokument, und wer es überarbeitet, liest es
+ * am Stück. Ändert sich die deutsche Fassung in leitfaden.astro, gehört diese
+ * hier mit angefasst – die Gliederung ist in beiden dieselbe, damit sich das
+ * nebeneinander vergleichen lässt.
+ */
+
+const locale = "en";
+const meta = copy[locale].meta.guide;
+---
+
+<ProseLayout
+  locale={locale}
+  title={meta.title}
+  description={meta.description}
+  alternates={alternatesOf("guide")}
+  current="guide"
+  heading="How do I start my own university group?"
+>
+  <p class="text-sm text-muted-foreground">Version: 20 June 2026</p>
+  <p>
+    Join the nationwide PSNG network and start your own university group.
+  </p>
+
+  {/* Quick overview */}
+  <div class="not-prose my-6 rounded-xl border border-primary/20 bg-primary/5 p-5">
+    <p class="text-xs font-heading font-semibold uppercase tracking-widest text-primary mb-3">
+      In this guide
+    </p>
+    <div class="flex flex-wrap gap-2">
+      {[
+        { label: "1 · Why start a group?", href: "#section-1" },
+        { label: "2 · Step by step", href: "#section-2" },
+        { label: "3 · Session formats", href: "#section-3" },
+        { label: "4 · Psychedelic curriculum", href: "#curriculum" },
+        { label: "5 · Facilitation rules", href: "#section-5" },
+        { label: "6 · Crises & difficult moments", href: "#section-6" },
+      ].map((item) => (
+        <a
+          href={item.href}
+          class="text-xs px-3 py-1.5 rounded-full border border-primary/20 bg-white text-primary hover:bg-primary/10 transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <hr />
+
+  <h2>Before you start</h2>
+  <p>
+    This document offers suggestions based on our own experience running
+    university groups and on that of others in our networks. Adapt your
+    approach at any point — every university environment is different. What
+    follows are good suggestions, not rules. "PSNG group" therefore means
+    any kind of university group you might start; it does not have to
+    follow these suggestions.
+  </p>
+  <p>This document answers the following questions:</p>
+  <ul>
+    <li>Why should I start a PSNG group?</li>
+    <li>How do I start and sustain a PSNG group? (step by step)</li>
+    <li>How do I shape the content of sessions? (formats and inspiration)</li>
+  </ul>
+
+  <h2 id="section-1">1. Why should I start a PSNG group?</h2>
+  <p>
+    Research on psychedelics is flourishing, but it rarely features in a
+    degree programme. You don't need to be an expert to begin. You only need
+    to create the space for scientific discussion. The PSNG will support you.
+  </p>
+  <p>
+    <strong>The most important things first:</strong>
+  </p>
+  <p>
+    <strong>JUST START.</strong> You don't need to be an expert, and you
+    don't need everything planned down to the last detail. A lot only
+    becomes clear once you've taken the first step.
+  </p>
+  <p>
+    <strong>DON'T SET THE BAR TOO HIGH.</strong> In our experience,
+    perfectionism is the biggest killer of motivation. Groups ebb and flow;
+    there will be more and less participation and enthusiasm. Don't let that
+    get you down — the experience you gain with every meeting is invaluable.
+    Better a small event that happens than a big one you have to postpone.
+    And keep an eye on your own capacity.
+  </p>
+  <p>
+    <strong>GET HELP.</strong> Don't carry the responsibility alone. Find
+    co-organisers and delegate tasks (social media, finding rooms, minutes).
+    A useful side effect: people who take on a task identify with the group
+    more quickly and tend to stay.
+  </p>
+  <p>
+    <strong>THE CODE OF CONDUCT IS OUR SHARED FOUNDATION.</strong> As part
+    of the network you commit to a factual, science-based way of working.
+    PSNG groups are not a space for the illegal use or sale of substances,
+    and they do not offer therapeutic services. Make sure the{" "}
+    <a href={pathFor("codeOfConduct", locale)}
+      class="text-primary hover:underline"
+    >
+      code of conduct
+    </a>{" "}
+    is read and observed by all members.
+  </p>
+  <p>
+    <strong>We're on your side.</strong> Got an idea but not sure how to put
+    it into words or into practice? Need contact with other groups? Write to
+    us through the{" "}
+    <a href="/en?subject=gruppe#kontakt" class="text-primary hover:underline">
+      contact form
+    </a>{" "}
+    or come to one of our monthly{" "}
+    <a href="/en/events" class="text-primary hover:underline">
+      community calls
+    </a>
+    .
+  </p>
+
+  <h2 id="section-2">2. How do I start and sustain a PSNG group?</h2>
+
+  <h3>Clarify your vision</h3>
+  <p>
+    Think about how you want to shape your group: what suits you, which
+    kinds of events you enjoy, and what capacity you have available.
+  </p>
+  <p>
+    <strong>Possible thematic directions:</strong>
+  </p>
+  <ul>
+    <li>Education and knowledge-sharing</li>
+    <li>Destigmatisation</li>
+    <li>Patient advocacy</li>
+    <li>Improving access (policy)</li>
+    <li>Research</li>
+    <li>Building communities</li>
+    <li>
+      Matching for research and theses (connecting students with research
+      groups and supervisors — a growing need, and we're happy to help with
+      introductions)
+    </li>
+    <li>
+      Or topic-based: clinical research, use in psychotherapy, neuroscience, …
+    </li>
+  </ul>
+  <p>
+    <strong>Possible organisational directions:</strong>
+  </p>
+  <ul>
+    <li>
+      Self-organised regular meetings (reading groups, films, journal clubs)
+    </li>
+    <li>Events with outside guests (expert talks, excursions)</li>
+    <li>
+      Larger projects across a term (shooting a short film, writing blog
+      articles)
+    </li>
+    <li>
+      Other projects (conference visits, breathwork, setting up a community
+      space in your city, …)
+    </li>
+  </ul>
+  <p>
+    <em>
+      One thing matters: as long as the code of conduct is respected, there
+      are no limits on your creativity.
+    </em>
+  </p>
+
+  <h3>Find co-organisers</h3>
+  <p>
+    <em>Teamwork makes the dream work.</em>
+  </p>
+  <ul>
+    <li>
+      Check whether a group already exists in your city (PSNG, uniMIND,
+      Psychedelic Society) — not as competition, but as possible
+      collaborators. Working together is often stronger than a second,
+      parallel group.
+    </li>
+    <li>
+      If there isn't one, create a group in the PSNG community for your city.
+    </li>
+    <li>
+      You can use the PSNG logo, or create your own acronym and logo to
+      match your vision.
+    </li>
+    <li>
+      Actively invite people from outside the usual circles (other
+      disciplines, backgrounds, perspectives): diversity makes the group
+      stronger and is part of how we see ourselves.
+    </li>
+    <li>
+      We're happy to list your group on psng.info, with or without a contact
+      person. Just get in touch through our{" "}
+      <a href="/en?subject=gruppe#kontakt"
+        class="text-primary hover:underline"
+      >
+        contact form
+      </a>
+      .
+    </li>
+  </ul>
+
+  <h3>Get over the admin hurdle</h3>
+  <ul>
+    <li>
+      Officially recognised university groups enjoy advantages: free room
+      booking, access to mailing lists and often a budget of their own.
+    </li>
+    <li>
+      Contact your student union (AStA) or student council. They usually
+      need simple statutes and a list of members. Weigh up whether official
+      status is actually necessary for your goals.
+    </li>
+    <li>
+      If the student union refuses or hesitates: you can start without
+      official status too, as an informal group or under the umbrella of an
+      existing student council.
+    </li>
+    <li>
+      Look for lecturers (in psychology, medicine, pharmacy or philosophy,
+      for instance) who will back your project. That lends the group
+      credibility and opens doors to university resources.
+    </li>
+  </ul>
+
+  <h3>Become visible</h3>
+  <p>
+    <em>People can only come if they know the group exists.</em>
+  </p>
+  <ul>
+    <li>
+      <strong>Offline:</strong> Make simple flyers with free design tools and
+      hand them out in the canteen, in the library and on noticeboards. A
+      stand during freshers' week is invaluable.
+    </li>
+    <li>
+      <strong>Online:</strong> Send those flyers to WhatsApp groups and
+      student council mailing lists. Mind data protection and tone, and don't
+      post pictures of substances.
+    </li>
+    <li>
+      <strong>Word of mouth:</strong> Talk to people about what you're doing
+      and share your enthusiasm.
+    </li>
+  </ul>
+
+  <h3>Your first event</h3>
+  <p>
+    <em>It sets the tone for how your group develops.</em>
+  </p>
+  <ul>
+    <li>Give a short introduction to the topic and present your project.</li>
+    <li>
+      Involve the audience: what are people interested in? What do they bring
+      themselves?
+    </li>
+    <li>
+      A first chance to share out tasks (for example, each member takes
+      responsibility for one session).
+    </li>
+  </ul>
+
+  <h3>Scheduling and structure</h3>
+  <ul>
+    <li>
+      <strong>Fixed dates:</strong> Set recurring dates early — it's more
+      efficient than running a new poll every time.
+    </li>
+    <li>
+      <strong>Reminders:</strong> A short reminder in the group before a
+      session works wonders.
+    </li>
+    <li>
+      <strong>Use the network:</strong> Want to stream your event or reach a
+      wider audience? Have it added to the{" "}
+      <a href="/en/events" class="text-primary hover:underline">
+        PSNG event calendar
+      </a>
+      . We're also building a network-wide lecture series you can join — just
+      ask.
+    </li>
+  </ul>
+
+  <h3>A backup plan</h3>
+  <p>
+    If a speaker drops out at short notice, don't despair. Hold a watch party
+    instead, or a discussion or sharing round on a topic of your choice. It's
+    always better to offer a space for exchange than to cancel the meeting
+    entirely.
+  </p>
+
+  <h3>Secure your knowledge</h3>
+  <ul>
+    <li>
+      <strong>Pick a platform:</strong> Use shared drives, Moodle or similar
+      to store talks, papers and other material and make it accessible to
+      everyone.
+    </li>
+    <li>
+      <strong>Onboard new members:</strong> Someone joins mid-term? A short
+      welcome, access to the shared drive and a buddy to ask are enough for
+      newcomers to settle in quickly.
+    </li>
+    <li>
+      <strong>Plan for succession:</strong> Start looking for successors to
+      the founding members at least a term before you graduate, so the group
+      carries on.
+    </li>
+  </ul>
+
+  <h2 id="section-3">3. How do I shape the content of sessions?</h2>
+  <p>
+    At its core, every successful group session follows a simple three-part
+    structure, borrowed from the familiar shape of reflective engagement:
+  </p>
+  <p>
+    <strong>1. Intention &nbsp;·&nbsp; 2. Experience &nbsp;·&nbsp; 3. Integration</strong>
+  </p>
+
+  <h3>Intention</h3>
+  <ul>
+    <li>
+      <strong>Arriving / check-in:</strong> a round of introductions — name,
+      subject, "why are you here?"
+    </li>
+    <li>
+      For more personal rounds: a shared meditation or breathing exercise, a
+      short sharing circle, or a highlight/lowlight round.
+    </li>
+    <li>Talk through the content and goals of this session.</li>
+  </ul>
+
+  <h3>Experience</h3>
+  <p>Possible formats:</p>
+  <p>
+    <strong>Screenings</strong>
+  </p>
+  <ul>
+    <li>Show a film, piece of music or documentary</li>
+    <li>Discuss it afterwards</li>
+  </ul>
+  <p>
+    <strong>Experts</strong>
+  </p>
+  <ul>
+    <li>Invite experts for a talk or workshop</li>
+    <li>Follow with a Q&amp;A</li>
+  </ul>
+  <p>
+    <strong>Papers</strong>
+  </p>
+  <ul>
+    <li>Circulate a scientific paper for everyone to read</li>
+    <li>One person prepares it as a presentation</li>
+    <li>Open discussion</li>
+  </ul>
+  <p>
+    <strong>Excursions / workshops</strong>
+  </p>
+  <ul>
+    <li>Approach research groups, clinics, museums, …</li>
+    <li>Go on trips together</li>
+  </ul>
+  <p>
+    <strong>Reading group</strong>
+  </p>
+  <ul>
+    <li>Read sections of a book chosen together, at a regular pace</li>
+    <li>Discuss the chapters you've read</li>
+  </ul>
+  <p>
+    <strong>Integration / self-experience</strong>
+  </p>
+  <ul>
+    <li>Mindfulness exercises, meditation, breathwork</li>
+    <li>Have sessions led by trained people</li>
+  </ul>
+
+  <h3>Integration</h3>
+  <ul>
+    <li>
+      Discussion of the content (criticism, application, implications) or
+      personal reflection (insights, growth).
+    </li>
+    <li>
+      <strong>Closing / check-out:</strong> a personal takeaway, feedback,
+      and planning the next session.
+    </li>
+    <li>
+      Where it fits, invite people to take on responsibility within the
+      group — it spreads the work and builds the next generation.
+    </li>
+  </ul>
+
+  <h2 id="curriculum">4. Psychedelic curriculum</h2>
+  <p>
+    Suggested topics that work well as a starting point for lectures, journal
+    clubs and reading groups in your group.
+  </p>
+
+  <div class="not-prose my-6 space-y-6">
+    <div class="flex flex-wrap gap-2">
+      {curriculumTopics.map((topic) => (
+        <span
+          class="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-border bg-card text-muted-foreground"
+        >
+          <span class="font-heading font-bold text-primary">{topic.num}</span>
+          {pick(topic.title, locale)}
+        </span>
+      ))}
+    </div>
+
+    <div class="p-6 rounded-2xl border border-border/60 bg-muted/30">
+      <p class="text-sm font-heading font-semibold text-foreground mb-1">
+        More topics (in progress)
+      </p>
+      <p class="text-xs text-muted-foreground mb-4">
+        More niche, but well worth a lecture.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        {nicheTopics.map((topic) => (
+          <span
+            class="text-xs px-3 py-1.5 rounded-full border border-border bg-card text-muted-foreground"
+          >
+            {pick(topic, locale)}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <h2 id="section-5">5. Facilitation rules</h2>
+  <p>
+    As a facilitator you create the setting in which everyone feels
+    comfortable and can speak openly:
+  </p>
+  <ul>
+    <li>
+      <strong>Everyone gets a turn.</strong> Watch out for individuals
+      dominating the round. A gentle "let's hear what the others think" works
+      wonders.
+    </li>
+    <li>
+      <strong>Separate science from personal experience.</strong> Personal
+      experiences are welcome, but as a subjective perspective, not as
+      general advice.
+    </li>
+    <li>
+      <strong>No instructions for use, no promoting substances.</strong> PSNG
+      spaces are educational spaces. If someone shares sources or goes into
+      unsolicited detail about their use, steer things back kindly but
+      clearly. Here you may and should interrupt.
+    </li>
+    <li>
+      <strong>Confidentiality.</strong> What is shared in the group stays in
+      the group. No screenshots or recordings without consent.
+    </li>
+    <li>
+      <strong>Back to the topic.</strong> Discussions drift, and that's fine.
+      A short summary brings the round back.
+    </li>
+    <li>
+      <strong>You don't have to know everything.</strong> "I don't know,
+      let's look it up together" is a strong answer, not a weak one.
+    </li>
+  </ul>
+
+  <h2 id="section-6">6. Crises &amp; difficult moments</h2>
+  <p>
+    Difficult situations can arise even in a well-facilitated group. You're
+    not alone. When in doubt, get in touch with us at{" "}
+    <a href="mailto:kontakt@psng.info" class="text-primary hover:underline">
+      kontakt@psng.info
+    </a>
+    .
+  </p>
+  <ul>
+    <li>
+      <strong>… someone promotes, offers or sells substances?</strong> That
+      is incompatible with the code of conduct. Address it directly and stop
+      the behaviour. If it happens again, you may exclude the person.
+    </li>
+    <li>
+      <strong>… someone is in a mental health crisis?</strong> That is not
+      your job. Listen without turning it into therapy, and point towards
+      professional help. In an acute emergency, always call 112. The
+      Telefonseelsorge offers low-threshold anonymous support around the
+      clock.
+    </li>
+    <li>
+      <strong>… someone shares something distressing unprompted?</strong>{" "}
+      Give it a little room, but don't open up a therapy situation. "Thank
+      you for sharing that. If you're looking for support with it, we'll help
+      you find the right place" is appropriate.
+    </li>
+    <li>
+      <strong>… you witness boundary violations or discrimination?</strong>{" "}
+      Step in, name it and protect the person affected. Serious cases can be
+      reported to us in confidence.
+    </li>
+  </ul>
+  <p>
+    <strong>Rule of thumb:</strong> when in doubt, offer a space for exchange
+    and point towards professional help, rather than letting yourself be
+    pushed into a role you aren't trained for.
+  </p>
+
+  <hr />
+
+  <h2 id="further-resources">Further resources</h2>
+  <p>
+    The ALPS Foundation has published{" "}
+    <a href="https://guide.alps.foundation" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">
+      guide.alps.foundation
+    </a>
+    , a practical playbook for starting a psychedelic student association at your university. It
+    distils experience from Switzerland (PALA, SPSN), Italy (UNEPSI) and the launch of PSNG, and
+    complements this guide if you want to build an independent, officially recognised student
+    association.
+  </p>
+
+  <hr />
+
+  {/* CTA block */}
+  <div class="not-prose rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
+    <h3 class="font-heading text-lg font-semibold text-foreground mb-2">
+      What are you waiting for?
+    </h3>
+    <p class="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
+      Questions, ideas, or simply up for a chat? Write to us or come to the
+      next community call.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/en?subject=gruppe#kontakt"
+        class="inline-flex items-center justify-center px-6 py-2.5 rounded-lg bg-foreground text-background font-heading font-medium text-sm hover:opacity-80 transition-opacity"
+      >
+        Get in touch
+      </a>
+      <a href="/en/events"
+        class="inline-flex items-center justify-center px-6 py-2.5 rounded-lg border border-primary/30 text-primary font-heading font-medium text-sm hover:bg-primary/5 transition-colors"
+      >
+        Next community call →
+      </a>
+    </div>
+  </div>
+</ProseLayout>

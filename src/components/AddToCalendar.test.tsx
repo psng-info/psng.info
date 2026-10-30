@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { LocaleProvider, localeFromPath } from "@/i18n/locale";
 import AddToCalendar from "./AddToCalendar";
 import type { CalendarEvent } from "@/lib/calendar";
 
@@ -15,9 +15,9 @@ const lecture: CalendarEvent = {
 
 function renderMenu(path = "/") {
   return render(
-    <MemoryRouter initialEntries={[path]}>
+    <LocaleProvider locale={localeFromPath(path)}>
       <AddToCalendar event={lecture} />
-    </MemoryRouter>,
+    </LocaleProvider>,
   );
 }
 

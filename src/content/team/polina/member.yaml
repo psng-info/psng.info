@@ -1,0 +1,14 @@
+name: "Polina Bedrina"
+order: 4
+photo: ./photo.webp
+roles:
+  - "Events"
+  - "Community"
+study:
+  de: "Psychologie-Promovendin"
+  en: "Psychology PhD student"
+place: "Universität Duisburg-Essen"
+bio:
+  de: "Promoviert an der Schnittstelle zwischen psychedelischer Forschung und Entwicklungspsychologie. Engagiert sich in verschiedenen Initiativen der Wissenschaftskommunikation, Aufklärung und Vernetzung. Möchte Wissen zugänglich machen, einen offenen und kritischen Diskurs fördern und Menschen zusammenbringen."
+  en: "Doing a PhD at the intersection of psychedelic research and developmental psychology. Involved in several initiatives for science communication, education and networking. Wants to make knowledge accessible, encourage open and critical discussion, and bring people together."
+linkedinUrl: https://www.linkedin.com/in/polina-bedrina/
