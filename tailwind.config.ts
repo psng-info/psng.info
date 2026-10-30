@@ -3,7 +3,7 @@ import tailwindcssAnimate from "tailwindcss-animate";
 import typography from "@tailwindcss/typography";
 
 export default {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["./src/**/*.{astro,ts,tsx}"],
   prefix: "",
   theme: {
     container: {

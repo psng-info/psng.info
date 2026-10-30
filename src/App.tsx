@@ -4,20 +4,20 @@ import { MotionConfig } from "framer-motion";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToHash from "@/components/ScrollToHash";
 import KeepScrollOnLocaleChange from "@/i18n/KeepScrollOnLocaleChange";
-import Index from "./pages/Index";
+import Index from "./views/Index";
 import { pathFor } from "@/i18n/routes";
 
 // Die Unterseiten sind reine Textseiten und werden von den meisten Besuchern
 // nie geöffnet – sie gehören nicht in den Bundle der Startseite.
-const Impressum = lazy(() => import("./pages/Impressum"));
-const Datenschutz = lazy(() => import("./pages/Datenschutz"));
-const CodeOfConduct = lazy(() => import("./pages/CodeOfConduct"));
-const CodeOfConductEn = lazy(() => import("./pages/CodeOfConductEn"));
-const Leitfaden = lazy(() => import("./pages/Leitfaden"));
-const Guide = lazy(() => import("./pages/Guide"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+const Impressum = lazy(() => import("./views/Impressum"));
+const Datenschutz = lazy(() => import("./views/Datenschutz"));
+const CodeOfConduct = lazy(() => import("./views/CodeOfConduct"));
+const CodeOfConductEn = lazy(() => import("./views/CodeOfConductEn"));
+const Leitfaden = lazy(() => import("./views/Leitfaden"));
+const Guide = lazy(() => import("./views/Guide"));
+const NotFound = lazy(() => import("./views/NotFound"));
 // Vorschau einer neuen Startseite, siehe pages/Lab.tsx.
-const Lab = lazy(() => import("./pages/Lab"));
+const Lab = lazy(() => import("./views/Lab"));
 
 /*
  * Die Pfade kommen aus dem Verzeichnis in i18n/routes.ts, nicht als Literale

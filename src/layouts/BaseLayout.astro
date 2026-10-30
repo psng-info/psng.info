@@ -1,0 +1,27 @@
+---
+import "@/index.css";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: "de" | "en";
+}
+
+const { title, description, lang = "de" } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang === "de" ? "de-DE" : "en-GB"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+  </head>
+  <body class="bg-white">
+    <slot />
+  </body>
+</html>
