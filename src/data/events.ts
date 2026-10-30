@@ -690,17 +690,13 @@ export const events: PsngEvent[] = [
     column: "vortraege",
     date: "2026-11-04",
     showWeekday: true,
-    time: {
-      de: "17:30 – 19:00 oder 19:00 – 20:30 Uhr, Umfrage läuft",
-      en: "17:30 – 19:00 or 19:00 – 20:30, poll running",
-    },
+    time: "19:00 – 20:30",
     location: {
       de: "Zoom und vor Ort an der HU Berlin, Raum folgt",
       en: "Zoom and in person at HU Berlin, room to be announced",
     },
     speaker: "Dr. med. Tomislav Majić",
     speakerType: "gast",
-    noCalendar: true,
     description: {
       de: "Das Thema wird vor Ort bekannt gegeben: Psychedelic Harm Reduction oder Psychedelic Intersubjectivity.",
       en: "The topic will be announced at the lecture: Psychedelic Harm Reduction or Psychedelic Intersubjectivity.",

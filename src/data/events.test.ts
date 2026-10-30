@@ -285,8 +285,7 @@ describe("noCalendar", () => {
 
   it("leaves it off everything else", () => {
     const flagged = events.filter((e) => e.noCalendar).map((e) => e.id);
-    // Dazu die Majić-Lecture, solange die Uhrzeit fehlt.
-    expect(flagged).toHaveLength(4);
+    expect(flagged).toHaveLength(3);
   });
 });
 

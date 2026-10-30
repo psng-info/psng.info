@@ -78,34 +78,41 @@ function eventTimes(event: PsngEvent): { startDate: string; endDate?: string } {
 }
 
 /**
- * Online oder vor Ort – abgeleitet aus dem Ort, der auf der Karte steht.
- * Bewusst nur diese beiden Fälle und kein Raten: Steht kein Ort in den Daten,
- * bleibt die Angabe weg, statt einen zu erfinden.
+ * Online, vor Ort oder beides – abgeleitet aus dem Ort, der auf der Karte
+ * steht. Kein Raten darüber hinaus: Steht kein Ort in den Daten, bleibt die
+ * Angabe weg, statt einen zu erfinden.
  */
 function eventPlace(event: PsngEvent, locale: Locale) {
   const location = pick(event.location, locale);
   if (!location) return undefined;
 
-  if (/zoom|online/i.test(location)) {
+  const virtual = {
+    "@type": "VirtualLocation",
+    // Der Zoom-Link steht nur dort, wo er öffentlich ist; sonst bleibt der
+    // Name des Dienstes die einzige ehrliche Angabe.
+    ...(event.registrationUrl ? { url: event.registrationUrl } : { name: location }),
+  };
+  const place = {
+    "@type": "Place",
+    name: location,
+    address: { "@type": "PostalAddress", addressCountry: "DE" },
+  };
+
+  // Ausgewertet wird die deutsche Fassung, damit beide Sprachen dasselbe sagen.
+  const de = pick(event.location, "de") ?? location;
+  const online = /zoom|online/i.test(de);
+  const onSite = /vor ort/i.test(de);
+
+  if (online && onSite) {
     return {
-      attendanceMode: "https://schema.org/OnlineEventAttendanceMode",
-      location: {
-        "@type": "VirtualLocation",
-        // Der Zoom-Link steht nur dort, wo er öffentlich ist; sonst bleibt der
-        // Name des Dienstes die einzige ehrliche Angabe.
-        ...(event.registrationUrl ? { url: event.registrationUrl } : { name: location }),
-      },
+      attendanceMode: "https://schema.org/MixedEventAttendanceMode",
+      location: [place, virtual],
     };
   }
-
-  return {
-    attendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    location: {
-      "@type": "Place",
-      name: location,
-      address: { "@type": "PostalAddress", addressCountry: "DE" },
-    },
-  };
+  if (online) {
+    return { attendanceMode: "https://schema.org/OnlineEventAttendanceMode", location: virtual };
+  }
+  return { attendanceMode: "https://schema.org/OfflineEventAttendanceMode", location: place };
 }
 
 function eventNode(event: PsngEvent, locale: Locale) {

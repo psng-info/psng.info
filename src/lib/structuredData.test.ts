@@ -40,6 +40,15 @@ describe("strukturierte Daten der Startseite", () => {
     expect(tryp?.startDate).toBe("2026-05-16");
   });
 
+  it("zeichnet Zoom plus Raum als hybrid aus, nicht als reines Online-Event", () => {
+    const majic = graph.find(
+      (n) => (n as { "@id"?: string })["@id"]?.endsWith("#event-lecture-majic-2026-11-04"),
+    ) as { eventAttendanceMode: string; location: { "@type": string }[]; startDate: string };
+    expect(majic.eventAttendanceMode).toBe("https://schema.org/MixedEventAttendanceMode");
+    expect(majic.location.map((l) => l["@type"])).toEqual(["Place", "VirtualLocation"]);
+    expect(majic.startDate).toBe("2026-11-04T19:00");
+  });
+
   it("führt die Organisation genau einmal und verweist von dort aus", () => {
     const orgs = graph.filter((n) => n["@type"] === "Organization");
     expect(orgs).toHaveLength(1);
