@@ -95,7 +95,7 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
             {entry.milestone.partner && <PartnerChip partner={entry.milestone.partner} />}
             <span class="text-xs text-muted-foreground md:hidden">{formatEventDate(entry.date, locale)}</span>
           </div>
-          <h3 class="font-heading text-lg font-semibold text-foreground">{pick(entry.milestone.title, locale)}</h3>
+          <h2 class="font-heading text-lg font-semibold text-foreground">{pick(entry.milestone.title, locale)}</h2>
           <p class="mt-1 text-sm leading-relaxed text-muted-foreground">{pick(entry.milestone.description, locale)}</p>
           {entry.milestone.links && (
             <div class="mt-3 flex flex-wrap gap-4">
@@ -139,7 +139,7 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
                 )}
                 <span class="text-xs text-muted-foreground md:hidden">{formatEventDate(e.date, locale)}</span>
               </div>
-              <h3 class="font-heading text-lg font-semibold leading-snug text-foreground">
+              <h2 class="font-heading text-lg font-semibold leading-snug text-foreground">
                 {
                   action ? (
                     <a
@@ -153,7 +153,7 @@ const card = "rounded-xl border border-border/60 bg-card transition-shadow hover
                     pick(e.title, locale)
                   )
                 }
-              </h3>
+              </h2>
               {e.subtitle && <p class="mt-0.5 text-sm text-muted-foreground">{pick(e.subtitle, locale)}</p>}
               <p class="mt-2 text-sm text-muted-foreground">
                 {[e.speaker, upcoming && formatEventTime(e, locale), upcoming && pick(e.location, locale)]

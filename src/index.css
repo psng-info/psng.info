@@ -16,7 +16,9 @@
     --primary: 339 63% 48%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 15 80% 60%;
+    /* Füllung der Spalten-Chips (Vortrag/Community) unter weißem Text: bei
+       60 % Helligkeit nur 3:1, bei 44 % 4,8:1 – die AA-Grenze für kleine Schrift ist 4,5:1. */
+    --secondary: 15 80% 44%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 340 20% 96%;
