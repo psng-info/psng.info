@@ -1,16 +1,21 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /whatsapp
 
 User-agent: Bingbot
 Allow: /
+Disallow: /whatsapp
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /whatsapp
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /whatsapp
 
 User-agent: *
 Allow: /
+Disallow: /whatsapp
 
 Sitemap: https://psng.info/sitemap.xml

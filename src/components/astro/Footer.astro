@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Mail, Youtube } from "lucide-react";
 import { copy } from "@/i18n/copy";
 import type { Locale } from "@/i18n/locale";
 import { existsIn, pathFor } from "@/i18n/routes";
-import { CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK, WHATSAPP_LINK, YOUTUBE_LINK } from "@/lib/links";
+import { CONTACT_EMAIL, INSTAGRAM_LINK, LINKEDIN_LINK, whatsappHref, YOUTUBE_LINK } from "@/lib/links";
 
 interface Props {
   locale: Locale;
@@ -48,7 +48,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
       </div>
       <div class="mb-10 flex flex-col justify-center gap-4 sm:flex-row">
         <a
-          href={WHATSAPP_LINK}
+          href={whatsappHref("footer")}
           {...external}
           class="inline-flex items-center justify-center rounded-lg bg-primary-foreground px-8 py-3 font-heading text-sm font-medium text-primary transition-opacity hover:opacity-90"
         >

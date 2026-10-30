@@ -7,7 +7,7 @@ import { HOME_ANCHORS } from "@/lib/anchors";
 import { loadEvents, loadMilestones } from "@/lib/events/load";
 import { getTimelineEntries } from "@/lib/events/schedule";
 import { LECTURE_SERIES } from "@/lib/events/series";
-import { INSTAGRAM_LINK, WHATSAPP_LINK } from "@/lib/links";
+import { INSTAGRAM_LINK, whatsappHref } from "@/lib/links";
 import { alternatesOf } from "@/lib/seo/alternates";
 import { primaryButton, secondaryButton } from "../home/styles";
 import TimelineRow from "./TimelineRow.astro";
@@ -63,7 +63,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
         <p class="mb-4 font-heading text-sm uppercase tracking-[0.2em] text-primary">{c.events.eyebrow}</p>
         <h1 class="mb-4 font-heading text-3xl font-bold text-foreground md:text-5xl">{c.events.title}</h1>
         <p class="text-lg leading-relaxed text-muted-foreground">
-          {c.events.introBefore}<a href={WHATSAPP_LINK} {...external} class={link}>WhatsApp</a>{c.events.introMiddle}<a
+          {c.events.introBefore}<a href={whatsappHref("events-intro")} {...external} class={link}>WhatsApp</a>{c.events.introMiddle}<a
             href={INSTAGRAM_LINK}
             {...external}
             class={link}>Instagram</a
@@ -115,7 +115,7 @@ const external = { target: "_blank", rel: "noopener noreferrer" };
             {c.events.proposeTalk}
           </a>
           <a
-            href={WHATSAPP_LINK}
+            href={whatsappHref("events-ende")}
             {...external}
             class={secondaryButton}
           >

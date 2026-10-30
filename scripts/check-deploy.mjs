@@ -142,6 +142,10 @@ for (const [from, status, to] of REDIRECTS) {
 const hr = await get("/hr");
 check([301, 302, 307, 308].includes(hr.status) && (hr.headers.get("location") ?? "").startsWith("https://claude.ai/"), `/hr: ${hr.status}`);
 
+// WhatsApp-Zähler: HEAD leitet weiter, ohne einen Beitritt zu zählen.
+const wa = await get("/whatsapp?from=check", { method: "HEAD" });
+check(wa.status === 302 && (wa.headers.get("location") ?? "").startsWith("https://chat.whatsapp.com/"), `/whatsapp: ${wa.status}`);
+
 // Kontaktformular: Die Function muss da sein. Nur GET – ein POST würde eine Mail auslösen.
 const api = await get("/api/kontakt");
 check(api.status !== 404, `/api/kontakt: 404`);

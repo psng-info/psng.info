@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ExternalLink, Languages, Menu, X } from "lucide-react";
 import psngLogo from "@/assets/PSNG-Logo-centered.webp";
-import { WHATSAPP_LINK } from "@/lib/links";
+import { whatsappHref } from "@/lib/links";
 import { useCopy } from "@/i18n/copy";
 import { type Locale, locales, localeNames, localeShortNames, useLocale, withLocale } from "@/i18n/locale";
 import { rememberScrollForLocaleSwitch } from "@/i18n/localeScroll";
@@ -128,7 +128,7 @@ function SiteNav({ switchTo, current }: Props) {
           {links.map((link) => renderLink(link))}
           <LanguageSwitch switchTo={switchTo} />
           <a
-            href={WHATSAPP_LINK}
+            href={whatsappHref("nav")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center whitespace-nowrap rounded-lg gradient-psychedelic px-4 py-2 font-heading text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
@@ -144,7 +144,7 @@ function SiteNav({ switchTo, current }: Props) {
         <div className="flex items-center gap-2 md:hidden">
           <LanguageSwitch switchTo={switchTo} />
           <a
-            href={WHATSAPP_LINK}
+            href={whatsappHref("nav-mobil")}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={c.hero.joinWhatsapp}

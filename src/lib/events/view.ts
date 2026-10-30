@@ -1,6 +1,7 @@
 import type { Copy } from "@/i18n/copy";
 import type { Locale } from "@/i18n/locale";
 import { pick } from "@/i18n/localized";
+import { WHATSAPP_LINK, whatsappHref } from "@/lib/links";
 import { eventPath } from "./paths";
 import { canRegister, hasAssets, hasPage, isPast } from "./schedule";
 import type { EventColumn, SiteEvent } from "./types";
@@ -56,4 +57,12 @@ export function socialImageOf(e: SiteEvent, locale: Locale): { src: ImageLike; a
   if (photo) return { src: photo.src, alt: pick(photo.alt, locale) ?? pick(e.title, locale) };
   if (e.recording) return { src: e.recording.thumbnail, alt: pick(e.title, locale) };
   return undefined;
+}
+
+/**
+ * Ziel eines Anmeldeknopfs. Führt die Anmeldung in die WhatsApp-Gruppe, läuft
+ * sie über /whatsapp, damit der Beitritt gezählt wird (siehe api/whatsapp.ts).
+ */
+export function registerHref(e: SiteEvent, from: string): string | undefined {
+  return e.registrationUrl === WHATSAPP_LINK ? whatsappHref(from) : e.registrationUrl;
 }

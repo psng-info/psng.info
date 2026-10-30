@@ -12,8 +12,8 @@ import { formatEventDate, formatEventDateRange, formatEventTime, formatRelativeT
 import { eventPath } from "@/lib/events/paths";
 import type { HeroSlot } from "@/lib/events/schedule";
 import { canRegister } from "@/lib/events/schedule";
-import { cardAction, columnLabel } from "@/lib/events/view";
-import { WHATSAPP_LINK } from "@/lib/links";
+import { cardAction, columnLabel, registerHref } from "@/lib/events/view";
+import { whatsappHref } from "@/lib/links";
 import PartnerChip from "../events/PartnerChip.astro";
 import { chip, primaryButton } from "./styles";
 
@@ -130,7 +130,7 @@ const link = "inline-flex items-center gap-1 text-sm font-medium text-primary ho
             </div>
             <div class="mt-5 flex flex-wrap items-center gap-3">
               {canRegister(slot.event, ref) && (
-                <a href={slot.event.registrationUrl} {...external} class={primaryButton}>
+                <a href={registerHref(slot.event, "hero-karte")} {...external} class={primaryButton}>
                   {pick(slot.event.registrationLabel, locale) ?? c.events.register}
                 </a>
               )}
@@ -169,7 +169,7 @@ const link = "inline-flex items-center gap-1 text-sm font-medium text-primary ho
               {formatSeriesTime(slot.series)} · {slot.series.location}
             </p>
             <div class="mt-5 flex flex-wrap items-center gap-3">
-              <a href={WHATSAPP_LINK} {...external} class={primaryButton}>
+              <a href={whatsappHref("hero-karte")} {...external} class={primaryButton}>
                 {c.hero.joinWhatsapp}
               </a>
               <AddToCalendar client:visible locale={locale} event={seriesCalendarEntry(slot.series, locale, c)} />

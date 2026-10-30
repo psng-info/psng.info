@@ -6,6 +6,15 @@
 export const WHATSAPP_LINK =
   "https://chat.whatsapp.com/LBUA3UpzOV9BW1v59EZK8w?s=cl&p=i&ilr=1";
 
+/**
+ * Der Beitrittslink für Knöpfe: über /whatsapp (api/whatsapp.ts), das den
+ * Klick serverseitig zählt – auch bei Werbeblockern. `from` sagt, welcher
+ * Knopf es war. Im Dev-Server gibt es die Function nicht, dort direkt.
+ */
+export function whatsappHref(from: string): string {
+  return import.meta.env?.DEV ? WHATSAPP_LINK : `/whatsapp?from=${from}`;
+}
+
 export const INSTAGRAM_LINK = "https://www.instagram.com/psng.info/";
 
 /**

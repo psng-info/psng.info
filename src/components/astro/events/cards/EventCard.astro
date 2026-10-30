@@ -11,7 +11,7 @@ import { formatEventDateRange, formatEventTime } from "@/lib/events/format";
 import { eventPath } from "@/lib/events/paths";
 import { canRegister, hasPage } from "@/lib/events/schedule";
 import type { SiteEvent } from "@/lib/events/types";
-import { columnLabel } from "@/lib/events/view";
+import { columnLabel, registerHref } from "@/lib/events/view";
 import PartnerChip from "../PartnerChip.astro";
 import LanguageNote from "./LanguageNote.astro";
 import PartnerStrip from "./PartnerStrip.astro";
@@ -154,7 +154,7 @@ const label = "font-medium text-foreground";
       {
         register && (
           <a
-            href={e.registrationUrl}
+            href={registerHref(e, "events")}
             {...external}
             class="gradient-psychedelic inline-flex items-center justify-center rounded-lg px-4 py-2 font-heading text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
