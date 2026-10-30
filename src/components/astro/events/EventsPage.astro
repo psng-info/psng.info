@@ -1,0 +1,156 @@
+---
+import { CalendarPlus } from "lucide-react";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { copy } from "@/i18n/copy";
+import type { Locale } from "@/i18n/locale";
+import { pathFor } from "@/i18n/routes";
+import { HOME_ANCHORS } from "@/lib/anchors";
+import { loadEvents, loadMilestones } from "@/lib/events/load";
+import { getTimelineEntries } from "@/lib/events/schedule";
+import { LECTURE_SERIES } from "@/lib/events/series";
+import { INSTAGRAM_LINK, WHATSAPP_LINK } from "@/lib/links";
+import { alternatesOf } from "@/lib/seo/alternates";
+import TimelineRow from "./TimelineRow.astro";
+
+/*
+ * /events: ein durchgehender Zeitstrahl – oben der am weitesten entfernte
+ * Termin, dann heute, dann rückwärts durch alles Gewesene.
+ *
+ * Gebaut mit dem Datum des Builds; scripts/timeline.ts führt Heute-Marker,
+ * Abstände, Filter und „Mehr anzeigen“ im Browser nach. Ohne JavaScript ist
+ * alles da, nur ungefiltert.
+ */
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = copy[locale];
+const ref = new Date();
+const [events, milestones] = await Promise.all([loadEvents(), loadMilestones()]);
+const { upcoming, past } = getTimelineEntries(events, milestones, ref);
+// Die kommenden Einträge laufen von fern nach nah auf heute zu – der nächste
+// Termin steht also ganz unten.
+const nextId = upcoming.at(-1)?.id;
+
+const filters = [
+  { key: "alle", label: c.events.filters.all },
+  { key: "vortraege", label: c.events.filters.talks },
+  { key: "community", label: c.events.filters.community },
+];
+const seriesNote = [
+  c.events.seriesNoteEvery,
+  LECTURE_SERIES.startTime,
+  c.events.seriesNoteClock,
+  c.events.seriesNoteOn,
+  `${LECTURE_SERIES.location}.`,
+  c.events.seriesNoteAfter,
+].join(" ");
+const link = "text-primary underline hover:no-underline";
+const external = { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<BaseLayout
+  locale={locale}
+  title={c.meta.events.title}
+  description={c.meta.events.description}
+  alternates={alternatesOf("events")}
+  current="events"
+>
+  <link slot="head" rel="alternate" type="text/calendar" title="PSNG" href="/events.ics" />
+  <section class="pb-24 pt-32 md:pb-32 md:pt-40">
+    <div class="container mx-auto max-w-6xl px-6">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
+        <p class="mb-4 font-heading text-sm uppercase tracking-[0.2em] text-primary">{c.events.eyebrow}</p>
+        <h1 class="mb-4 font-heading text-3xl font-bold text-foreground md:text-5xl">{c.events.title}</h1>
+        <p class="text-lg leading-relaxed text-muted-foreground">
+          {c.events.introBefore}<a href={WHATSAPP_LINK} {...external} class={link}>WhatsApp</a>{c.events.introMiddle}<a
+            href={INSTAGRAM_LINK}
+            {...external}
+            class={link}>Instagram</a
+          >{c.events.introAfter}
+        </p>
+      </div>
+
+      <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-muted-foreground">
+        <span class="font-medium text-foreground">{c.events.seriesNoteBefore}</span>{" "}{seriesNote}
+      </p>
+
+      <div class="mb-10 flex flex-col items-center gap-4">
+        <nav aria-label={c.events.eyebrow} class="inline-flex rounded-full bg-muted p-1">
+          {
+            filters.map((f) => (
+              <a
+                href={f.key === "alle" ? "?" : `?filter=${f.key}`}
+                data-filter={f.key}
+                aria-current={f.key === "alle" ? "true" : undefined}
+                class="filter-link rounded-full px-5 py-2 font-heading text-sm font-medium text-muted-foreground transition-colors hover:text-foreground aria-[current]:bg-card aria-[current]:text-primary aria-[current]:shadow-sm"
+              >
+                {f.label}
+              </a>
+            ))
+          }
+        </nav>
+        <a
+          href="/events.ics"
+          title={c.eventPage.subscribeHint}
+          class="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+        >
+          <CalendarPlus size={15} aria-hidden="true" />
+          {c.eventPage.subscribe}
+        </a>
+      </div>
+
+      <div class="mx-auto max-w-5xl">
+        {upcoming.length === 0 && <p class="mb-8 text-center text-muted-foreground">{c.eventPage.noUpcoming}</p>}
+        <ol class="timeline relative" data-page-size="8">
+          <span aria-hidden="true" class="absolute bottom-2 top-2 left-[0.75rem] w-px bg-border md:left-[7.25rem]"></span>
+          {upcoming.map((entry) => <TimelineRow entry={entry} locale={locale} upcoming isNext={entry.id === nextId} ref={ref} />)}
+          <li class="timeline-today grid grid-cols-[1.5rem_minmax(0,1fr)] items-center md:grid-cols-[6.5rem_1.5rem_minmax(0,1fr)] my-1" aria-hidden="true">
+            <p class="hidden pr-4 text-right font-heading text-xs uppercase tracking-[0.2em] text-primary/70 md:block">
+              {c.events.today}
+            </p>
+            <div class="flex items-center justify-center"><span class="h-px w-full bg-primary/30"></span></div>
+            <p class="pl-3 font-heading text-xs uppercase tracking-[0.2em] text-primary/70 md:hidden">{c.events.today}</p>
+          </li>
+          {past.map((entry) => <TimelineRow entry={entry} locale={locale} upcoming={false} ref={ref} />)}
+        </ol>
+        <div class="flex justify-center">
+          <button
+            type="button"
+            class="timeline-more rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+            data-label={c.events.showMore}
+            hidden
+          >
+            {c.events.showMore}
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-14 rounded-2xl border border-border/60 bg-muted/40 p-8 text-center">
+        <h2 class="text-xl font-semibold">{c.events.ownLectureTitle}</h2>
+        <p class="mx-auto mt-2 max-w-xl text-muted-foreground">{c.events.ownLectureText}</p>
+        <div class="mt-5 flex flex-wrap justify-center gap-3">
+          <a
+            href={`${pathFor("home", locale)}?subject=vortrag#${HOME_ANCHORS.contact}`}
+            class="rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            {c.events.proposeTalk}
+          </a>
+          <a
+            href={WHATSAPP_LINK}
+            {...external}
+            class="rounded-md border border-border px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            {c.events.askInWhatsapp}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initTimeline } from "@/scripts/timeline";
+  initTimeline();
+</script>

@@ -210,20 +210,11 @@ function fold(line: string): string {
   return out.join("\r\n ");
 }
 
-/**
- * Der Termin als ICS-Datei. `now` nur für den Test – der Zeitstempel im
- * Eintrag soll sonst der echte sein.
- */
-export function toIcs(event: CalendarEvent, now: Date = new Date()): string {
+/** Ein Termin als VEVENT-Block. */
+function veventLines(event: CalendarEvent, now: Date): string[] {
   const { allDay, start, end } = calendarSpan(event);
   const text = details(event);
-
-  const lines = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//PSNG//psng.info//DE",
-    "CALSCALE:GREGORIAN",
-    "METHOD:PUBLISH",
+  return [
     "BEGIN:VEVENT",
     `UID:${event.id}@psng.info`,
     `DTSTAMP:${utcStamp(now)}`,
@@ -234,12 +225,33 @@ export function toIcs(event: CalendarEvent, now: Date = new Date()): string {
     ...(event.location ? [`LOCATION:${escapeText(event.location)}`] : []),
     ...(event.url ? [`URL:${event.url}`] : []),
     "END:VEVENT",
+  ];
+}
+
+/**
+ * Ein Kalender mit beliebig vielen Terminen – für die einzelne Datei hinter
+ * „Zum Kalender hinzufügen“ ebenso wie für den abonnierbaren /events.ics.
+ * `now` nur für den Test – der Zeitstempel soll sonst der echte sein.
+ */
+export function toIcsCalendar(events: CalendarEvent[], now: Date = new Date(), name?: string): string {
+  const lines = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//PSNG//psng.info//DE",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    ...(name ? [`X-WR-CALNAME:${escapeText(name)}`, "X-WR-TIMEZONE:Europe/Berlin"] : []),
+    ...events.flatMap((e) => veventLines(e, now)),
     "END:VCALENDAR",
   ];
-
   // CRLF ist im Standard vorgeschrieben, nicht Geschmackssache: Outlook nimmt
   // Dateien mit reinem \n nicht an.
   return `${lines.map(fold).join("\r\n")}\r\n`;
+}
+
+/** Der Termin als ICS-Datei. */
+export function toIcs(event: CalendarEvent, now: Date = new Date()): string {
+  return toIcsCalendar([event], now);
 }
 
 /** Der Termin, vorausgefüllt im Google-Kalender. */

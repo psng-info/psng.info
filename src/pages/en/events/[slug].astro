@@ -1,0 +1,14 @@
+---
+import EventPage from "@/components/astro/events/EventPage.astro";
+import { loadEvents } from "@/lib/events/load";
+import { hasPage } from "@/lib/events/schedule";
+
+export async function getStaticPaths() {
+  const events = await loadEvents();
+  return events.filter(hasPage).map((event) => ({ params: { slug: event.slug }, props: { event, events } }));
+}
+
+const { event, events } = Astro.props;
+---
+
+<EventPage event={event} events={events} locale="en" />

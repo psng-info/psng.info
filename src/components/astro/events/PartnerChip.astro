@@ -1,0 +1,25 @@
+---
+import { ExternalLink } from "lucide-react";
+import type { Partner } from "@/lib/events/types";
+
+/** Chip einer Partnerorganisation in ihrer Farbwelt, verlinkt auf deren Seite. */
+interface Props {
+  partner: Pick<Partner, "short" | "name" | "url" | "tone">;
+}
+
+const { partner } = Astro.props;
+// Als Literale, nicht zusammengesetzt: Was Tailwind nicht ausgeschrieben
+// findet, wirft es beim Bauen weg.
+const tone = { bpsa: "badge-bpsa", parab: "badge-parab" }[partner.tone ?? "parab"];
+---
+
+<a
+  href={partner.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={partner.name}
+  class={`inline-flex items-center gap-1 rounded-full ${tone} px-2 py-1 font-heading text-xs font-medium transition-opacity hover:opacity-90`}
+>
+  {partner.short ?? partner.name}
+  <ExternalLink size={12} aria-hidden="true" />
+</a>

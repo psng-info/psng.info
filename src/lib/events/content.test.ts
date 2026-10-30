@@ -1,7 +1,9 @@
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
+import { copy } from "@/i18n/copy";
 import { formatEventDate, formatEventTime, formatRelativeToToday } from "./format";
 import { bySlug, testEvents as events, withChanges } from "./testData";
+import { cardAction } from "./view";
 
 /*
  * Was das Schema in content.config.ts nicht prüfen kann, weil es über einen
@@ -76,5 +78,31 @@ describe("formatRelativeToToday", () => {
     expect(formatRelativeToToday("2026-09-08", "de", ref)).toBe("in 7 Tagen");
     expect(formatRelativeToToday("2026-10-13", "de", ref)).toBe("in 6 Wochen");
     expect(formatRelativeToToday("2026-12-08", "de", ref)).toBe("in 3 Monaten");
+  });
+});
+
+describe("cardAction", () => {
+  const before = new Date(2026, 10, 1);
+  const after = new Date(2026, 10, 20);
+
+  it("führt vor dem Termin zur Seite, mit Anmeldung im Namen", () => {
+    expect(cardAction(bySlug("lecture-tomislav-majic"), "de", copy.de, before)).toEqual({
+      href: "/events/lecture-tomislav-majic",
+      label: copy.de.eventPage.detailsAndRegister,
+      external: false,
+    });
+  });
+
+  it("führt nachher zum Rückblick, wenn es Material gibt", () => {
+    expect(cardAction(bySlug("lecture-torsten-passie"), "en", copy.en, after)?.label).toBe(copy.en.eventPage.toRecap);
+    expect(cardAction(bySlug("lecture-torsten-passie"), "en", copy.en, after)?.href).toBe(
+      "/en/events/lecture-torsten-passie",
+    );
+  });
+
+  it("schickt Konferenzen ohne eigene Seite nach außen", () => {
+    const action = cardAction(bySlug("icpr-2026"), "de", copy.de, after);
+    expect(action?.external).toBe(true);
+    expect(action?.href).toMatch(/^https:\/\//);
   });
 });
