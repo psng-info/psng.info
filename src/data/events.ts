@@ -685,7 +685,7 @@ export const events: PsngEvent[] = [
   {
     id: "lecture-majic-2026-11-04",
     title: { de: "Lecture mit Dr. med. Tomislav Majić", en: "Lecture with Dr. med. Tomislav Majić" },
-    subtitle: { de: "Thema folgt", en: "Topic to be announced" },
+    subtitle: { de: "Why Psychedelic Harm Reduction", en: "Why Psychedelic Harm Reduction" },
     category: "lecture",
     column: "vortraege",
     date: "2026-11-04",
@@ -698,8 +698,8 @@ export const events: PsngEvent[] = [
     speaker: "Dr. med. Tomislav Majić",
     speakerType: "gast",
     description: {
-      de: "Das Thema wird vor Ort bekannt gegeben: Psychedelic Harm Reduction oder Psychedelic Intersubjectivity.",
-      en: "The topic will be announced at the lecture: Psychedelic Harm Reduction or Psychedelic Intersubjectivity.",
+      de: "Tomislav Majić spricht darüber, warum es Psychedelic Harm Reduction braucht.",
+      en: "Tomislav Majić talks about why we need psychedelic harm reduction.",
     },
     audienceNote: {
       de: "Nur live, vor Ort und über Zoom – eine Aufzeichnung gibt es diesmal nicht.",
