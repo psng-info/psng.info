@@ -146,6 +146,8 @@ export interface SeriesOverride {
   date: string;
   /** Ersetzt das Standardlabel, wenn der Anlass einen eigenen Namen hat. */
   labelKey?: SeriesLabelKey;
+  /** Nur den Monat nennen, solange der genaue Tag noch nicht feststeht. */
+  monthOnly?: boolean;
 }
 
 /**
@@ -160,6 +162,8 @@ export interface SeriesOverride {
 export const SERIES_OVERRIDES: SeriesOverride[] = [
   { date: "2026-10-20", labelKey: "semesterStart" },
   { date: "2026-11-04" },
+  // Der Dezembertermin steht noch nicht fest, nur der Monat.
+  { date: "2026-12-08", monthOnly: true },
 ];
 
 /** Ein berechneter Termin der Reihe – kein Event, solange kein Thema feststeht. */
@@ -171,6 +175,8 @@ export interface SeriesDate {
   column: EventColumn;
   /** Fehlt er, gilt der Standardname der Reihe. */
   labelKey?: SeriesLabelKey;
+  /** Siehe `SeriesOverride.monthOnly`. */
+  monthOnly?: boolean;
 }
 
 export interface EventAssets {
@@ -1011,6 +1017,13 @@ export function formatEventDate(
   });
 }
 
+export function formatEventMonth(iso: string, locale: Locale): string {
+  return parseEventDate(iso).toLocaleDateString(intlLocale(locale), {
+    month: "long",
+    year: "numeric",
+  });
+}
+
 export function formatEventDateShort(iso: string, locale: Locale): string {
   return parseEventDate(iso).toLocaleDateString(intlLocale(locale), {
     day: "2-digit",
@@ -1124,6 +1137,7 @@ export function getUpcomingSeriesDates(
       location: LECTURE_SERIES.location,
       column: LECTURE_SERIES.column,
       labelKey: override?.labelKey,
+      monthOnly: override?.monthOnly,
     });
   }
   return out;

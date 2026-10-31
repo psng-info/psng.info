@@ -16,6 +16,7 @@ import {
   LECTURE_SERIES,
   formatEventDate,
   formatEventDateShort,
+  formatEventMonth,
   formatRelativeToToday,
   getEventAnchor,
   getEventById,
@@ -1017,8 +1018,14 @@ function SeriesRow({ series }: { series: SeriesDate }) {
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <ColumnChip column={series.column} />
         <span className="text-xs text-muted-foreground md:hidden">
-          {formatEventDate(series.date, locale)} ·{" "}
-          {formatRelativeToToday(series.date, locale)}
+          {series.monthOnly ? (
+            formatEventMonth(series.date, locale)
+          ) : (
+            <>
+              {formatEventDate(series.date, locale)} ·{" "}
+              {formatRelativeToToday(series.date, locale)}
+            </>
+          )}
         </span>
       </div>
       <p className="font-heading text-base font-semibold text-foreground">
@@ -1030,10 +1037,13 @@ function SeriesRow({ series }: { series: SeriesDate }) {
         {series.time} · {series.location} – {c.events.seriesNote}
       </p>
       {/* Der Termin steht, das Thema noch nicht – wer ihn sich jetzt schon
-          freihält, erfährt den Rest rechtzeitig. */}
-      <div className="mt-3">
-        <AddToCalendar event={seriesCalendarEntry(series, locale, c)} subtle />
-      </div>
+          freihält, erfährt den Rest rechtzeitig. Ohne festen Tag gibt es
+          nichts einzutragen. */}
+      {!series.monthOnly && (
+        <div className="mt-3">
+          <AddToCalendar event={seriesCalendarEntry(series, locale, c)} subtle />
+        </div>
+      )}
     </div>
   );
 }
@@ -1173,6 +1183,7 @@ function TimelineRow({
   isNext: boolean;
 }) {
   const locale = useLocale();
+  const monthOnly = entry.kind === "series" && entry.series.monthOnly;
   const dot = upcoming
     ? isNext
       ? "border-2 border-primary bg-background ring-4 ring-primary/10"
@@ -1190,9 +1201,11 @@ function TimelineRow({
     >
       <div className="hidden pr-4 pt-1 text-right md:block">
         <p className="font-heading text-sm font-medium text-foreground">
-          {formatEventDateShort(entry.date, locale)}
+          {monthOnly
+            ? formatEventMonth(entry.date, locale)
+            : formatEventDateShort(entry.date, locale)}
         </p>
-        {upcoming && (
+        {upcoming && !monthOnly && (
           <p className="text-xs text-muted-foreground">
             {formatRelativeToToday(entry.date, locale)}
           </p>
