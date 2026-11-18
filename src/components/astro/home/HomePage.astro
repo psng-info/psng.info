@@ -185,10 +185,10 @@ const proofFigure = (e: (typeof proof)[number]) => {
 
   <section aria-labelledby="home-ways" class="bg-card py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="mb-10 max-w-2xl" data-reveal>
+      <div class="mb-10 max-w-2xl">
         <h2 id="home-ways" class={sectionTitle}>{c.onboarding.title}</h2>
       </div>
-      <ol class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3" data-reveal>
+      <ol class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
         {
           c.onboarding.steps.map((step) => {
             const target = onboardingTargets[step.key];
@@ -212,7 +212,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
   {agenda.length > 0 && (
   <section id={HOME_ANCHORS.agenda} aria-labelledby="home-agenda" data-hide-when-expired class="scroll-mt-20 bg-primary/5 py-16 md:py-24">
     <div class="container mx-auto grid grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-      <div data-reveal>
+      <div>
         <h2 id="home-agenda" class={sectionTitle}>{c.lab.agenda.title}</h2>
         <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
           <span class="font-medium text-foreground">{c.events.seriesNoteBefore}</span>{" "}{
@@ -226,7 +226,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
       </div>
       {
         agenda.length > 0 && (
-          <ol class="divide-y divide-border border-y border-border" data-reveal>
+          <ol class="divide-y divide-border border-y border-border">
             {agenda.map((entry) => {
               const parts = dateParts(entry.date);
               const end = entry.kind === "event" ? (entry.event.endDate ?? entry.date) : entry.date;
@@ -295,14 +295,14 @@ const proofFigure = (e: (typeof proof)[number]) => {
     proof.length > 0 && (
       <section aria-labelledby="home-proof" class="bg-card py-16 md:py-24">
         <div class="container mx-auto px-4 sm:px-6">
-          <div class="flex flex-wrap items-end justify-between gap-4" data-reveal>
+          <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
               <h2 id="home-proof" class={sectionTitle}>{c.lab.proof.title}</h2>
             </div>
             <a href={pathFor("events", locale)} class={textLink}>{c.lab.agenda.all}</a>
           </div>
           {/* Der stärkste Rückblick groß, mit Zahlen, die übrigen darunter. */}
-          <a href={eventPath(feature.slug, locale)} class="group mt-10 grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg lg:grid-cols-[1.4fr_1fr]" data-reveal>
+          <a href={eventPath(feature.slug, locale)} class="group mt-10 grid grid-cols-1 overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg lg:grid-cols-[1.4fr_1fr]">
             <div class="aspect-[4/3] overflow-hidden bg-muted lg:aspect-auto">
               <Image
                 src={proofImage(feature) as ImageMetadata}
@@ -342,7 +342,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
           </a>
           {
             moreProof.length > 0 && (
-              <ul class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" data-reveal>
+              <ul class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {moreProof.map((e) => (
                   <li>
                     <a href={eventPath(e.slug, locale)} class="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg">
@@ -372,7 +372,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
             )
           }
 
-          <div class="mt-14" data-reveal>
+          <div class="mt-14">
             <p class="text-center font-heading text-sm text-muted-foreground">{c.partners.stripeLabel}</p>
             <ul class="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
               {
@@ -402,7 +402,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
 
   <section id={HOME_ANCHORS.groups} aria-labelledby="home-groups" class="scroll-mt-20 bg-card py-16 md:py-24">
     <div class="container mx-auto grid grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
-      <div data-reveal>
+      <div>
         <h2 id="home-groups" class={sectionTitle}>{c.guide.title}</h2>
         <p class="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">{c.lab.groups.intro}</p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -410,7 +410,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
           <a href={pathFor("guide", locale)} class={secondaryButton}>{c.guide.cardCta}</a>
         </div>
       </div>
-      <ol class="border-t border-border" data-reveal>
+      <ol class="border-t border-border">
         {
           c.lab.groups.steps.map((step, i) => (
             <li class="flex gap-5 border-b border-border py-5">
@@ -430,11 +430,11 @@ const proofFigure = (e: (typeof proof)[number]) => {
 
   <section aria-labelledby="home-credibility" class="bg-primary/5 py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="max-w-3xl" data-reveal>
+      <div class="max-w-3xl">
         <h2 id="home-credibility" class={sectionTitle}>{c.lab.credibility.title}</h2>
         <p class="mt-4 text-lg leading-relaxed text-foreground/75">{c.lab.credibility.mission}</p>
       </div>
-      <ul class="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+      <ul class="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
         {
           c.lab.credibility.items.map((item) => (
             <li class="border-t-2 border-coral pt-4">
@@ -449,7 +449,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
         <a href={pathFor("about", locale)} class={textLink}>{c.lab.credibility.about}</a>
       </div>
 
-      <div class="mt-14 grid grid-cols-1 items-center gap-8 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,20rem)_1fr] md:p-8" data-reveal>
+      <div class="mt-14 grid grid-cols-1 items-center gap-8 rounded-2xl border border-border bg-card p-6 md:grid-cols-[minmax(0,20rem)_1fr] md:p-8">
         <Image
           src={teamPhoto}
           alt={c.team.photoCaption}
@@ -469,10 +469,10 @@ const proofFigure = (e: (typeof proof)[number]) => {
 
   <section id={HOME_ANCHORS.faq} aria-labelledby="home-faq" class="scroll-mt-20 py-16 md:py-24">
     <div class="container mx-auto px-4 sm:px-6">
-      <div class="mx-auto mb-10 max-w-2xl" data-reveal>
+      <div class="mx-auto mb-10 max-w-2xl">
         <h2 id="home-faq" class={sectionTitle}>{c.faq.title}</h2>
       </div>
-      <div class="mx-auto max-w-2xl space-y-3" data-reveal>
+      <div class="mx-auto max-w-2xl space-y-3">
         {
           c.faq.items.map((faq) => (
             <details class="group rounded-xl border border-border bg-card px-6 transition-colors hover:border-primary/30">
