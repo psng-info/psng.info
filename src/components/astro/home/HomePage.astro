@@ -131,7 +131,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
         slot.kind === "none" ? "max-w-3xl" : "lg:grid-cols-[1.05fr_0.95fr] lg:gap-14",
       ]}
     >
-      <div class="animate-rise-in">
+      <div>
         <h1 class="font-heading text-[2rem] font-bold leading-[1.1] text-foreground sm:text-5xl lg:text-[3.5rem]">
           {c.lab.hero.headlineBefore}<span class="text-primary">{c.lab.hero.headlineAccent}</span>{c.lab.hero.headlineAfter}
         </h1>
@@ -157,7 +157,7 @@ const proofFigure = (e: (typeof proof)[number]) => {
       </div>
       {
         slot.kind !== "none" && (
-          <div class="animate-rise-in" style="animation-delay: 0.1s" data-track="hero-karte">
+          <div data-track="hero-karte">
             <HeroCard hero={slot} locale={locale} ref={ref} />
           </div>
         )
