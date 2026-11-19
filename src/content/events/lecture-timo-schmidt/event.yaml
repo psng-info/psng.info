@@ -49,6 +49,9 @@ partner:
   role:
     de: Eine gemeinsame Lecture von PSNG und BPSA.
     en: A joint lecture by the PSNG and the BPSA.
+recording:
+  url: https://www.youtube.com/watch?v=2ZRmTGihVBI
+  thumbnail: ./recording.webp
 registrationUrl: whatsapp
 registrationLabel:
   de: Zoom-Link via WhatsApp
