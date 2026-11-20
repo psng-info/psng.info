@@ -9,7 +9,7 @@ category: lecture
 column: vortraege
 date: "2027-01-19"
 showWeekday: true
-timeTbd: true
+startTime: "18:30"
 attendance: online
 location:
   de: Online über Zoom
@@ -27,7 +27,7 @@ abstract:
   lang: en
   title: The Case for Considering Psychedelics as Psychotherapeutic Tools
   text: |-
-    Psychedelic treatments for mental health conditions such as depression are increasingly viewed as primarily drug-based interventions, with psychotherapy (often misrepresented as “psychological support”) playing only a supportive or even dispensable role. However, growing evidence suggests that psychological processes, including the relationship between patient and therapist and psychotherapeutic aspects of the psychedelic experience, are central to treatment success. Drawing on findings from a large clinical trial of psilocybin for depression, this talk will explore how psychedelics may be better understood as tools that enable or enhance psychotherapy rather than as treatments in their own right.
+    Psychedelic treatments for mental health conditions such as depression are increasingly viewed as primarily drug-based interventions, with psychotherapy (often misrepresented as “psychological support”) playing only a supportive or even dispensable role. However, growing evidence suggests that psychological processes, including the relationship between patient and therapist and psychotherapeutic aspects of the psychedelic experience, are central to treatment success. Drawing on findings from a large clinical trial of psilocybin for depression, this talk will explore how psychedelics may be better understood as tools that enable or enhance psychotherapy rather than as treatments in their own right. Using an analogy with anesthetics, i.e., another class of adjunctive drugs that facilitate various treatments by exerting potent effects on consciousness, I will also discuss how this perspective could fit within existing drug regulation.
 audienceNote:
   de: Nur live auf Zoom – eine Aufzeichnung gibt es diesmal nicht.
   en: Live on Zoom only – there will be no recording this time.
