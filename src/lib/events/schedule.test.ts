@@ -87,7 +87,8 @@ describe("hasContent, hasPage, hasCalendar", () => {
   });
 
   it("keeps the conferences we were only guests at out of the calendar", () => {
-    expect(events.filter((e) => !hasCalendar(e)).map((e) => e.slug).sort()).toEqual(
+    // Termine ohne feste Uhrzeit haben ebenfalls (noch) keinen Kalendereintrag – darum hier ausgenommen.
+    expect(events.filter((e) => !e.timeTbd && !hasCalendar(e)).map((e) => e.slug).sort()).toEqual(
       ["alps-conference-2026", "icpr-2026", "tryp-expo-2026"],
     );
   });
@@ -258,15 +259,18 @@ describe("getHeroSlot", () => {
     expect(slot.kind === "series" && slot.series.date).toBe("2027-03-09");
   });
 
+  // Nur Termine vor Dezember 2026, damit neu eingetragene Lectures den Hero nicht belegen.
+  const quiet = events.filter((e) => e.date < "2026-12-01");
+
   it("shows the active feature with the highest priority when nothing is scheduled", () => {
-    const slot = getHeroSlot(events, [feature({ id: "low" }), feature({ id: "high", priority: 2 })], new Date(2026, 11, 20));
+    const slot = getHeroSlot(quiet, [feature({ id: "low" }), feature({ id: "high", priority: 2 })], new Date(2026, 11, 20));
     expect(slot.kind === "feature" && slot.feature.id).toBe("high");
   });
 
   it("ignores features outside their window, both ends inclusive", () => {
     const f = feature({ from: "2026-12-10", until: "2026-12-12" });
-    expect(getHeroSlot(events, [f], new Date(2026, 11, 12)).kind).toBe("feature");
-    expect(getHeroSlot(events, [f], new Date(2026, 11, 13)).kind).not.toBe("feature");
+    expect(getHeroSlot(quiet, [f], new Date(2026, 11, 12)).kind).toBe("feature");
+    expect(getHeroSlot(quiet, [f], new Date(2026, 11, 13)).kind).not.toBe("feature");
   });
 
   it(`falls back to a recap no older than ${HERO_RECAP_DAYS} days, then to nothing`, () => {
