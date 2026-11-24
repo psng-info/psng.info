@@ -91,38 +91,36 @@ const tocItems = [
   </div>
   <section class:list={["pb-16 pt-32 md:pb-24 md:pt-40", band]}>
     <div class:list={["container mx-auto max-w-6xl px-4 sm:px-6", inBand]}>
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16">
+      {/* Vierfeldertafel: beide Reihen und die Zahlen darunter teilen dieselbe Mittelachse (gleicher Spaltenabstand). */}
+      <div class="grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-2 lg:gap-y-16">
         <div>
           <h1 class="font-heading text-4xl font-bold leading-[1.1] text-foreground md:text-5xl">{c.about.title}</h1>
           <p class="mt-6 max-w-[65ch] text-lg leading-relaxed text-foreground/75">{c.about.intro}</p>
         </div>
-        <div class="rounded-2xl bg-primary/5 p-8">
+        {/* Außenkanten der Box auf Versalhöhe des Titels und letzter Grundlinie des Intros. */}
+        <div class="flex flex-col justify-center rounded-2xl bg-primary/5 p-8 lg:my-2 lg:py-6">
           <h2 class="font-heading text-sm font-semibold text-primary">{c.about.visionTitle}</h2>
-          <p class="mt-3 font-heading text-xl font-medium leading-snug text-foreground md:text-2xl">{c.about.visionText}</p>
+          <p class="mt-3 font-heading text-xl font-medium leading-snug text-foreground md:text-[1.375rem] md:leading-snug">{c.about.visionText}</p>
         </div>
-      </div>
-
-
-      <div class="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16">
         <div>
           <h2 class="font-heading text-xl font-semibold text-foreground">{c.about.statusTitle}</h2>
           <p class="mt-3 text-reading">{c.about.statusText}</p>
-          <dl class="mt-6 grid grid-cols-2 gap-x-6 gap-y-4">
-            {
-              figures.map((f) => (
-                <div class="flex flex-col-reverse border-t-2 border-coral pt-3">
-                  <dt class="text-sm text-muted-foreground">{f.label}</dt>
-                  <dd class="font-heading text-2xl font-bold tabular-nums text-foreground">{f.value}</dd>
-                </div>
-              ))
-            }
-          </dl>
         </div>
         <div>
           <h2 class="font-heading text-xl font-semibold text-foreground">{c.about.modelsTitle}</h2>
           <p class="mt-3 text-reading">{c.about.modelsText}</p>
         </div>
       </div>
+      <dl class="mt-10 grid grid-cols-2 gap-x-6 gap-y-4 lg:mt-12 lg:grid-cols-4 lg:gap-x-16">
+        {
+          figures.map((f) => (
+            <div class="flex flex-col-reverse justify-end border-t-2 border-coral pt-3">
+              <dt class="text-sm text-muted-foreground">{f.label}</dt>
+              <dd class="font-heading text-2xl font-bold tabular-nums text-foreground">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
     </div>
   </section>
 
