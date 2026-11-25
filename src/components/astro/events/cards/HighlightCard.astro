@@ -21,8 +21,9 @@ import YouTubeButton from "./YouTubeButton.astro";
 /*
  * Ein vergangenes Event mit Material, wie es auf der alten Startseite stand:
  * oben die Aufzeichnung oder die Fotos in voller Breite, darunter der ganze
- * Text. Mit Video oben bekommen die Fotos eine eigene Spalte neben dem Text,
- * statt dass sie ungesehen hinter dem Video verschwinden.
+ * Text. Mit Video oben stehen die Fotos rechts im Text, der um sie herum und
+ * darunter in voller Breite weiterläuft, statt dass sie ungesehen hinter dem
+ * Video verschwinden oder die Karte als halbe Spalte in die Länge ziehen.
  */
 interface Props {
   event: SiteEvent;
@@ -65,7 +66,14 @@ const link = page ? "font-medium text-muted-foreground hover:text-primary" : "fo
     ) : null
   }
 
-  <div class:list={[sidePhotos ? "grid gap-5 p-5 md:grid-cols-2 md:gap-6" : "p-5"]}>
+  <div class="flow-root p-5">
+    {
+      sidePhotos && (
+        <div class="mb-5 md:float-right md:mb-3 md:ml-6 md:w-[46%]">
+          <PhotoCarousel photos={sidePhotos} title={title} locale={locale} variant="side" />
+        </div>
+      )
+    }
     <div class="space-y-3">
       <CardHead date={formatEventDateRange(e, locale)}>
         <span class="chip">{columnLabel(e.column, c)}</span>
@@ -166,7 +174,6 @@ const link = page ? "font-medium text-muted-foreground hover:text-primary" : "fo
 
       {e.disclaimer && <p class="text-xs italic text-muted-foreground">{pick(e.disclaimer, locale)}</p>}
     </div>
-    {sidePhotos && <PhotoCarousel photos={sidePhotos} title={title} locale={locale} variant="side" />}
   </div>
 
   {e.partner && e.role === "co-hosted" && <PartnerStrip partner={e.partner} locale={locale} />}

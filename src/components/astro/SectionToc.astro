@@ -10,6 +10,8 @@
  * linken Fensterrand, der Text daneben bleibt mittig, solange Platz ist (siehe
  * ProseLayout und EventsPage). Unter 960 px oder auf sehr niedrigen Fenstern
  * gibt es ihn nicht; reicht die Höhe nicht für alle Punkte, scrollt er.
+ * `top-40` ist genau sein Abstand von oben beim Laden (`md:pt-40` der Seiten):
+ * So steht er vom ersten Pixel an still und wandert nicht erst mit nach oben.
  *
  * Ohne JavaScript bleibt es eine gewöhnliche Liste von Sprunglinks mit
  * gleichmäßigen Abständen; scripts/toc.ts setzt Abstände, Balken und
@@ -25,7 +27,7 @@ interface Props {
 const { items, label, title } = Astro.props;
 ---
 
-<nav aria-label={label} data-toc class="sticky top-28 h-[calc(100svh-9rem)] max-w-[15rem] overflow-y-auto overscroll-contain pl-1 print:hidden [@media(max-height:520px)]:hidden">
+<nav aria-label={label} data-toc class="sticky top-40 h-[calc(100svh-12rem)] max-w-[15rem] overflow-y-auto overscroll-contain pl-1 print:hidden [@media(max-height:520px)]:hidden">
   <div class="flex h-full">
     <div data-toc-line class="relative w-px shrink-0 bg-foreground/20">
       <div data-toc-bar class="absolute -left-[0.5px] top-0 h-0 w-[2px] rounded-full bg-primary"></div>
