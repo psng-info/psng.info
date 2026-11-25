@@ -9,16 +9,21 @@ category: lecture
 column: vortraege
 date: "2027-01-19"
 showWeekday: true
-startTime: "18:30"
-attendance: online
+startTime: "18:00"
+attendance: hybrid
+venue:
+  name: Humboldt-Universität zu Berlin, Campus Nord
+  city: Berlin
+  country: DE
 location:
-  de: Online über Zoom
-  en: Online via Zoom
+  de: "Zoom und vor Ort an der HU Berlin, Campus Nord"
+  en: "Zoom and in person at HU Berlin, Campus Nord"
 description:
   de: Psychedelische Behandlungen gelten zunehmend als reine Medikamententherapie, die Psychotherapie nur als Beiwerk. Max Wolff zeigt anhand einer großen Psilocybin-Studie zu Depression, warum Beziehung und psychotherapeutische Prozesse für den Behandlungserfolg zentral sind – und Psychedelika eher Werkzeuge der Psychotherapie sein könnten.
   en: Psychedelic treatments are increasingly seen as drug-based interventions, with psychotherapy as a mere add-on. Drawing on a large psilocybin trial for depression, Max Wolff argues that the therapeutic relationship and psychotherapeutic processes are central to treatment success – and that psychedelics may be better understood as tools for psychotherapy.
 speaker: Max Wolff
 speakerType: gast
+speakerPhoto: ./speaker.webp
 speakerLinkedinUrl: https://www.linkedin.com/in/max-wolff-4993701ba/
 speakerBio:
   de: Max Wolff ist Psychologe, Psychotherapeut und Clinician Scientist an der Humboldt-Universität zu Berlin. Seine Forschung verbindet Psychedelika- und Psychotherapieforschung und untersucht psychologische Veränderungsprozesse in veränderten Bewusstseinszuständen. Als Forscher und Therapeut hat er an mehreren klinischen Studien in diesem Feld mitgewirkt und setzt sich für die Weiterentwicklung professioneller Ausbildungsprogramme in psychedelischer Therapie ein.
@@ -29,8 +34,8 @@ abstract:
   text: |-
     Psychedelic treatments for mental health conditions such as depression are increasingly viewed as primarily drug-based interventions, with psychotherapy (often misrepresented as “psychological support”) playing only a supportive or even dispensable role. However, growing evidence suggests that psychological processes, including the relationship between patient and therapist and psychotherapeutic aspects of the psychedelic experience, are central to treatment success. Drawing on findings from a large clinical trial of psilocybin for depression, this talk will explore how psychedelics may be better understood as tools that enable or enhance psychotherapy rather than as treatments in their own right. Using an analogy with anesthetics, i.e., another class of adjunctive drugs that facilitate various treatments by exerting potent effects on consciousness, I will also discuss how this perspective could fit within existing drug regulation.
 audienceNote:
-  de: Nur live auf Zoom – eine Aufzeichnung gibt es diesmal nicht.
-  en: Live on Zoom only – there will be no recording this time.
+  de: Nur live vor Ort und auf Zoom – eine Aufzeichnung gibt es diesmal nicht.
+  en: Live in person and on Zoom only – there will be no recording this time.
 furtherReading:
   - text:
       de: "Wolff et al. (2025): „Reframing psychedelic regulation: Tools, not treatments“, Drug Science, Policy and Law."
