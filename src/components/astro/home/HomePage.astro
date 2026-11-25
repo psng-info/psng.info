@@ -15,7 +15,7 @@ import { loadPartnerList } from "@/lib/content";
 import { calendarEntry, seriesCalendarEntry } from "@/lib/events/calendarEntry";
 import { formatEventDate, formatEventDateRange, formatEventTime, formatSeriesTime } from "@/lib/events/format";
 import { loadEvents, loadFeatures } from "@/lib/events/load";
-import { eventPath } from "@/lib/events/paths";
+import { RECORDING_ANCHOR, eventPath } from "@/lib/events/paths";
 import { getHeroSlot, getProofEvents, getUpcomingAgenda, parseEventDate, proofImage } from "@/lib/events/schedule";
 import { cardAction, columnLabel } from "@/lib/events/view";
 import { legacyAnchorTargets } from "@/lib/legacyAnchors";
@@ -322,7 +322,8 @@ const proofFigure = (e: (typeof proof)[number]) => {
               </h3>
               {featureTalk && <p class="mt-2 font-heading text-base font-medium text-foreground">{feature.speaker}</p>}
               {showFeatureSubtitle && <p class="mt-3 text-lg text-foreground/80">{featureSubtitle}</p>}
-              {featureLead && <p lang={feature.abstract?.lang} class="mt-4 text-reading">{featureLead}</p>}
+              {/* Auf dem PC füllt der ganze Absatz die Spalte neben dem Foto; auf dem Handy steht er unter dem Foto und wird gekürzt. */}
+              {featureLead && <p lang={feature.abstract?.lang} class="mt-4 line-clamp-5 text-reading lg:line-clamp-none">{featureLead}</p>}
               {
                 figures(feature).length > 0 ? (
                   <dl class="mt-auto flex flex-wrap gap-x-8 gap-y-4 pt-8">
@@ -343,10 +344,15 @@ const proofFigure = (e: (typeof proof)[number]) => {
           {
             moreProof.length > 0 && (
               <ul class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {moreProof.map((e) => (
-                  <li>
-                    <a href={eventPath(e.slug, locale)} class="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg">
-                      <div class="aspect-[3/2] overflow-hidden bg-muted">
+                {moreProof.map((e) => {
+                  const page = eventPath(e.slug, locale);
+                  // Mit Aufzeichnung führen Standbild und „▶ Aufzeichnung“ direkt zum Video, das dort gleich startet.
+                  const video = e.recording ? `${page}#${RECORDING_ANCHOR}` : undefined;
+                  const still = video && proofImage(e) === e.recording!.thumbnail;
+                  const figure = e.attendees || !e.recording ? proofFigure(e) : undefined;
+                  return (
+                    <li class="group relative h-full overflow-hidden rounded-2xl border border-border bg-card transition-shadow hover:shadow-lg">
+                      <div class="relative aspect-[3/2] overflow-hidden bg-muted">
                         <Image
                           src={proofImage(e) as ImageMetadata}
                           alt=""
@@ -354,6 +360,14 @@ const proofFigure = (e: (typeof proof)[number]) => {
                           sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
                           class="h-full w-full object-cover"
                         />
+                        {still && (
+                          <a href={video} class="group/play absolute inset-0 z-10 flex items-center justify-center" aria-label={`${c.events.playRecording} ${pick(e.title, locale)}`}>
+                            <span class="absolute inset-0 bg-black/10 transition-colors group-hover/play:bg-black/30" />
+                            <span class="relative flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition-transform group-hover/play:scale-110">
+                              <svg viewBox="0 0 24 24" class="ml-1 h-6 w-6" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                          </a>
+                        )}
                       </div>
                       <div class="p-5">
                         <p class="text-sm text-muted-foreground">
@@ -361,13 +375,22 @@ const proofFigure = (e: (typeof proof)[number]) => {
                           {e.partner ? ` · ${c.events.with} ${e.partner.short ?? e.partner.name}` : ""}
                         </p>
                         <h3 class="mt-1 font-heading text-lg font-semibold leading-snug text-foreground group-hover:text-primary">
-                          {pick(e.title, locale)}
+                          {/* Die ganze Kachel führt zur Eventseite; Video-Links liegen darüber. */}
+                          <a href={page} class="after:absolute after:inset-0">{pick(e.title, locale)}</a>
                         </h3>
-                        <p class="mt-3 text-sm font-medium text-foreground">{proofFigure(e)}</p>
+                        <p class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-medium text-foreground">
+                          {figure && <span>{figure}</span>}
+                          {video && (
+                            <a href={video} class="relative z-10 inline-flex items-center gap-1.5 text-primary hover:underline">
+                              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                              {c.eventPage.recording}
+                            </a>
+                          )}
+                        </p>
                       </div>
-                    </a>
-                  </li>
-                ))}
+                    </li>
+                  );
+                })}
               </ul>
             )
           }

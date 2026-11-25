@@ -9,7 +9,7 @@ import { pick } from "@/i18n/localized";
 import { pathFor } from "@/i18n/routes";
 import { calendarEntry, seriesCalendarEntry } from "@/lib/events/calendarEntry";
 import { formatEventDate } from "@/lib/events/format";
-import { eventPath } from "@/lib/events/paths";
+import { RECORDING_ANCHOR, eventPath } from "@/lib/events/paths";
 import { canRegister, getChildEvents, getUpcomingAgenda, hasPage, isPast, isTranslated } from "@/lib/events/schedule";
 import type { SiteEvent } from "@/lib/events/types";
 import { columnLabel } from "@/lib/events/view";
@@ -188,7 +188,7 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
     <div class="min-w-0 space-y-10 md:col-start-1 md:row-start-1">
       {
         past && embed && (
-          <section>
+          <section id={RECORDING_ANCHOR} class="scroll-mt-28">
             <h2 class="sr-only">{p.recording}</h2>
             <div class="relative aspect-video overflow-hidden rounded-xl bg-muted">
               <button
@@ -461,6 +461,11 @@ const textLink = "inline-flex items-center gap-1 text-sm font-medium text-primar
 <script>
   import { initGallery } from "@/scripts/gallery";
   import { initYouTubeButtons } from "@/scripts/youtube";
+  import { RECORDING_ANCHOR } from "@/lib/events/paths";
   initGallery();
   initYouTubeButtons();
+  // Von „▶ Aufzeichnung“ auf der Startseite: Der Klick dort war schon das „Abspielen“.
+  if (location.hash === `#${RECORDING_ANCHOR}`) {
+    document.querySelector<HTMLButtonElement>(`#${RECORDING_ANCHOR} button[data-youtube]`)?.click();
+  }
 </script>
