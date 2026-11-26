@@ -17,7 +17,13 @@ const ENDPOINT = "https://psng.goatcounter.com/api/v0/count";
 // Vorschau-Dienste und Crawler öffnen Links auch – das sind keine Beitritte.
 const BOT = /bot|crawl|spider|preview|facebookexternalhit|whatsapp|slurp|curl|wget/i;
 
-const redirect = () => new Response(null, { status: 302, headers: { Location: WHATSAPP_LINK, "Cache-Control": "no-store" } });
+// noindex statt Sperre in robots.txt: Google muss die Weiterleitung crawlen
+// dürfen, um zu sehen, dass /whatsapp nicht in den Index gehört.
+const redirect = () =>
+  new Response(null, {
+    status: 302,
+    headers: { Location: WHATSAPP_LINK, "Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow" },
+  });
 
 async function count(request: Request): Promise<void> {
   const token = process.env.GOATCOUNTER_TOKEN;
